@@ -475,7 +475,7 @@ function initDB() {
 
 async function refreshFromGitHub() {
   try {
-    const res = await fetch('responses.json?_=' + Date.now());
+    const res = await fetch('https://raw.githubusercontent.com/congreen/pmf_mcr_questionnaire/main/responses.json?_=' + Date.now());
     if (!res.ok) return;
     const fresh = await res.json();
     if (fresh && fresh.length > 0) {
@@ -653,7 +653,7 @@ function renderTable(filter) {
       return '<td style="text-align:center;background:'+bg+';font-weight:500">'+v+'</td>';
     }).join('');
     return '<tr>'+
-      '<td style="color:var(--muted);font-size:11px">''+'+(start+i+1)+''+'</td>'+
+      '<td style="color:var(--muted);font-size:11px">'+(start+i+1)+'</td>'+
       '<td><b>'+r.id+'</b></td>'+
       '<td style="font-size:11px;color:var(--muted)">'+r.timestamp+'</td>'+
       '<td>'+stratBadge(r.stratum)+'</td>'+
