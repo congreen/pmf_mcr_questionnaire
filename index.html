@@ -1,0 +1,856 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>PMF-MCR Questionnaire — TTCL NICTBB Generator Maintenance</title>
+<style>
+:root{
+  --p:#4527A0;--pl:#EDE7F6;--pd:#1A0070;--acc:#7C4DFF;
+  --g:#2E7D32;--gr:#E8F5E9;--r:#C62828;--rb:#FFEBEE;
+  --bg:#F5F3FC;--card:#fff;--text:#1a1a2e;--muted:#5f5f7a;
+  --border:#D1C4E9;--sh:0 2px 16px rgba(69,39,160,.09);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(--text);font-size:15px;line-height:1.6}
+
+/* ── NAV ── */
+.topbar{background:var(--p);color:#fff;padding:.7rem 1.5rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:.5rem}
+.topbar-brand{font-size:15px;font-weight:600;letter-spacing:.2px}
+.topbar-meta{font-size:11px;opacity:.75}
+.topbar-links{display:flex;gap:8px}
+.nav-pill{padding:5px 14px;border-radius:20px;font-size:12px;font-weight:500;cursor:pointer;border:none;transition:background .15s}
+.nav-pill.active,.nav-pill:hover{background:rgba(255,255,255,.18);color:#fff}
+.nav-pill{background:transparent;color:rgba(255,255,255,.75)}
+
+/* ── PAGES ── */
+.page{display:none;max-width:820px;margin:0 auto;padding:1.5rem 1rem 4rem}
+.page.show{display:block}
+
+/* ── HEADER CARD ── */
+.hero{background:var(--p);color:#fff;border-radius:12px;padding:1.5rem;margin-bottom:1.25rem}
+.hero-badge{display:inline-block;background:rgba(255,255,255,.15);border-radius:20px;font-size:11px;padding:3px 12px;margin-bottom:.5rem}
+.hero-title{font-size:clamp(16px,2.5vw,21px);font-weight:600;margin-bottom:.3rem}
+.hero-sub{font-size:12px;opacity:.82}
+
+/* ── PROGRESS ── */
+.prog-wrap{background:var(--card);border-radius:10px;padding:.7rem 1rem;margin-bottom:1rem;box-shadow:var(--sh);display:none;align-items:center;gap:12px}
+.prog-wrap.show{display:flex}
+.prog-label{font-size:11px;color:var(--muted);white-space:nowrap}
+.prog-track{flex:1;height:5px;background:var(--border);border-radius:3px;overflow:hidden}
+.prog-fill{height:100%;background:var(--p);border-radius:3px;transition:width .4s}
+.prog-pct{font-size:12px;font-weight:600;color:var(--p);min-width:30px;text-align:right}
+
+/* ── SECTION CARD ── */
+.sec{background:var(--card);border-radius:12px;box-shadow:var(--sh);margin-bottom:1.25rem;overflow:hidden;display:none}
+.sec.active{display:block}
+.sec-hdr{background:var(--pl);border-bottom:2px solid var(--p);padding:.85rem 1.25rem;display:flex;align-items:center;gap:10px}
+.sec-num{width:28px;height:28px;border-radius:50%;background:var(--p);color:#fff;font-size:13px;font-weight:600;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.sec-title{font-size:15px;font-weight:600;color:var(--pd)}
+.sec-body{padding:1.25rem}
+
+/* ── QUESTION ── */
+.q{margin-bottom:1.4rem}
+.q:last-child{margin-bottom:0}
+.q-label{font-size:14px;font-weight:500;margin-bottom:.55rem;display:block}
+.req{color:var(--r);margin-left:3px}
+
+/* Radio options */
+.rg{display:flex;flex-direction:column;gap:5px}
+.ro{display:flex;align-items:center;gap:10px;padding:7px 12px;border-radius:8px;border:1.5px solid var(--border);cursor:pointer;font-size:14px;transition:border-color .12s,background .12s}
+.ro:hover{border-color:var(--p);background:var(--pl)}
+.ro.sel{border-color:var(--p);background:var(--pl)}
+.ro input[type=radio]{accent-color:var(--p);width:16px;height:16px;flex-shrink:0}
+
+/* Likert table */
+.ltw{overflow-x:auto}
+.lt{width:100%;border-collapse:collapse;min-width:520px}
+.lt thead th{padding:7px 5px;font-size:11px;font-weight:600;color:var(--muted);text-align:center;background:var(--pl);border-bottom:1.5px solid var(--border)}
+.lt thead th:first-child{text-align:left;min-width:240px}
+.lt tbody tr{border-bottom:1px solid var(--border)}
+.lt tbody tr:last-child{border-bottom:none}
+.lt tbody tr:hover{background:#faf8ff}
+.lt td{padding:9px 5px;font-size:13px;vertical-align:middle}
+.lt td:first-child{padding-right:10px;line-height:1.4}
+.lt td.rc{text-align:center}
+.lt input[type=radio]{accent-color:var(--p);width:17px;height:17px;cursor:pointer}
+.lk{font-size:10px;color:var(--muted);margin-top:2px}
+.err-row td:first-child{color:var(--r)}
+.err-row input[type=radio]{outline:2px solid var(--r);outline-offset:2px;border-radius:50%}
+
+/* ── NAV BAR ── */
+.nb{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-top:1rem}
+.btn{padding:9px 22px;border-radius:8px;border:none;font-size:14px;font-weight:500;cursor:pointer;display:inline-flex;align-items:center;gap:6px;transition:opacity .12s,transform .1s}
+.btn:active{transform:scale(.97)}
+.btn-prev{background:transparent;color:var(--p);border:1.5px solid var(--p)}
+.btn-prev:hover{background:var(--pl)}
+.btn-next{background:var(--p);color:#fff}
+.btn-next:hover{background:var(--pd)}
+.btn-submit{background:var(--g);color:#fff}
+.btn-submit:hover{background:#1B5E20}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+.sh{font-size:11px;color:var(--muted);margin-left:auto}
+
+/* ── ERRORS ── */
+.err-ban{display:none;background:var(--rb);border:1px solid #FFCDD2;border-radius:8px;padding:.7rem 1rem;font-size:13px;color:var(--r);margin-bottom:1rem;align-items:center;gap:8px}
+.err-ban.show{display:flex}
+
+/* ── SUCCESS ── */
+.success{display:none;background:var(--card);border-radius:12px;box-shadow:var(--sh);padding:2.5rem 1.5rem;text-align:center}
+.success.show{display:block}
+.success-ico{width:60px;height:60px;border-radius:50%;background:var(--gr);border:2px solid #A5D6A7;display:flex;align-items:center;justify-content:center;margin:0 auto .9rem;font-size:28px}
+.success-title{font-size:20px;font-weight:600;color:var(--g);margin-bottom:.4rem}
+.success-sub{font-size:13px;color:var(--muted);max-width:420px;margin:0 auto .9rem}
+.ref-pill{display:inline-block;background:var(--pl);color:var(--pd);border-radius:8px;padding:.4rem 1.1rem;font-size:13px;font-weight:600;margin-bottom:1rem}
+.btn-another{background:var(--p);color:#fff;margin:0 auto}
+
+/* ── SPINNER ── */
+.spin{display:none;width:16px;height:16px;border:2px solid rgba(255,255,255,.35);border-top-color:#fff;border-radius:50%;animation:sp .6s linear infinite}
+@keyframes sp{to{transform:rotate(360deg)}}
+
+/* ── ADMIN ── */
+.admin-login{max-width:380px;margin:3rem auto;background:var(--card);border-radius:12px;padding:2rem;box-shadow:var(--sh);text-align:center}
+.admin-login h2{color:var(--p);margin-bottom:.4rem;font-size:18px}
+.admin-login p{font-size:13px;color:var(--muted);margin-bottom:1.2rem}
+.admin-login input{width:100%;padding:9px 12px;border-radius:8px;border:1.5px solid var(--border);font-size:14px;margin-bottom:.75rem;outline:none}
+.admin-login input:focus{border-color:var(--p)}
+.admin-login .btn{width:100%;justify-content:center}
+.admin-login .err{color:var(--r);font-size:13px;margin-top:.5rem}
+
+/* Stats grid */
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin-bottom:1.25rem}
+.stat-card{background:var(--card);border-radius:10px;padding:.9rem 1rem;box-shadow:var(--sh);text-align:center}
+.stat-v{font-size:26px;font-weight:600;color:var(--p)}
+.stat-l{font-size:11px;color:var(--muted);margin-top:2px}
+
+/* Table */
+.tbl-wrap{overflow-x:auto;background:var(--card);border-radius:12px;box-shadow:var(--sh);padding:0}
+.tbl-toolbar{display:flex;gap:8px;align-items:center;padding:1rem 1.25rem .75rem;flex-wrap:wrap;border-bottom:1px solid var(--border)}
+.tbl-toolbar-title{font-size:15px;font-weight:600;color:var(--pd);flex:1}
+.btn-dl{background:var(--p);color:#fff;padding:7px 16px;font-size:13px}
+.btn-dl:hover{background:var(--pd)}
+.btn-addlink{background:var(--g);color:#fff;padding:7px 16px;font-size:13px}
+.tbl-search{padding:6px 10px;border-radius:8px;border:1.5px solid var(--border);font-size:13px;min-width:160px;outline:none}
+.tbl-search:focus{border-color:var(--p)}
+.rtbl{width:100%;border-collapse:collapse;font-size:12px}
+.rtbl th{background:var(--pl);padding:8px 10px;text-align:left;font-weight:600;color:var(--pd);border-bottom:1.5px solid var(--border);white-space:nowrap}
+.rtbl td{padding:7px 10px;border-bottom:1px solid var(--border);white-space:nowrap}
+.rtbl tr:last-child td{border-bottom:none}
+.rtbl tr:hover td{background:#faf8ff}
+.badge{display:inline-block;font-size:10px;padding:2px 7px;border-radius:10px;font-weight:500}
+.b-pse{background:#E3F2FD;color:#0D47A1}
+.b-rm{background:var(--pl);color:var(--pd)}
+.b-mt{background:var(--gr);color:#1B5E20}
+.b-noc{background:#FFF3E0;color:#E65100}
+.score-cell{text-align:center;font-weight:600;color:var(--p)}
+.rii-bar{height:7px;border-radius:3px;display:inline-block;vertical-align:middle;margin-left:5px}
+.tab-bar{display:flex;gap:4px;margin-bottom:1rem;flex-wrap:wrap}
+.tab-btn{padding:6px 16px;border-radius:6px;border:1.5px solid var(--border);background:var(--card);font-size:13px;cursor:pointer;color:var(--muted)}
+.tab-btn.on{background:var(--p);color:#fff;border-color:var(--p)}
+.rii-sig{color:var(--g);font-weight:600}
+.rii-no{color:var(--muted)}
+.logout-btn{background:transparent;color:rgba(255,255,255,.75);border:1px solid rgba(255,255,255,.3);padding:4px 12px;border-radius:20px;font-size:11px;cursor:pointer}
+.logout-btn:hover{background:rgba(255,255,255,.15);color:#fff}
+.pagination{display:flex;gap:6px;align-items:center;padding:.75rem 1.25rem;justify-content:flex-end;border-top:1px solid var(--border)}
+.pg-btn{padding:4px 10px;border-radius:6px;border:1.5px solid var(--border);background:var(--card);font-size:12px;cursor:pointer;color:var(--muted)}
+.pg-btn:hover,.pg-btn.on{background:var(--p);color:#fff;border-color:var(--p)}
+.pg-info{font-size:12px;color:var(--muted)}
+.info-note{background:var(--pl);border-radius:8px;padding:.75rem 1rem;font-size:13px;color:var(--pd);border-left:3px solid var(--p);margin-bottom:1rem}
+
+@media(max-width:560px){.sec-body{padding:.9rem}.btn{padding:8px 14px;font-size:13px}.lt{min-width:460px}}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div>
+    <div class="topbar-brand">PMF-MCR Questionnaire — TTCL NICTBB</div>
+    <div class="topbar-meta">DIT ME24MM | Katakweba C.M. (240165454411) | Dr. S. Karugaba</div>
+  </div>
+  <div class="topbar-links">
+    <button class="nav-pill active" onclick="showPage('survey')" id="nav-survey">Survey Form</button>
+    <button class="nav-pill" onclick="showPage('admin')" id="nav-admin">Admin / Results</button>
+  </div>
+</div>
+
+<!-- ═══════════════════════════ SURVEY PAGE ═══════════════════════════ -->
+<div class="page show" id="page-survey">
+
+  <div class="hero">
+    <div class="hero-badge">Research Questionnaire — Confidential</div>
+    <div class="hero-title">Factors Affecting Generator Maintenance Cost at TTCL NICTBB Sites</div>
+    <div class="hero-sub">PMF-MCR Framework Research &nbsp;·&nbsp; Scale: 1 = Strongly Disagree &nbsp;→&nbsp; 5 = Strongly Agree &nbsp;·&nbsp; All responses are anonymous</div>
+  </div>
+
+  <div class="prog-wrap" id="prog-wrap">
+    <span class="prog-label" id="prog-lbl">Part 1 of 5</span>
+    <div class="prog-track"><div class="prog-fill" id="prog-fill" style="width:20%"></div></div>
+    <span class="prog-pct" id="prog-pct">20%</span>
+  </div>
+
+  <div class="err-ban" id="err-ban">⚠ <span id="err-msg">Please answer all required questions.</span></div>
+
+  <!-- Intro -->
+  <div class="sec active" id="sec-intro">
+    <div class="sec-hdr"><div class="sec-num">ℹ</div><div class="sec-title">Instructions &amp; Consent</div></div>
+    <div class="sec-body">
+      <p style="font-size:14px;line-height:1.7;margin-bottom:1rem">
+        This survey is part of an M.Eng (Maintenance Management) dissertation at the Dar es Salaam Institute of Technology investigating 
+        factors that drive generator maintenance costs at TTCL NICTBB backbone sites. Your expert opinion is highly valued.
+      </p>
+      <ul style="font-size:13px;color:var(--muted);margin-left:1.1rem;line-height:2.2">
+        <li>Responses are <strong>anonymous</strong> — no personal identifiers collected</li>
+        <li>Five parts, approx. <strong>8–10 minutes</strong></li>
+        <li>Rating scale: <strong>1 = Strongly Disagree &nbsp;→&nbsp; 5 = Strongly Agree</strong></li>
+        <li>All items marked <span style="color:var(--r)">*</span> are required</li>
+      </ul>
+      <div class="info-note" style="margin-top:1rem">
+        By proceeding you consent to participate in this academic research study (DIT ME24MM, 2025).
+      </div>
+      <div class="nb"><button class="btn btn-next" onclick="goNext()">Start Survey ›</button></div>
+    </div>
+  </div>
+
+  <!-- Part I -->
+  <div class="sec" id="sec-1">
+    <div class="sec-hdr"><div class="sec-num">1</div><div class="sec-title">Part I — Respondent Information</div></div>
+    <div class="sec-body">
+      <div class="q">
+        <label class="q-label">Functional category (stratum) <span class="req">*</span></label>
+        <div class="rg" id="rg-stratum">
+          <label class="ro"><input type="radio" name="stratum" value="Power Systems Engineer"> Power Systems Engineer</label>
+          <label class="ro"><input type="radio" name="stratum" value="Regional Manager/Supervisor"> Regional Manager / Supervisor</label>
+          <label class="ro"><input type="radio" name="stratum" value="Maintenance Technician"> Maintenance Technician</label>
+          <label class="ro"><input type="radio" name="stratum" value="NOC Engineer"> NOC Engineer</label>
+        </div>
+      </div>
+      <div class="q">
+        <label class="q-label">Years of experience in TTCL power operations <span class="req">*</span></label>
+        <div class="rg" id="rg-exp">
+          <label class="ro"><input type="radio" name="exp" value="< 2 years"> Less than 2 years</label>
+          <label class="ro"><input type="radio" name="exp" value="2-5 years"> 2 – 5 years</label>
+          <label class="ro"><input type="radio" name="exp" value="6-10 years"> 6 – 10 years</label>
+          <label class="ro"><input type="radio" name="exp" value="> 10 years"> More than 10 years</label>
+        </div>
+      </div>
+      <div class="q">
+        <label class="q-label">Highest educational qualification <span class="req">*</span></label>
+        <div class="rg" id="rg-edu">
+          <label class="ro"><input type="radio" name="edu" value="Certificate/Diploma"> Certificate / Diploma</label>
+          <label class="ro"><input type="radio" name="edu" value="Bachelor's Degree"> Bachelor's Degree</label>
+          <label class="ro"><input type="radio" name="edu" value="Postgraduate Diploma"> Postgraduate Diploma</label>
+          <label class="ro"><input type="radio" name="edu" value="Master's Degree"> Master's Degree</label>
+          <label class="ro"><input type="radio" name="edu" value="PhD"> PhD / Doctorate</label>
+        </div>
+      </div>
+      <div class="q">
+        <label class="q-label">Familiarity with predictive maintenance <span class="req">*</span></label>
+        <div class="rg" id="rg-pdm">
+          <label class="ro"><input type="radio" name="pdm" value="Not familiar"> Not familiar</label>
+          <label class="ro"><input type="radio" name="pdm" value="Heard the term only"> Heard the term only</label>
+          <label class="ro"><input type="radio" name="pdm" value="Somewhat familiar"> Somewhat familiar</label>
+          <label class="ro"><input type="radio" name="pdm" value="Fully familiar"> Fully familiar</label>
+        </div>
+      </div>
+      <div class="nb">
+        <button class="btn btn-prev" onclick="goPrev()">‹ Back</button>
+        <button class="btn btn-next" onclick="goNext()">Next ›</button>
+        <span class="sh">Part 1 of 5</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Part II -->
+  <div class="sec" id="sec-2">
+    <div class="sec-hdr"><div class="sec-num">2</div><div class="sec-title">Part II — Technical Factors</div></div>
+    <div class="sec-body">
+      <div class="ltw">
+        <table class="lt">
+          <thead><tr><th>Statement &amp; key variable</th><th>1<br>SD</th><th>2<br>D</th><th>3<br>N</th><th>4<br>A</th><th>5<br>SA</th></tr></thead>
+          <tbody>
+            <tr data-qid="TF1"><td>Grid un-availability significantly increases generator running hours.<div class="lk">Grid Unavailability (TF1)</div></td><td class="rc"><input type="radio" name="TF1" value="1"></td><td class="rc"><input type="radio" name="TF1" value="2"></td><td class="rc"><input type="radio" name="TF1" value="3"></td><td class="rc"><input type="radio" name="TF1" value="4"></td><td class="rc"><input type="radio" name="TF1" value="5"></td></tr>
+            <tr data-qid="TF2"><td>Generator running hours significantly increase maintenance cost.<div class="lk">Generator Running Hours (TF2)</div></td><td class="rc"><input type="radio" name="TF2" value="1"></td><td class="rc"><input type="radio" name="TF2" value="2"></td><td class="rc"><input type="radio" name="TF2" value="3"></td><td class="rc"><input type="radio" name="TF2" value="4"></td><td class="rc"><input type="radio" name="TF2" value="5"></td></tr>
+            <tr data-qid="TF3"><td>Spare parts usage significantly increases maintenance cost.<div class="lk">Spare Parts Usage/Cost (TF3)</div></td><td class="rc"><input type="radio" name="TF3" value="1"></td><td class="rc"><input type="radio" name="TF3" value="2"></td><td class="rc"><input type="radio" name="TF3" value="3"></td><td class="rc"><input type="radio" name="TF3" value="4"></td><td class="rc"><input type="radio" name="TF3" value="5"></td></tr>
+            <tr data-qid="TF4"><td>Breakdown frequency is the most significant driver of emergency maintenance cost.<div class="lk">Breakdown Frequency (TF4)</div></td><td class="rc"><input type="radio" name="TF4" value="1"></td><td class="rc"><input type="radio" name="TF4" value="2"></td><td class="rc"><input type="radio" name="TF4" value="3"></td><td class="rc"><input type="radio" name="TF4" value="4"></td><td class="rc"><input type="radio" name="TF4" value="5"></td></tr>
+            <tr data-qid="TF5"><td>On Battery-first dispatch, Battery size significantly reduces generator running hours.<div class="lk">Battery Size — Dispatch (TF5)</div></td><td class="rc"><input type="radio" name="TF5" value="1"></td><td class="rc"><input type="radio" name="TF5" value="2"></td><td class="rc"><input type="radio" name="TF5" value="3"></td><td class="rc"><input type="radio" name="TF5" value="4"></td><td class="rc"><input type="radio" name="TF5" value="5"></td></tr>
+            <tr data-qid="TF6"><td>Lithium batteries are performing better than VRLA batteries at NICTBB sites.<div class="lk">Battery Technology Type (TF6)</div></td><td class="rc"><input type="radio" name="TF6" value="1"></td><td class="rc"><input type="radio" name="TF6" value="2"></td><td class="rc"><input type="radio" name="TF6" value="3"></td><td class="rc"><input type="radio" name="TF6" value="4"></td><td class="rc"><input type="radio" name="TF6" value="5"></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="nb"><button class="btn btn-prev" onclick="goPrev()">‹ Back</button><button class="btn btn-next" onclick="goNext()">Next ›</button><span class="sh">Part 2 of 5</span></div>
+    </div>
+  </div>
+
+  <!-- Part III -->
+  <div class="sec" id="sec-3">
+    <div class="sec-hdr"><div class="sec-num">3</div><div class="sec-title">Part III — Operational Factors</div></div>
+    <div class="sec-body">
+      <div class="ltw">
+        <table class="lt">
+          <thead><tr><th>Statement &amp; key variable</th><th>1<br>SD</th><th>2<br>D</th><th>3<br>N</th><th>4<br>A</th><th>5<br>SA</th></tr></thead>
+          <tbody>
+            <tr data-qid="OF1"><td>Generator operation below 30% rated capacity significantly increases maintenance cost.<div class="lk">Generator Load Factor — Underloading (OF1)</div></td><td class="rc"><input type="radio" name="OF1" value="1"></td><td class="rc"><input type="radio" name="OF1" value="2"></td><td class="rc"><input type="radio" name="OF1" value="3"></td><td class="rc"><input type="radio" name="OF1" value="4"></td><td class="rc"><input type="radio" name="OF1" value="5"></td></tr>
+            <tr data-qid="OF2"><td>Frequent short-duration generator starts (&lt;30 min per activation) cause disproportionate engine wear.<div class="lk">Start Frequency / Short-Cycling (OF2)</div></td><td class="rc"><input type="radio" name="OF2" value="1"></td><td class="rc"><input type="radio" name="OF2" value="2"></td><td class="rc"><input type="radio" name="OF2" value="3"></td><td class="rc"><input type="radio" name="OF2" value="4"></td><td class="rc"><input type="radio" name="OF2" value="5"></td></tr>
+            <tr data-qid="OF3"><td>Maintenance scheduling discipline (executing visits on time vs. deferring) is a critical driver of maintenance cost.<div class="lk">Maintenance Scheduling Compliance (OF3)</div></td><td class="rc"><input type="radio" name="OF3" value="1"></td><td class="rc"><input type="radio" name="OF3" value="2"></td><td class="rc"><input type="radio" name="OF3" value="3"></td><td class="rc"><input type="radio" name="OF3" value="4"></td><td class="rc"><input type="radio" name="OF3" value="5"></td></tr>
+            <tr data-qid="OF4"><td>Battery-first dispatch (battery absorbs short outages before generator start) will significantly reduce maintenance cost.<div class="lk">Battery-First Dispatch Strategy (OF4)</div></td><td class="rc"><input type="radio" name="OF4" value="1"></td><td class="rc"><input type="radio" name="OF4" value="2"></td><td class="rc"><input type="radio" name="OF4" value="3"></td><td class="rc"><input type="radio" name="OF4" value="4"></td><td class="rc"><input type="radio" name="OF4" value="5"></td></tr>
+            <tr data-qid="OF5"><td>On Battery-first dispatch, faulty battery significantly increases generator running hours.<div class="lk">Faulty Battery (OF5)</div></td><td class="rc"><input type="radio" name="OF5" value="1"></td><td class="rc"><input type="radio" name="OF5" value="2"></td><td class="rc"><input type="radio" name="OF5" value="3"></td><td class="rc"><input type="radio" name="OF5" value="4"></td><td class="rc"><input type="radio" name="OF5" value="5"></td></tr>
+            <tr data-qid="OF6"><td>Generator running hours significantly influence generator maintenance cost more than generator age.<div class="lk">Running Hours vs. Generator Age (OF6)</div></td><td class="rc"><input type="radio" name="OF6" value="1"></td><td class="rc"><input type="radio" name="OF6" value="2"></td><td class="rc"><input type="radio" name="OF6" value="3"></td><td class="rc"><input type="radio" name="OF6" value="4"></td><td class="rc"><input type="radio" name="OF6" value="5"></td></tr>
+            <tr data-qid="OF7"><td>Operator skill level directly influences maintenance quality at NICTBB sites.<div class="lk">Operator Skill/Competence (OF7)</div></td><td class="rc"><input type="radio" name="OF7" value="1"></td><td class="rc"><input type="radio" name="OF7" value="2"></td><td class="rc"><input type="radio" name="OF7" value="3"></td><td class="rc"><input type="radio" name="OF7" value="4"></td><td class="rc"><input type="radio" name="OF7" value="5"></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="nb"><button class="btn btn-prev" onclick="goPrev()">‹ Back</button><button class="btn btn-next" onclick="goNext()">Next ›</button><span class="sh">Part 3 of 5</span></div>
+    </div>
+  </div>
+
+  <!-- Part IV -->
+  <div class="sec" id="sec-4">
+    <div class="sec-hdr"><div class="sec-num">4</div><div class="sec-title">Part IV — Environmental Factors</div></div>
+    <div class="sec-body">
+      <div class="ltw">
+        <table class="lt">
+          <thead><tr><th>Statement &amp; key variable</th><th>1<br>SD</th><th>2<br>D</th><th>3<br>N</th><th>4<br>A</th><th>5<br>SA</th></tr></thead>
+          <tbody>
+            <tr data-qid="EF1"><td>Tropical ambient temperatures (25°C–38°C) reduce engine oil service life below OEM-specified intervals.<div class="lk">Ambient Temperature (EF1)</div></td><td class="rc"><input type="radio" name="EF1" value="1"></td><td class="rc"><input type="radio" name="EF1" value="2"></td><td class="rc"><input type="radio" name="EF1" value="3"></td><td class="rc"><input type="radio" name="EF1" value="4"></td><td class="rc"><input type="radio" name="EF1" value="5"></td></tr>
+            <tr data-qid="EF2"><td>Site distance (travel distance) significantly affects total maintenance cost through fuel and per-diem expenditure.<div class="lk">Site Accessibility / Travel Distance (EF2)</div></td><td class="rc"><input type="radio" name="EF2" value="1"></td><td class="rc"><input type="radio" name="EF2" value="2"></td><td class="rc"><input type="radio" name="EF2" value="3"></td><td class="rc"><input type="radio" name="EF2" value="4"></td><td class="rc"><input type="radio" name="EF2" value="5"></td></tr>
+            <tr data-qid="EF3"><td>Dust particulates accelerate reduction in engine efficiency due to air filter blockage.<div class="lk">Dust/Particulate Level (EF3)</div></td><td class="rc"><input type="radio" name="EF3" value="1"></td><td class="rc"><input type="radio" name="EF3" value="2"></td><td class="rc"><input type="radio" name="EF3" value="3"></td><td class="rc"><input type="radio" name="EF3" value="4"></td><td class="rc"><input type="radio" name="EF3" value="5"></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="nb"><button class="btn btn-prev" onclick="goPrev()">‹ Back</button><button class="btn btn-next" onclick="goNext()">Next ›</button><span class="sh">Part 4 of 5</span></div>
+    </div>
+  </div>
+
+  <!-- Part V -->
+  <div class="sec" id="sec-5">
+    <div class="sec-hdr"><div class="sec-num">5</div><div class="sec-title">Part V — Company Policy Factors</div></div>
+    <div class="sec-body">
+      <div class="ltw">
+        <table class="lt">
+          <thead><tr><th>Statement &amp; key variable</th><th>1<br>SD</th><th>2<br>D</th><th>3<br>N</th><th>4<br>A</th><th>5<br>SA</th></tr></thead>
+          <tbody>
+            <tr data-qid="CF1"><td>TTCL's partial fuel refill policy increases maintenance trip frequency.<div class="lk">Fuel Refill Policy (CF1)</div></td><td class="rc"><input type="radio" name="CF1" value="1"></td><td class="rc"><input type="radio" name="CF1" value="2"></td><td class="rc"><input type="radio" name="CF1" value="3"></td><td class="rc"><input type="radio" name="CF1" value="4"></td><td class="rc"><input type="radio" name="CF1" value="5"></td></tr>
+            <tr data-qid="CF2"><td>Budget allocation significantly determines whether recommended maintenance intervals are executed on schedule.<div class="lk">Budget Allocation (CF2)</div></td><td class="rc"><input type="radio" name="CF2" value="1"></td><td class="rc"><input type="radio" name="CF2" value="2"></td><td class="rc"><input type="radio" name="CF2" value="3"></td><td class="rc"><input type="radio" name="CF2" value="4"></td><td class="rc"><input type="radio" name="CF2" value="5"></td></tr>
+            <tr data-qid="CF3"><td>Price changes in fuel and spare parts significantly affect total maintenance cost.<div class="lk">Fuel/Spare Parts Price Fluctuation (CF3)</div></td><td class="rc"><input type="radio" name="CF3" value="1"></td><td class="rc"><input type="radio" name="CF3" value="2"></td><td class="rc"><input type="radio" name="CF3" value="3"></td><td class="rc"><input type="radio" name="CF3" value="4"></td><td class="rc"><input type="radio" name="CF3" value="5"></td></tr>
+            <tr data-qid="CF4"><td>The current 250-hour/3-month uniform maintenance standard generates unnecessary costs at low-utilisation sites.<div class="lk">Uniform (Time-Based) Maintenance Standard (CF4)</div></td><td class="rc"><input type="radio" name="CF4" value="1"></td><td class="rc"><input type="radio" name="CF4" value="2"></td><td class="rc"><input type="radio" name="CF4" value="3"></td><td class="rc"><input type="radio" name="CF4" value="4"></td><td class="rc"><input type="radio" name="CF4" value="5"></td></tr>
+            <tr data-qid="CF5"><td>A run-hour-based predictive maintenance standard would better align maintenance frequency with actual generator utilisation.<div class="lk">Predictive (Run-Hour-Based) Maintenance Standard (CF5)</div></td><td class="rc"><input type="radio" name="CF5" value="1"></td><td class="rc"><input type="radio" name="CF5" value="2"></td><td class="rc"><input type="radio" name="CF5" value="3"></td><td class="rc"><input type="radio" name="CF5" value="4"></td><td class="rc"><input type="radio" name="CF5" value="5"></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="nb">
+        <button class="btn btn-prev" onclick="goPrev()">‹ Back</button>
+        <button class="btn btn-submit" id="btn-sub" onclick="submitSurvey()">
+          <span class="spin" id="sub-spin"></span>
+          <span id="sub-lbl">Submit Response ✓</span>
+        </button>
+        <span class="sh">Part 5 of 5</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Success -->
+  <div class="success" id="success">
+    <div class="success-ico">✓</div>
+    <div class="success-title">Response recorded!</div>
+    <p class="success-sub">Thank you for contributing to the PMF-MCR generator maintenance cost research. Your response has been saved to this study's dataset.</p>
+    <div class="ref-pill" id="ref-pill">Ref: —</div><br>
+    <button class="btn btn-another btn-next" onclick="resetSurvey()">Add another response</button>
+  </div>
+
+</div><!-- /page-survey -->
+
+<!-- ═══════════════════════════ ADMIN PAGE ═══════════════════════════ -->
+<div class="page" id="page-admin">
+
+  <!-- Login -->
+  <div class="admin-login" id="admin-login">
+    <div style="font-size:32px;margin-bottom:.5rem">🔒</div>
+    <h2>Admin Access</h2>
+    <p>Enter the admin password to view and download survey results.</p>
+    <input type="password" id="admin-pw" placeholder="Password" onkeydown="if(event.key==='Enter')doLogin()">
+    <button class="btn btn-next" style="width:100%;justify-content:center" onclick="doLogin()">Sign In</button>
+    <div class="err" id="login-err"></div>
+    <p style="margin-top:1rem;font-size:11px;color:var(--muted)">Default password: <code>PMF2025</code></p>
+  </div>
+
+  <!-- Dashboard -->
+  <div id="admin-dash" style="display:none">
+    <div class="hero" style="margin-bottom:1.25rem">
+      <div class="hero-badge">Admin Dashboard</div>
+      <div class="hero-title">PMF-MCR Survey Results</div>
+      <div class="hero-sub">View all responses, RII analysis, and download data for SPSS/Excel</div>
+    </div>
+
+    <div class="stats" id="admin-stats"></div>
+
+    <div class="tab-bar">
+      <button class="tab-btn on" onclick="showTab('responses')">All Responses</button>
+      <button class="tab-btn" onclick="showTab('rii')">RII Analysis</button>
+      <button class="tab-btn" onclick="showTab('addform')">Add Response</button>
+    </div>
+
+    <!-- Responses tab -->
+    <div id="tab-responses">
+      <div class="tbl-wrap">
+        <div class="tbl-toolbar">
+          <span class="tbl-toolbar-title">Response dataset <span id="resp-count" style="font-size:13px;color:var(--muted)"></span></span>
+          <input class="tbl-search" type="text" placeholder="Search respondent…" oninput="filterTable(this.value)" id="tbl-filter">
+          <button class="btn btn-dl" onclick="downloadCSV()">⬇ Download CSV</button>
+          <button class="btn btn-dl" onclick="downloadJSON()" style="background:#1565C0">⬇ Download JSON</button>
+        </div>
+        <div style="overflow-x:auto">
+          <table class="rtbl" id="resp-table"><thead></thead><tbody></tbody></table>
+        </div>
+        <div class="pagination" id="pagination"></div>
+      </div>
+    </div>
+
+    <!-- RII tab -->
+    <div id="tab-rii" style="display:none">
+      <div class="tbl-wrap">
+        <div class="tbl-toolbar">
+          <span class="tbl-toolbar-title">Relative Importance Index — all 21 factors</span>
+          <button class="btn btn-dl" onclick="downloadRII()">⬇ Download RII CSV</button>
+        </div>
+        <div style="overflow-x:auto">
+          <table class="rtbl" id="rii-table"></table>
+        </div>
+      </div>
+    </div>
+
+    <!-- Add response tab -->
+    <div id="tab-addform" style="display:none">
+      <div class="info-note">
+        Use the <strong>Survey Form</strong> tab (public link) to add new responses — they will automatically appear here in the results. 
+        Or use this quick-add panel below to enter a response directly into the dataset.
+      </div>
+      <div class="sec active" style="display:block">
+        <div class="sec-hdr"><div class="sec-num">+</div><div class="sec-title">Quick-add a response directly</div></div>
+        <div class="sec-body">
+          <p style="font-size:13px;color:var(--muted);margin-bottom:1rem">Fill in the fields below and click Save. The response will be added to the dataset immediately.</p>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:1rem">
+            <div>
+              <label class="q-label">Stratum <span class="req">*</span></label>
+              <select id="qa-stratum" style="width:100%;padding:8px;border-radius:8px;border:1.5px solid var(--border);font-size:13px">
+                <option value="">— select —</option>
+                <option>Power Systems Engineer</option>
+                <option>Regional Manager/Supervisor</option>
+                <option>Maintenance Technician</option>
+                <option>NOC Engineer</option>
+              </select>
+            </div>
+            <div>
+              <label class="q-label">Experience <span class="req">*</span></label>
+              <select id="qa-exp" style="width:100%;padding:8px;border-radius:8px;border:1.5px solid var(--border);font-size:13px">
+                <option value="">— select —</option>
+                <option value="< 2 years">Less than 2 years</option>
+                <option value="2-5 years">2–5 years</option>
+                <option value="6-10 years">6–10 years</option>
+                <option value="> 10 years">More than 10 years</option>
+              </select>
+            </div>
+            <div>
+              <label class="q-label">Education <span class="req">*</span></label>
+              <select id="qa-edu" style="width:100%;padding:8px;border-radius:8px;border:1.5px solid var(--border);font-size:13px">
+                <option value="">— select —</option>
+                <option>Certificate/Diploma</option>
+                <option>Bachelor's Degree</option>
+                <option>Postgraduate Diploma</option>
+                <option>Master's Degree</option>
+                <option>PhD</option>
+              </select>
+            </div>
+            <div>
+              <label class="q-label">PdM Familiarity <span class="req">*</span></label>
+              <select id="qa-pdm" style="width:100%;padding:8px;border-radius:8px;border:1.5px solid var(--border);font-size:13px">
+                <option value="">— select —</option>
+                <option>Not familiar</option>
+                <option>Heard the term only</option>
+                <option>Somewhat familiar</option>
+                <option>Fully familiar</option>
+              </select>
+            </div>
+          </div>
+          <p style="font-size:13px;font-weight:500;margin-bottom:.5rem">Likert scores (1–5) for all 21 items:</p>
+          <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:8px;margin-bottom:1rem" id="qa-scores">
+          </div>
+          <div class="err-ban" id="qa-err" style="margin-bottom:.75rem">⚠ <span id="qa-err-msg">Please fill all fields.</span></div>
+          <button class="btn btn-submit" onclick="quickAdd()">Save Response</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+// ── PASSWORD (change this to your own) ──
+const ADMIN_PASSWORD = 'PMF2025';
+
+// ── ALL 21 LIKERT KEYS ──
+const LK = ['TF1','TF2','TF3','TF4','TF5','TF6','OF1','OF2','OF3','OF4','OF5','OF6','OF7','EF1','EF2','EF3','CF1','CF2','CF3','CF4','CF5'];
+
+const FACTOR_LABELS = {
+  TF1:'Grid Unavailability',TF2:'Generator Running Hours',TF3:'Spare Parts Cost',
+  TF4:'Breakdown Frequency',TF5:'Battery Size (Dispatch)',TF6:'Battery Technology Type',
+  OF1:'Load Factor (Underloading)',OF2:'Start Frequency/Short-Cycling',OF3:'Scheduling Compliance',
+  OF4:'Battery-First Dispatch',OF5:'Faulty Battery',OF6:'Run Hours vs. Age',OF7:'Operator Skill',
+  EF1:'Ambient Temperature',EF2:'Site Accessibility',EF3:'Dust/Particulate Level',
+  CF1:'Fuel Refill Policy',CF2:'Budget Allocation',CF3:'Price Fluctuation',
+  CF4:'Uniform Maint. Standard',CF5:'Predictive Maint. Standard'
+};
+
+const FACTOR_CAT = {
+  TF1:'Technical',TF2:'Technical',TF3:'Technical',TF4:'Technical',TF5:'Technical',TF6:'Technical',
+  OF1:'Operational',OF2:'Operational',OF3:'Operational',OF4:'Operational',OF5:'Operational',OF6:'Operational',OF7:'Operational',
+  EF1:'Environmental',EF2:'Environmental',EF3:'Environmental',
+  CF1:'Company Policy',CF2:'Company Policy',CF3:'Company Policy',CF4:'Company Policy',CF5:'Company Policy'
+};
+
+// ── SEED DATA (40 respondents with random timestamps May 1–Jun 10 2026, 08:00–19:00) ──
+let DB = [{"id":"R01","stratum":"Power Systems Engineer","exp":"6-10 years","edu":"Master's Degree","pdm":"Fully familiar","TF1":3,"TF2":5,"TF3":3,"TF4":4,"TF5":5,"TF6":2,"OF1":5,"OF2":2,"OF3":2,"OF4":5,"OF5":4,"OF6":5,"OF7":2,"EF1":1,"EF2":4,"EF3":4,"CF1":5,"CF2":1,"CF3":4,"CF4":1,"CF5":1,"timestamp":"2026-05-25T10:44:15","total":68},{"id":"R02","stratum":"Regional Manager/Supervisor","exp":"> 10 years","edu":"Postgraduate Diploma","pdm":"Fully familiar","TF1":4,"TF2":4,"TF3":1,"TF4":4,"TF5":5,"TF6":1,"OF1":5,"OF2":1,"OF3":1,"OF4":5,"OF5":5,"OF6":4,"OF7":5,"EF1":1,"EF2":5,"EF3":3,"CF1":3,"CF2":1,"CF3":2,"CF4":2,"CF5":2,"timestamp":"2026-05-18T14:22:40","total":64},{"id":"R03","stratum":"Power Systems Engineer","exp":"2-5 years","edu":"Bachelor's Degree","pdm":"Fully familiar","TF1":5,"TF2":5,"TF3":1,"TF4":5,"TF5":4,"TF6":1,"OF1":4,"OF2":1,"OF3":1,"OF4":5,"OF5":5,"OF6":3,"OF7":4,"EF1":1,"EF2":5,"EF3":2,"CF1":3,"CF2":3,"CF3":5,"CF4":1,"CF5":2,"timestamp":"2026-05-02T13:08:22","total":66},{"id":"R04","stratum":"Maintenance Technician","exp":"2-5 years","edu":"Bachelor's Degree","pdm":"Somewhat familiar","TF1":3,"TF2":4,"TF3":3,"TF4":3,"TF5":5,"TF6":3,"OF1":4,"OF2":4,"OF3":1,"OF4":4,"OF5":5,"OF6":5,"OF7":1,"EF1":1,"EF2":5,"EF3":1,"CF1":5,"CF2":1,"CF3":1,"CF4":2,"CF5":3,"timestamp":"2026-05-08T09:15:33","total":64},{"id":"R05","stratum":"Regional Manager/Supervisor","exp":"> 10 years","edu":"Bachelor's Degree","pdm":"Somewhat familiar","TF1":5,"TF2":3,"TF3":1,"TF4":5,"TF5":5,"TF6":3,"OF1":5,"OF2":1,"OF3":4,"OF4":5,"OF5":5,"OF6":4,"OF7":2,"EF1":1,"EF2":5,"EF3":3,"CF1":5,"CF2":3,"CF3":2,"CF4":3,"CF5":3,"timestamp":"2026-05-14T11:37:08","total":73},{"id":"R06","stratum":"Regional Manager/Supervisor","exp":"6-10 years","edu":"Bachelor's Degree","pdm":"Heard the term only","TF1":5,"TF2":3,"TF3":2,"TF4":5,"TF5":4,"TF6":1,"OF1":2,"OF2":2,"OF3":2,"OF4":4,"OF5":4,"OF6":5,"OF7":1,"EF1":1,"EF2":5,"EF3":1,"CF1":4,"CF2":1,"CF3":3,"CF4":4,"CF5":1,"timestamp":"2026-06-03T16:09:52","total":60},{"id":"R07","stratum":"NOC Engineer","exp":"2-5 years","edu":"Master's Degree","pdm":"Fully familiar","TF1":5,"TF2":3,"TF3":1,"TF4":5,"TF5":3,"TF6":1,"OF1":5,"OF2":5,"OF3":1,"OF4":5,"OF5":5,"OF6":5,"OF7":3,"EF1":2,"EF2":5,"EF3":2,"CF1":4,"CF2":4,"CF3":4,"CF4":1,"CF5":1,"timestamp":"2026-05-20T08:45:17","total":70},{"id":"R08","stratum":"Regional Manager/Supervisor","exp":"> 10 years","edu":"Bachelor's Degree","pdm":"Heard the term only","TF1":4,"TF2":3,"TF3":2,"TF4":5,"TF5":5,"TF6":1,"OF1":1,"OF2":3,"OF3":3,"OF4":5,"OF5":4,"OF6":4,"OF7":3,"EF1":1,"EF2":4,"EF3":2,"CF1":1,"CF2":1,"CF3":2,"CF4":3,"CF5":1,"timestamp":"2026-05-29T13:55:04","total":58},{"id":"R09","stratum":"NOC Engineer","exp":"2-5 years","edu":"Postgraduate Diploma","pdm":"Fully familiar","TF1":5,"TF2":4,"TF3":5,"TF4":4,"TF5":5,"TF6":2,"OF1":5,"OF2":2,"OF3":1,"OF4":5,"OF5":5,"OF6":4,"OF7":2,"EF1":1,"EF2":3,"EF3":2,"CF1":5,"CF2":1,"CF3":1,"CF4":1,"CF5":1,"timestamp":"2026-05-11T10:22:48","total":64},{"id":"R10","stratum":"Maintenance Technician","exp":"> 10 years","edu":"Bachelor's Degree","pdm":"Not familiar","TF1":5,"TF2":5,"TF3":2,"TF4":5,"TF5":1,"TF6":3,"OF1":4,"OF2":3,"OF3":2,"OF4":5,"OF5":5,"OF6":1,"OF7":1,"EF1":3,"EF2":5,"EF3":1,"CF1":5,"CF2":2,"CF3":2,"CF4":5,"CF5":1,"timestamp":"2026-06-07T15:33:21","total":66},{"id":"R11","stratum":"Regional Manager/Supervisor","exp":"> 10 years","edu":"Master's Degree","pdm":"Heard the term only","TF1":5,"TF2":3,"TF3":1,"TF4":4,"TF5":5,"TF6":2,"OF1":4,"OF2":3,"OF3":1,"OF4":5,"OF5":5,"OF6":5,"OF7":2,"EF1":1,"EF2":5,"EF3":2,"CF1":3,"CF2":1,"CF3":1,"CF4":1,"CF5":4,"timestamp":"2026-05-04T09:48:12","total":63},{"id":"R12","stratum":"Power Systems Engineer","exp":"6-10 years","edu":"Master's Degree","pdm":"Fully familiar","TF1":5,"TF2":4,"TF3":3,"TF4":5,"TF5":4,"TF6":1,"OF1":4,"OF2":4,"OF3":1,"OF4":5,"OF5":4,"OF6":5,"OF7":2,"EF1":1,"EF2":3,"EF3":2,"CF1":5,"CF2":2,"CF3":5,"CF4":5,"CF5":1,"timestamp":"2026-05-22T11:17:45","total":71},{"id":"R13","stratum":"Regional Manager/Supervisor","exp":"> 10 years","edu":"Bachelor's Degree","pdm":"Fully familiar","TF1":2,"TF2":3,"TF3":4,"TF4":5,"TF5":2,"TF6":3,"OF1":3,"OF2":3,"OF3":1,"OF4":5,"OF5":5,"OF6":4,"OF7":2,"EF1":1,"EF2":5,"EF3":2,"CF1":4,"CF2":3,"CF3":4,"CF4":1,"CF5":2,"timestamp":"2026-05-06T14:05:39","total":64},{"id":"R14","stratum":"Regional Manager/Supervisor","exp":"> 10 years","edu":"Postgraduate Diploma","pdm":"Somewhat familiar","TF1":5,"TF2":3,"TF3":5,"TF4":5,"TF5":5,"TF6":3,"OF1":5,"OF2":1,"OF3":1,"OF4":5,"OF5":4,"OF6":4,"OF7":3,"EF1":2,"EF2":2,"EF3":3,"CF1":5,"CF2":1,"CF3":1,"CF4":3,"CF5":3,"timestamp":"2026-05-27T08:30:56","total":69},{"id":"R15","stratum":"Regional Manager/Supervisor","exp":"6-10 years","edu":"Postgraduate Diploma","pdm":"Somewhat familiar","TF1":5,"TF2":3,"TF3":2,"TF4":5,"TF5":2,"TF6":2,"OF1":4,"OF2":2,"OF3":2,"OF4":5,"OF5":2,"OF6":4,"OF7":1,"EF1":1,"EF2":5,"EF3":3,"CF1":5,"CF2":1,"CF3":1,"CF4":2,"CF5":1,"timestamp":"2026-05-02T14:54:59","total":57},{"id":"R16","stratum":"NOC Engineer","exp":"2-5 years","edu":"Bachelor's Degree","pdm":"Somewhat familiar","TF1":5,"TF2":3,"TF3":1,"TF4":5,"TF5":4,"TF6":1,"OF1":5,"OF2":2,"OF3":1,"OF4":5,"OF5":4,"OF6":4,"OF7":1,"EF1":1,"EF2":4,"EF3":5,"CF1":4,"CF2":2,"CF3":1,"CF4":4,"CF5":2,"timestamp":"2026-06-01T10:41:27","total":64},{"id":"R17","stratum":"Power Systems Engineer","exp":"6-10 years","edu":"Bachelor's Degree","pdm":"Fully familiar","TF1":5,"TF2":4,"TF3":1,"TF4":4,"TF5":4,"TF6":1,"OF1":3,"OF2":4,"OF3":3,"OF4":4,"OF5":5,"OF6":4,"OF7":4,"EF1":2,"EF2":5,"EF3":3,"CF1":5,"CF2":4,"CF3":3,"CF4":3,"CF5":3,"timestamp":"2026-05-15T13:28:14","total":75},{"id":"R18","stratum":"Maintenance Technician","exp":"6-10 years","edu":"Certificate/Diploma","pdm":"Not familiar","TF1":3,"TF2":4,"TF3":4,"TF4":4,"TF5":5,"TF6":1,"OF1":5,"OF2":1,"OF3":1,"OF4":5,"OF5":5,"OF6":2,"OF7":1,"EF1":2,"EF2":5,"EF3":5,"CF1":3,"CF2":2,"CF3":2,"CF4":1,"CF5":2,"timestamp":"2026-05-31T09:14:38","total":63},{"id":"R19","stratum":"Regional Manager/Supervisor","exp":"6-10 years","edu":"Master's Degree","pdm":"Heard the term only","TF1":5,"TF2":4,"TF3":1,"TF4":4,"TF5":5,"TF6":2,"OF1":5,"OF2":1,"OF3":1,"OF4":5,"OF5":4,"OF6":4,"OF7":3,"EF1":1,"EF2":4,"EF3":5,"CF1":2,"CF2":1,"CF3":4,"CF4":2,"CF5":2,"timestamp":"2026-05-09T16:52:07","total":65},{"id":"R20","stratum":"NOC Engineer","exp":"> 10 years","edu":"Postgraduate Diploma","pdm":"Somewhat familiar","TF1":4,"TF2":4,"TF3":2,"TF4":5,"TF5":3,"TF6":1,"OF1":3,"OF2":1,"OF3":1,"OF4":4,"OF5":3,"OF6":5,"OF7":3,"EF1":1,"EF2":4,"EF3":1,"CF1":4,"CF2":1,"CF3":1,"CF4":2,"CF5":4,"timestamp":"2026-05-13T12:06:33","total":57},{"id":"R21","stratum":"Regional Manager/Supervisor","exp":"> 10 years","edu":"Bachelor's Degree","pdm":"Somewhat familiar","TF1":5,"TF2":4,"TF3":1,"TF4":5,"TF5":5,"TF6":2,"OF1":2,"OF2":4,"OF3":1,"OF4":5,"OF5":5,"OF6":5,"OF7":5,"EF1":1,"EF2":5,"EF3":3,"CF1":4,"CF2":2,"CF3":3,"CF4":1,"CF5":4,"timestamp":"2026-05-23T11:49:08","total":72},{"id":"R22","stratum":"Regional Manager/Supervisor","exp":"> 10 years","edu":"Bachelor's Degree","pdm":"Not familiar","TF1":2,"TF2":3,"TF3":1,"TF4":5,"TF5":4,"TF6":1,"OF1":5,"OF2":1,"OF3":1,"OF4":5,"OF5":5,"OF6":5,"OF7":3,"EF1":1,"EF2":4,"EF3":3,"CF1":4,"CF2":1,"CF3":1,"CF4":5,"CF5":1,"timestamp":"2026-05-07T15:18:44","total":61},{"id":"R23","stratum":"NOC Engineer","exp":"2-5 years","edu":"Bachelor's Degree","pdm":"Somewhat familiar","TF1":5,"TF2":5,"TF3":1,"TF4":4,"TF5":5,"TF6":3,"OF1":5,"OF2":3,"OF3":1,"OF4":5,"OF5":4,"OF6":5,"OF7":1,"EF1":1,"EF2":1,"EF3":4,"CF1":5,"CF2":1,"CF3":3,"CF4":2,"CF5":4,"timestamp":"2026-06-05T08:53:19","total":68},{"id":"R24","stratum":"Regional Manager/Supervisor","exp":"> 10 years","edu":"Bachelor's Degree","pdm":"Not familiar","TF1":5,"TF2":4,"TF3":1,"TF4":5,"TF5":4,"TF6":1,"OF1":3,"OF2":3,"OF3":1,"OF4":5,"OF5":5,"OF6":2,"OF7":2,"EF1":1,"EF2":5,"EF3":3,"CF1":3,"CF2":1,"CF3":2,"CF4":3,"CF5":2,"timestamp":"2026-05-01T15:34:17","total":61},{"id":"R25","stratum":"Regional Manager/Supervisor","exp":"2-5 years","edu":"Bachelor's Degree","pdm":"Somewhat familiar","TF1":4,"TF2":4,"TF3":4,"TF4":4,"TF5":5,"TF6":2,"OF1":4,"OF2":3,"OF3":1,"OF4":5,"OF5":5,"OF6":5,"OF7":1,"EF1":1,"EF2":5,"EF3":3,"CF1":3,"CF2":2,"CF3":2,"CF4":1,"CF5":2,"timestamp":"2026-05-17T10:30:22","total":66},{"id":"R26","stratum":"Regional Manager/Supervisor","exp":"6-10 years","edu":"Bachelor's Degree","pdm":"Somewhat familiar","TF1":4,"TF2":5,"TF3":3,"TF4":5,"TF5":4,"TF6":2,"OF1":5,"OF2":1,"OF3":1,"OF4":5,"OF5":5,"OF6":3,"OF7":4,"EF1":1,"EF2":5,"EF3":3,"CF1":3,"CF2":1,"CF3":3,"CF4":1,"CF5":1,"timestamp":"2026-05-10T14:17:55","total":65},{"id":"R27","stratum":"Maintenance Technician","exp":"2-5 years","edu":"Certificate/Diploma","pdm":"Somewhat familiar","TF1":2,"TF2":4,"TF3":2,"TF4":5,"TF5":5,"TF6":3,"OF1":5,"OF2":2,"OF3":1,"OF4":4,"OF5":1,"OF6":2,"OF7":1,"EF1":1,"EF2":5,"EF3":3,"CF1":5,"CF2":1,"CF3":2,"CF4":1,"CF5":1,"timestamp":"2026-05-21T09:03:41","total":56},{"id":"R28","stratum":"Maintenance Technician","exp":"2-5 years","edu":"Bachelor's Degree","pdm":"Somewhat familiar","TF1":5,"TF2":5,"TF3":2,"TF4":5,"TF5":5,"TF6":1,"OF1":3,"OF2":2,"OF3":2,"OF4":5,"OF5":5,"OF6":5,"OF7":3,"EF1":1,"EF2":5,"EF3":2,"CF1":5,"CF2":1,"CF3":4,"CF4":4,"CF5":1,"timestamp":"2026-06-09T11:22:06","total":71},{"id":"R29","stratum":"NOC Engineer","exp":"2-5 years","edu":"Bachelor's Degree","pdm":"Heard the term only","TF1":3,"TF2":4,"TF3":4,"TF4":5,"TF5":5,"TF6":1,"OF1":5,"OF2":1,"OF3":2,"OF4":5,"OF5":4,"OF6":5,"OF7":5,"EF1":2,"EF2":5,"EF3":1,"CF1":5,"CF2":1,"CF3":3,"CF4":2,"CF5":2,"timestamp":"2026-05-16T13:40:17","total":70},{"id":"R30","stratum":"Power Systems Engineer","exp":"6-10 years","edu":"Bachelor's Degree","pdm":"Fully familiar","TF1":2,"TF2":3,"TF3":1,"TF4":5,"TF5":5,"TF6":1,"OF1":5,"OF2":3,"OF3":2,"OF4":5,"OF5":5,"OF6":3,"OF7":3,"EF1":1,"EF2":5,"EF3":4,"CF1":5,"CF2":1,"CF3":2,"CF4":2,"CF5":1,"timestamp":"2026-05-28T15:08:44","total":64},{"id":"R31","stratum":"Maintenance Technician","exp":"> 10 years","edu":"Bachelor's Degree","pdm":"Not familiar","TF1":3,"TF2":4,"TF3":4,"TF4":5,"TF5":5,"TF6":3,"OF1":1,"OF2":2,"OF3":3,"OF4":5,"OF5":5,"OF6":3,"OF7":3,"EF1":3,"EF2":4,"EF3":2,"CF1":5,"CF2":3,"CF3":4,"CF4":1,"CF5":3,"timestamp":"2026-06-04T09:55:28","total":71},{"id":"R32","stratum":"Regional Manager/Supervisor","exp":"2-5 years","edu":"Postgraduate Diploma","pdm":"Somewhat familiar","TF1":5,"TF2":3,"TF3":2,"TF4":5,"TF5":4,"TF6":2,"OF1":2,"OF2":2,"OF3":1,"OF4":5,"OF5":5,"OF6":2,"OF7":4,"EF1":2,"EF2":5,"EF3":1,"CF1":5,"CF2":5,"CF3":1,"CF4":4,"CF5":2,"timestamp":"2026-05-12T14:27:33","total":67},{"id":"R33","stratum":"Regional Manager/Supervisor","exp":"> 10 years","edu":"Bachelor's Degree","pdm":"Heard the term only","TF1":4,"TF2":4,"TF3":1,"TF4":5,"TF5":5,"TF6":1,"OF1":3,"OF2":4,"OF3":1,"OF4":5,"OF5":4,"OF6":5,"OF7":3,"EF1":1,"EF2":4,"EF3":1,"CF1":4,"CF2":1,"CF3":3,"CF4":2,"CF5":4,"timestamp":"2026-05-19T10:11:09","total":65},{"id":"R34","stratum":"Regional Manager/Supervisor","exp":"6-10 years","edu":"Bachelor's Degree","pdm":"Somewhat familiar","TF1":4,"TF2":4,"TF3":2,"TF4":5,"TF5":5,"TF6":2,"OF1":4,"OF2":4,"OF3":2,"OF4":4,"OF5":2,"OF6":3,"OF7":3,"EF1":1,"EF2":5,"EF3":1,"CF1":5,"CF2":2,"CF3":2,"CF4":5,"CF5":3,"timestamp":"2026-05-26T08:44:52","total":68},{"id":"R35","stratum":"Regional Manager/Supervisor","exp":"> 10 years","edu":"Bachelor's Degree","pdm":"Heard the term only","TF1":4,"TF2":4,"TF3":2,"TF4":5,"TF5":3,"TF6":1,"OF1":5,"OF2":4,"OF3":1,"OF4":3,"OF5":5,"OF6":4,"OF7":3,"EF1":1,"EF2":5,"EF3":4,"CF1":2,"CF2":2,"CF3":1,"CF4":4,"CF5":5,"timestamp":"2026-05-05T11:38:27","total":68},{"id":"R36","stratum":"Regional Manager/Supervisor","exp":"2-5 years","edu":"Postgraduate Diploma","pdm":"Heard the term only","TF1":5,"TF2":3,"TF3":2,"TF4":5,"TF5":5,"TF6":2,"OF1":5,"OF2":2,"OF3":2,"OF4":5,"OF5":3,"OF6":3,"OF7":4,"EF1":1,"EF2":4,"EF3":2,"CF1":4,"CF2":3,"CF3":1,"CF4":5,"CF5":1,"timestamp":"2026-05-30T13:19:04","total":67},{"id":"R37","stratum":"Regional Manager/Supervisor","exp":"6-10 years","edu":"Bachelor's Degree","pdm":"Somewhat familiar","TF1":5,"TF2":4,"TF3":3,"TF4":3,"TF5":4,"TF6":1,"OF1":3,"OF2":4,"OF3":1,"OF4":5,"OF5":5,"OF6":5,"OF7":3,"EF1":1,"EF2":5,"EF3":1,"CF1":5,"CF2":1,"CF3":1,"CF4":1,"CF5":5,"timestamp":"2026-06-06T14:31:55","total":66},{"id":"R38","stratum":"Regional Manager/Supervisor","exp":"6-10 years","edu":"Certificate/Diploma","pdm":"Somewhat familiar","TF1":4,"TF2":3,"TF3":4,"TF4":2,"TF5":5,"TF6":1,"OF1":3,"OF2":1,"OF3":2,"OF4":5,"OF5":5,"OF6":5,"OF7":3,"EF1":1,"EF2":5,"EF3":2,"CF1":4,"CF2":3,"CF3":2,"CF4":4,"CF5":1,"timestamp":"2026-05-24T09:27:36","total":65},{"id":"R39","stratum":"Maintenance Technician","exp":"6-10 years","edu":"Certificate/Diploma","pdm":"Somewhat familiar","TF1":5,"TF2":4,"TF3":4,"TF4":5,"TF5":5,"TF6":1,"OF1":4,"OF2":1,"OF3":2,"OF4":5,"OF5":5,"OF6":4,"OF7":2,"EF1":1,"EF2":5,"EF3":2,"CF1":5,"CF2":1,"CF3":2,"CF4":5,"CF5":1,"timestamp":"2026-06-08T10:08:43","total":69},{"id":"R40","stratum":"Maintenance Technician","exp":"2-5 years","edu":"Bachelor's Degree","pdm":"Somewhat familiar","TF1":4,"TF2":4,"TF3":1,"TF4":5,"TF5":3,"TF6":2,"OF1":3,"OF2":3,"OF3":1,"OF4":5,"OF5":5,"OF6":5,"OF7":2,"EF1":1,"EF2":5,"EF3":1,"CF1":3,"CF2":1,"CF3":1,"CF4":2,"CF5":2,"timestamp":"2026-05-03T15:44:28","total":59}];
+
+// load any saved new responses from localStorage
+function loadExtra(){
+  try{
+    const ex = JSON.parse(localStorage.getItem('pmf_mcr_extra')||'[]');
+    ex.forEach(r=>{if(!DB.find(d=>d.id===r.id))DB.push(r);});
+  }catch(e){}
+}
+loadExtra();
+
+// ── SURVEY LOGIC ──
+const SECS=['intro','sec-1','sec-2','sec-3','sec-4','sec-5'];
+const REQ={
+  'sec-1':['stratum','exp','edu','pdm'],
+  'sec-2':['TF1','TF2','TF3','TF4','TF5','TF6'],
+  'sec-3':['OF1','OF2','OF3','OF4','OF5','OF6','OF7'],
+  'sec-4':['EF1','EF2','EF3'],
+  'sec-5':['CF1','CF2','CF3','CF4','CF5']
+};
+let cur=0;
+
+document.querySelectorAll('.ro input[type=radio]').forEach(r=>{
+  r.addEventListener('change',()=>{
+    r.closest('.rg').querySelectorAll('.ro').forEach(o=>o.classList.remove('sel'));
+    r.closest('.ro').classList.add('sel');
+  });
+});
+
+function showPage(p){
+  document.querySelectorAll('.page').forEach(x=>x.classList.remove('show'));
+  document.getElementById('page-'+p).classList.add('show');
+  document.querySelectorAll('.nav-pill').forEach(x=>x.classList.remove('active'));
+  document.getElementById('nav-'+p).classList.add('active');
+  if(p==='admin') renderAdmin();
+}
+
+function showSec(idx){
+  SECS.forEach((id,i)=>{
+    const el=document.getElementById(id==='intro'?'sec-intro':id);
+    if(el)el.classList.toggle('active',i===idx);
+  });
+  const pw=document.getElementById('prog-wrap');
+  const show=idx>=1&&idx<=5;
+  pw.classList.toggle('show',show);
+  if(show){
+    const pct=Math.round(idx/5*100);
+    document.getElementById('prog-fill').style.width=pct+'%';
+    document.getElementById('prog-pct').textContent=pct+'%';
+    document.getElementById('prog-lbl').textContent='Part '+idx+' of 5';
+  }
+  hideErr(); window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function validate(sid){
+  const req=REQ[sid]||[];let ok=true;
+  req.forEach(n=>{
+    const chk=document.querySelector('input[name="'+n+'"]:checked');
+    const row=document.querySelector('tr[data-qid="'+n+'"]');
+    if(!chk){ok=false;if(row)row.classList.add('err-row');}
+    else{if(row)row.classList.remove('err-row');}
+  });
+  return ok;
+}
+function goNext(){
+  const sid=SECS[cur];
+  const aid=sid==='intro'?null:sid;
+  if(aid&&!validate(aid)){showErr('Please answer all required questions before continuing.');return;}
+  if(cur<SECS.length-1){cur++;showSec(cur);}
+}
+function goPrev(){if(cur>0){cur--;showSec(cur);}}
+function showErr(m){document.getElementById('err-ban').classList.add('show');document.getElementById('err-msg').textContent=m;}
+function hideErr(){document.getElementById('err-ban').classList.remove('show');document.querySelectorAll('.err-row').forEach(r=>r.classList.remove('err-row'));}
+
+function collectForm(){
+  const d={};
+  ['stratum','exp','edu','pdm'].forEach(n=>{
+    const el=document.querySelector('input[name="'+n+'"]:checked');
+    d[n]=el?el.value:'';
+  });
+  LK.forEach(k=>{
+    const el=document.querySelector('input[name="'+k+'"]:checked');
+    d[k]=el?+el.value:0;
+  });
+  d.total=LK.reduce((s,k)=>s+d[k],0);
+  d.timestamp=new Date().toISOString().slice(0,19);
+  d.id='R'+(DB.length+1).toString().padStart(2,'0')+'-NEW';
+  return d;
+}
+
+function submitSurvey(){
+  if(!validate('sec-5')){showErr('Please answer all required questions.');return;}
+  const btn=document.getElementById('btn-sub');
+  btn.disabled=true;
+  document.getElementById('sub-spin').style.display='inline-block';
+  document.getElementById('sub-lbl').textContent='Saving…';
+  setTimeout(()=>{
+    const entry=collectForm();
+    DB.push(entry);
+    try{
+      const ex=JSON.parse(localStorage.getItem('pmf_mcr_extra')||'[]');
+      ex.push(entry);
+      localStorage.setItem('pmf_mcr_extra',JSON.stringify(ex));
+    }catch(e){}
+    document.getElementById('success').classList.add('show');
+    document.querySelectorAll('#page-survey .sec').forEach(s=>s.classList.remove('active'));
+    document.getElementById('prog-wrap').classList.remove('show');
+    document.getElementById('ref-pill').textContent='Ref: '+entry.id+' · Score: '+entry.total+'/105';
+    btn.disabled=false;
+    document.getElementById('sub-spin').style.display='none';
+    document.getElementById('sub-lbl').textContent='Submit Response ✓';
+  },900);
+}
+
+function resetSurvey(){
+  document.querySelectorAll('input[type=radio]').forEach(r=>r.checked=false);
+  document.querySelectorAll('.ro').forEach(o=>o.classList.remove('sel'));
+  cur=0;
+  document.getElementById('success').classList.remove('show');
+  showSec(0);
+}
+
+// ── ADMIN LOGIC ──
+let isLoggedIn=false;
+let filteredDB=[];
+let pageSize=15,pageNum=1;
+let activeTab='responses';
+
+function doLogin(){
+  const pw=document.getElementById('admin-pw').value;
+  if(pw===ADMIN_PASSWORD){
+    isLoggedIn=true;
+    document.getElementById('admin-login').style.display='none';
+    document.getElementById('admin-dash').style.display='block';
+    renderAdmin();
+  } else {
+    document.getElementById('login-err').textContent='Incorrect password. Try: PMF2025';
+  }
+}
+
+function renderAdmin(){
+  if(!isLoggedIn)return;
+  renderStats();
+  renderTable();
+  renderRII();
+  buildQAScores();
+}
+
+function stratBadge(s){
+  const m={'Power Systems Engineer':'pse','Regional Manager/Supervisor':'rm','Maintenance Technician':'mt','NOC Engineer':'noc'};
+  const c=m[s]||'rm';
+  const short={'pse':'PSE','rm':'RM','mt':'MT','noc':'NOC'};
+  return '<span class="badge b-'+c+'">'+short[c]+'</span>';
+}
+
+function renderStats(){
+  const n=DB.length;
+  const strats={PSE:0,RM:0,MT:0,NOC:0};
+  const m={'Power Systems Engineer':'PSE','Regional Manager/Supervisor':'RM','Maintenance Technician':'MT','NOC Engineer':'NOC'};
+  DB.forEach(r=>{const k=m[r.stratum];if(k)strats[k]++;});
+  const totals=DB.map(r=>r.total);
+  const avg=totals.length?Math.round(totals.reduce((a,b)=>a+b,0)/totals.length):0;
+  document.getElementById('admin-stats').innerHTML=
+    '<div class="stat-card"><div class="stat-v">'+n+'</div><div class="stat-l">Total responses</div></div>'+
+    '<div class="stat-card"><div class="stat-v">'+strats.PSE+'</div><div class="stat-l">Power Systems Eng.</div></div>'+
+    '<div class="stat-card"><div class="stat-v">'+strats.RM+'</div><div class="stat-l">Reg. Manager/Sup.</div></div>'+
+    '<div class="stat-card"><div class="stat-v">'+strats.MT+'</div><div class="stat-l">Maint. Technician</div></div>'+
+    '<div class="stat-card"><div class="stat-v">'+strats.NOC+'</div><div class="stat-l">NOC Engineer</div></div>'+
+    '<div class="stat-card"><div class="stat-v">'+avg+'</div><div class="stat-l">Avg score / 105</div></div>';
+}
+
+function renderTable(filter){
+  filteredDB=filter?DB.filter(r=>
+    r.id.toLowerCase().includes(filter)||
+    r.stratum.toLowerCase().includes(filter)||
+    r.edu.toLowerCase().includes(filter)||
+    r.pdm.toLowerCase().includes(filter)
+  ):[...DB];
+  document.getElementById('resp-count').textContent='('+filteredDB.length+' records)';
+  const thead=document.querySelector('#resp-table thead');
+  const tbody=document.querySelector('#resp-table tbody');
+  thead.innerHTML='<tr><th>#</th><th>ID</th><th>Timestamp</th><th>Stratum</th><th>Exp.</th><th>Education</th><th>PdM</th>'+
+    LK.map(k=>'<th>'+k+'</th>').join('')+'<th>Total</th></tr>';
+  const start=(pageNum-1)*pageSize;
+  const slice=filteredDB.slice(start,start+pageSize);
+  tbody.innerHTML=slice.map((r,i)=>{
+    const cells=LK.map(k=>{
+      const v=r[k]||0;
+      const bg=v===5?'#C8E6C9':v===4?'#E8F5E9':v===3?'#FFF9C4':v===2?'#FFE0B2':'#FFCDD2';
+      return '<td style="text-align:center;background:'+bg+';font-size:12px">'+v+'</td>';
+    }).join('');
+    return '<tr><td style="color:var(--muted);font-size:11px">'+(start+i+1)+'</td>'+
+      '<td><b>'+r.id+'</b></td>'+
+      '<td style="font-size:11px;color:var(--muted)">'+r.timestamp+'</td>'+
+      '<td>'+stratBadge(r.stratum)+'</td>'+
+      '<td style="font-size:11px">'+r.exp+'</td>'+
+      '<td style="font-size:11px">'+r.edu+'</td>'+
+      '<td style="font-size:11px">'+r.pdm+'</td>'+
+      cells+
+      '<td class="score-cell">'+r.total+'</td></tr>';
+  }).join('');
+  renderPagination();
+}
+
+function renderPagination(){
+  const total=filteredDB.length;
+  const pages=Math.ceil(total/pageSize);
+  const pg=document.getElementById('pagination');
+  if(pages<=1){pg.innerHTML='';return;}
+  let h='<span class="pg-info">Page '+pageNum+' of '+pages+'</span>';
+  if(pageNum>1)h+='<button class="pg-btn" onclick="goPage('+(pageNum-1)+')">‹ Prev</button>';
+  for(let i=Math.max(1,pageNum-2);i<=Math.min(pages,pageNum+2);i++){
+    h+='<button class="pg-btn'+(i===pageNum?' on':'')+'" onclick="goPage('+i+')">'+i+'</button>';
+  }
+  if(pageNum<pages)h+='<button class="pg-btn" onclick="goPage('+(pageNum+1)+')">Next ›</button>';
+  pg.innerHTML=h;
+}
+
+function goPage(n){pageNum=n;renderTable(document.getElementById('tbl-filter').value.toLowerCase());}
+function filterTable(v){pageNum=1;renderTable(v.toLowerCase());}
+
+function renderRII(){
+  const data=LK.map(k=>{
+    const sum=DB.reduce((s,r)=>s+(r[k]||0),0);
+    const rii=sum/(5*DB.length);
+    return {k,label:FACTOR_LABELS[k],cat:FACTOR_CAT[k],sum,rii,sig:rii>=0.70};
+  }).sort((a,b)=>b.rii-a.rii);
+  const t=document.getElementById('rii-table');
+  t.innerHTML='<thead><tr><th>Rank</th><th>Code</th><th>Factor</th><th>Category</th><th>Σ(W)</th><th>RII</th><th>RII bar</th><th>Significance</th></tr></thead><tbody>'+
+    data.map((d,i)=>{
+      const w=Math.round(d.rii*80);
+      const bc=d.sig?'#4527A0':'#BDBDBD';
+      return '<tr><td style="text-align:center;font-weight:600">'+(i+1)+'</td>'+
+        '<td><b>'+d.k+'</b></td>'+
+        '<td style="font-size:12px">'+d.label+'</td>'+
+        '<td style="font-size:11px;color:var(--muted)">'+d.cat+'</td>'+
+        '<td style="text-align:center">'+d.sum+'</td>'+
+        '<td><b>'+d.rii.toFixed(4)+'</b></td>'+
+        '<td><span class="rii-bar" style="width:'+w+'px;background:'+bc+'"></span></td>'+
+        '<td class="'+(d.sig?'rii-sig':'rii-no')+'">'+(d.sig?'✓ Significant':'✗ Insignificant')+'</td></tr>';
+    }).join('')+'</tbody>';
+}
+
+function showTab(tab){
+  activeTab=tab;
+  document.querySelectorAll('.tab-btn').forEach((b,i)=>{
+    b.classList.toggle('on',['responses','rii','addform'][i]===tab);
+  });
+  document.getElementById('tab-responses').style.display=tab==='responses'?'block':'none';
+  document.getElementById('tab-rii').style.display=tab==='rii'?'block':'none';
+  document.getElementById('tab-addform').style.display=tab==='addform'?'block':'none';
+}
+
+function buildQAScores(){
+  const wrap=document.getElementById('qa-scores');
+  wrap.innerHTML=LK.map(k=>`
+    <div>
+      <label style="font-size:11px;color:var(--muted);display:block;margin-bottom:3px">${k} — ${FACTOR_LABELS[k]}</label>
+      <select id="qa-${k}" style="width:100%;padding:6px;border-radius:6px;border:1.5px solid var(--border);font-size:13px">
+        <option value="">—</option>
+        <option value="1">1 SD</option><option value="2">2 D</option><option value="3">3 N</option>
+        <option value="4">4 A</option><option value="5">5 SA</option>
+      </select>
+    </div>`).join('');
+}
+
+function quickAdd(){
+  const stratum=document.getElementById('qa-stratum').value;
+  const exp=document.getElementById('qa-exp').value;
+  const edu=document.getElementById('qa-edu').value;
+  const pdm=document.getElementById('qa-pdm').value;
+  const err=document.getElementById('qa-err');
+  if(!stratum||!exp||!edu||!pdm){err.querySelector('#qa-err-msg').textContent='Please fill demographic fields.';err.classList.add('show');return;}
+  let scores={};
+  for(const k of LK){
+    const v=document.getElementById('qa-'+k).value;
+    if(!v){err.querySelector('#qa-err-msg').textContent='Please select a score for '+k+'.';err.classList.add('show');return;}
+    scores[k]=+v;
+  }
+  err.classList.remove('show');
+  const id='R'+(DB.length+1).toString().padStart(2,'0')+'-NEW';
+  const total=LK.reduce((s,k)=>s+scores[k],0);
+  const ts=new Date().toISOString().slice(0,19);
+  const entry={id,stratum,exp,edu,pdm,...scores,total,timestamp:ts};
+  DB.push(entry);
+  try{
+    const ex=JSON.parse(localStorage.getItem('pmf_mcr_extra')||'[]');
+    ex.push(entry);
+    localStorage.setItem('pmf_mcr_extra',JSON.stringify(ex));
+  }catch(e){}
+  renderAdmin();
+  showTab('responses');
+  alert('Response '+id+' added successfully! Total score: '+total+'/105');
+}
+
+// ── DOWNLOADS ──
+function toCSV(data){
+  const headers=['id','timestamp','stratum','exp','edu','pdm',...LK,'total'];
+  const rows=[headers.join(',')];
+  data.forEach(r=>{
+    const row=headers.map(h=>{
+      const v=r[h]===undefined?'':r[h];
+      return typeof v==='string'&&v.includes(',')? '"'+v+'"' : v;
+    });
+    rows.push(row.join(','));
+  });
+  return rows.join('\n');
+}
+
+function downloadCSV(){
+  const csv=toCSV(filteredDB.length?filteredDB:DB);
+  const blob=new Blob([csv],{type:'text/csv'});
+  const a=document.createElement('a');
+  a.href=URL.createObjectURL(blob);
+  a.download='PMF_MCR_Questionnaire_Responses_n'+DB.length+'.csv';
+  a.click();
+}
+
+function downloadJSON(){
+  const blob=new Blob([JSON.stringify(DB,null,2)],{type:'application/json'});
+  const a=document.createElement('a');
+  a.href=URL.createObjectURL(blob);
+  a.download='PMF_MCR_Questionnaire_Responses_n'+DB.length+'.json';
+  a.click();
+}
+
+function downloadRII(){
+  const data=LK.map(k=>{
+    const sum=DB.reduce((s,r)=>s+(r[k]||0),0);
+    const rii=sum/(5*DB.length);
+    return [k,FACTOR_LABELS[k],FACTOR_CAT[k],sum,rii.toFixed(4),rii>=0.70?'Significant':'Insignificant'];
+  }).sort((a,b)=>b[4]-a[4]);
+  const header='Rank,Code,Factor,Category,Sum_W,RII,Significance\n';
+  const rows=data.map((d,i)=>[i+1,...d].join(',')).join('\n');
+  const blob=new Blob([header+rows],{type:'text/csv'});
+  const a=document.createElement('a');
+  a.href=URL.createObjectURL(blob);
+  a.download='PMF_MCR_RII_Analysis_n'+DB.length+'.csv';
+  a.click();
+}
+
+// Init
+showSec(0);
+</script>
+</body>
+</html>
