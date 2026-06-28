@@ -1,0 +1,5 @@
+{
+  "_comment": "Change passwords here on GitHub. supervisor_password is visible to supervisors. admin_password is the master key.",
+  "supervisor_password": "SUP2025",
+  "admin_password": "ADM@NICTBB#99"
+}
