@@ -1,5 +1,9 @@
 {
-  "_comment": "Change passwords here on GitHub. supervisor_password is visible to supervisors. admin_password is the master key.",
+  "_comment": "Edit passwords here. Add github_token (repo scope PAT) to enable live response saving.",
   "supervisor_password": "SUP2025",
-  "admin_password": "@dm1n2026"
+  "admin_password": "ADM@NICTBB#99",
+  "github_token": "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",
+  "github_owner": "congreen",
+  "github_repo": "pmf_mcr_questionnaire",
+  "github_branch": "main"
 }
