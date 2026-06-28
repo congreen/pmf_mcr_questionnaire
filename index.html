@@ -14,60 +14,44 @@
 }
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(--text);font-size:15px;line-height:1.6}
-
-/* ── TOPBAR ── */
 .topbar{background:var(--p);color:#fff;padding:.7rem 1.5rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:.5rem;position:sticky;top:0;z-index:100;box-shadow:0 2px 8px rgba(0,0,0,.2)}
-.topbar-brand{font-size:15px;font-weight:700;letter-spacing:.2px}
+.topbar-brand{font-size:15px;font-weight:700}
 .topbar-meta{font-size:11px;opacity:.72;margin-top:1px}
 .nav-pills{display:flex;gap:6px;align-items:center}
 .nav-pill{padding:5px 15px;border-radius:20px;font-size:12px;font-weight:500;cursor:pointer;border:1.5px solid rgba(255,255,255,.25);background:transparent;color:rgba(255,255,255,.75);transition:all .15s}
-.nav-pill:hover{background:rgba(255,255,255,.15);color:#fff;border-color:rgba(255,255,255,.5)}
+.nav-pill:hover{background:rgba(255,255,255,.15);color:#fff}
 .nav-pill.active{background:rgba(255,255,255,.22);color:#fff;border-color:rgba(255,255,255,.6)}
 .user-badge{display:flex;align-items:center;gap:6px;font-size:11px;background:rgba(255,255,255,.12);border-radius:20px;padding:4px 12px;cursor:pointer;border:1px solid rgba(255,255,255,.2)}
 .user-badge:hover{background:rgba(255,255,255,.2)}
 .user-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
-.dot-respondent{background:#A5D6A7}
 .dot-supervisor{background:#FFD54F}
 .dot-admin{background:#EF9A9A}
-
-/* ── PAGES ── */
 .page{display:none;max-width:860px;margin:0 auto;padding:1.5rem 1rem 4rem}
 .page.show{display:block}
-
-/* ── HERO ── */
-.hero{background:linear-gradient(135deg,var(--pd) 0%,var(--p) 60%,var(--acc) 100%);color:#fff;border-radius:14px;padding:1.6rem 1.5rem;margin-bottom:1.25rem;position:relative;overflow:hidden}
-.hero::after{content:'';position:absolute;right:-30px;top:-30px;width:160px;height:160px;border-radius:50%;background:rgba(255,255,255,.05)}
-.hero-badge{display:inline-block;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.25);border-radius:20px;font-size:11px;padding:3px 12px;margin-bottom:.55rem;letter-spacing:.3px}
+.hero{background:linear-gradient(135deg,var(--pd) 0%,var(--p) 60%,var(--acc) 100%);color:#fff;border-radius:14px;padding:1.6rem 1.5rem;margin-bottom:1.25rem}
+.hero-badge{display:inline-block;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.25);border-radius:20px;font-size:11px;padding:3px 12px;margin-bottom:.55rem}
 .hero-title{font-size:clamp(16px,2.5vw,22px);font-weight:700;margin-bottom:.3rem;line-height:1.3}
 .hero-sub{font-size:12px;opacity:.82;line-height:1.65;max-width:620px}
-
-/* ── PROGRESS ── */
 .prog-wrap{background:var(--card);border-radius:10px;padding:.7rem 1rem;margin-bottom:1rem;box-shadow:var(--sh);display:none;align-items:center;gap:12px}
 .prog-wrap.show{display:flex}
 .prog-label{font-size:11px;color:var(--muted);white-space:nowrap;font-weight:500}
 .prog-track{flex:1;height:6px;background:var(--border);border-radius:3px;overflow:hidden}
 .prog-fill{height:100%;background:linear-gradient(90deg,var(--p),var(--acc));border-radius:3px;transition:width .4s}
 .prog-pct{font-size:12px;font-weight:700;color:var(--p);min-width:32px;text-align:right}
-
-/* ── SECTION CARD ── */
 .sec{background:var(--card);border-radius:14px;box-shadow:var(--sh);margin-bottom:1.25rem;overflow:hidden;display:none}
 .sec.active{display:block}
 .sec-hdr{background:var(--pl);border-bottom:2px solid var(--p);padding:.85rem 1.25rem;display:flex;align-items:center;gap:10px}
 .sec-num{width:30px;height:30px;border-radius:50%;background:var(--p);color:#fff;font-size:13px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0}
 .sec-title{font-size:15px;font-weight:600;color:var(--pd)}
 .sec-body{padding:1.25rem}
-
-/* ── QUESTIONS ── */
 .q{margin-bottom:1.4rem}.q:last-child{margin-bottom:0}
-.q-label{font-size:14px;font-weight:500;margin-bottom:.55rem;display:block;color:var(--text)}
+.q-label{font-size:14px;font-weight:500;margin-bottom:.55rem;display:block}
 .req{color:var(--r);margin-left:3px}
 .rg{display:flex;flex-direction:column;gap:6px}
 .ro{display:flex;align-items:center;gap:10px;padding:8px 13px;border-radius:9px;border:1.5px solid var(--border);cursor:pointer;font-size:14px;transition:border-color .12s,background .12s}
 .ro:hover{border-color:var(--p);background:var(--pl)}
 .ro.sel{border-color:var(--p);background:var(--pl);font-weight:500}
 .ro input[type=radio]{accent-color:var(--p);width:16px;height:16px;flex-shrink:0}
-
-/* ── LIKERT TABLE ── */
 .ltw{overflow-x:auto}
 .lt{width:100%;border-collapse:collapse;min-width:520px}
 .lt thead th{padding:8px 5px;font-size:11px;font-weight:700;color:var(--muted);text-align:center;background:var(--pl);border-bottom:2px solid var(--p)}
@@ -80,10 +64,8 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(
 .lt td.rc{text-align:center}
 .lt input[type=radio]{accent-color:var(--p);width:17px;height:17px;cursor:pointer}
 .lk{font-size:10px;color:var(--muted);margin-top:3px;font-style:italic}
-.err-row td:first-child{color:var(--r) !important}
+.err-row td:first-child{color:var(--r)!important}
 .err-row input[type=radio]{outline:2px solid var(--r);outline-offset:2px;border-radius:50%}
-
-/* ── BUTTONS & NAV ── */
 .nb{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-top:1.1rem}
 .btn{padding:9px 22px;border-radius:9px;border:none;font-size:14px;font-weight:500;cursor:pointer;display:inline-flex;align-items:center;gap:6px;transition:all .15s}
 .btn:active{transform:scale(.97)}
@@ -91,12 +73,10 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(
 .btn-prev:hover{background:var(--pl)}
 .btn-next{background:var(--p);color:#fff;box-shadow:0 2px 8px rgba(69,39,160,.25)}
 .btn-next:hover{background:var(--pd)}
-.btn-green{background:var(--g);color:#fff;box-shadow:0 2px 8px rgba(46,125,50,.25)}
+.btn-green{background:var(--g);color:#fff}
 .btn-green:hover{background:#1B5E20}
 .btn:disabled{opacity:.4;cursor:not-allowed;transform:none}
 .sh{font-size:11px;color:var(--muted);margin-left:auto}
-
-/* ── ERROR & SUCCESS ── */
 .err-ban{display:none;background:var(--rb);border:1px solid #FFCDD2;border-radius:9px;padding:.75rem 1rem;font-size:13px;color:var(--r);margin-bottom:1rem;align-items:center;gap:8px}
 .err-ban.show{display:flex}
 .success-box{display:none;background:var(--card);border-radius:14px;box-shadow:var(--sh);padding:3rem 1.5rem;text-align:center}
@@ -104,11 +84,10 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(
 .success-ico{width:64px;height:64px;border-radius:50%;background:var(--gr);border:2px solid #A5D6A7;display:flex;align-items:center;justify-content:center;margin:0 auto 1rem;font-size:30px}
 .success-title{font-size:21px;font-weight:700;color:var(--g);margin-bottom:.4rem}
 .success-sub{font-size:13px;color:var(--muted);max-width:440px;margin:0 auto 1.1rem;line-height:1.65}
+.notice{font-size:12px;color:var(--am);margin-top:.5rem}
 .ref-pill{display:inline-block;background:var(--pl);color:var(--pd);border-radius:9px;padding:.45rem 1.25rem;font-size:13px;font-weight:600;margin-bottom:1.2rem}
 .spin{display:none;width:16px;height:16px;border:2px solid rgba(255,255,255,.35);border-top-color:#fff;border-radius:50%;animation:sp .6s linear infinite}
 @keyframes sp{to{transform:rotate(360deg)}}
-
-/* ── LOGIN SCREEN ── */
 .login-wrap{max-width:400px;margin:3.5rem auto}
 .login-card{background:var(--card);border-radius:14px;box-shadow:var(--sh);padding:2.25rem 2rem;text-align:center}
 .login-icon{font-size:42px;margin-bottom:.75rem}
@@ -117,40 +96,33 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(
 .login-field{position:relative;margin-bottom:1rem}
 .login-field input{width:100%;padding:10px 40px 10px 14px;border-radius:9px;border:1.5px solid var(--border);font-size:14px;outline:none;transition:border-color .15s}
 .login-field input:focus{border-color:var(--p)}
-.login-field .toggle-pw{position:absolute;right:12px;top:50%;transform:translateY(-50%);cursor:pointer;font-size:16px;color:var(--muted);background:none;border:none;padding:0}
+.toggle-pw{position:absolute;right:12px;top:50%;transform:translateY(-50%);cursor:pointer;font-size:16px;color:var(--muted);background:none;border:none;padding:0}
 .login-err{color:var(--r);font-size:13px;margin-top:.5rem;min-height:18px}
 .login-roles{display:flex;gap:8px;margin-bottom:1.25rem;justify-content:center}
 .role-btn{padding:7px 18px;border-radius:9px;border:1.5px solid var(--border);background:var(--card);font-size:13px;cursor:pointer;color:var(--muted);transition:all .15s;font-weight:500}
 .role-btn:hover{border-color:var(--p);color:var(--p)}
-.role-btn.active-role{border-color:var(--p);background:var(--pl);color:var(--pd);font-weight:600}
 .role-btn.role-sup.active-role{border-color:var(--am);background:var(--am-l);color:var(--am)}
 .role-btn.role-adm.active-role{border-color:var(--r);background:var(--rb);color:var(--r)}
-
-/* ── STATS ── */
 .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(125px,1fr));gap:10px;margin-bottom:1.25rem}
 .stat-card{background:var(--card);border-radius:11px;padding:.9rem 1rem;box-shadow:var(--sh);text-align:center;border-top:3px solid var(--p)}
 .stat-v{font-size:28px;font-weight:700;color:var(--p)}
 .stat-l{font-size:11px;color:var(--muted);margin-top:2px;line-height:1.3}
-
-/* ── TABS ── */
 .tab-bar{display:flex;gap:4px;margin-bottom:1rem;flex-wrap:wrap;background:var(--card);padding:.4rem;border-radius:10px;box-shadow:var(--sh)}
 .tab-btn{padding:7px 18px;border-radius:7px;border:none;background:transparent;font-size:13px;cursor:pointer;color:var(--muted);font-weight:500;transition:all .15s}
 .tab-btn:hover{background:var(--pl);color:var(--p)}
-.tab-btn.on{background:var(--p);color:#fff;font-weight:600;box-shadow:0 2px 6px rgba(69,39,160,.2)}
-
-/* ── DATA TABLE ── */
+.tab-btn.on{background:var(--p);color:#fff;font-weight:600}
 .tbl-wrap{background:var(--card);border-radius:14px;box-shadow:var(--sh);overflow:hidden}
 .tbl-toolbar{display:flex;gap:8px;align-items:center;padding:1rem 1.25rem;flex-wrap:wrap;border-bottom:1px solid var(--border);background:#faf9ff}
 .tbl-title{font-size:15px;font-weight:600;color:var(--pd);flex:1}
 .tbl-count{font-size:12px;color:var(--muted);font-weight:400}
-.btn-dl{background:var(--p);color:#fff;padding:7px 16px;font-size:13px;border-radius:8px;border:none;cursor:pointer;font-weight:500;transition:background .15s}
+.btn-dl{background:var(--p);color:#fff;padding:7px 16px;font-size:13px;border-radius:8px;border:none;cursor:pointer;font-weight:500}
 .btn-dl:hover{background:var(--pd)}
-.btn-dl2{background:#1565C0;color:#fff;padding:7px 16px;font-size:13px;border-radius:8px;border:none;cursor:pointer;font-weight:500;transition:background .15s}
+.btn-dl2{background:#1565C0;color:#fff;padding:7px 16px;font-size:13px;border-radius:8px;border:none;cursor:pointer;font-weight:500}
 .btn-dl2:hover{background:#0D47A1}
-.tbl-search{padding:7px 11px;border-radius:8px;border:1.5px solid var(--border);font-size:13px;min-width:200px;outline:none;transition:border-color .15s}
+.tbl-search{padding:7px 11px;border-radius:8px;border:1.5px solid var(--border);font-size:13px;min-width:200px;outline:none}
 .tbl-search:focus{border-color:var(--p)}
 .rtbl{width:100%;border-collapse:collapse;font-size:12px}
-.rtbl th{background:var(--pl);padding:9px 10px;text-align:left;font-weight:700;color:var(--pd);border-bottom:2px solid var(--p);white-space:nowrap;position:sticky;top:0}
+.rtbl th{background:var(--pl);padding:9px 10px;text-align:left;font-weight:700;color:var(--pd);border-bottom:2px solid var(--p);white-space:nowrap}
 .rtbl td{padding:7px 10px;border-bottom:1px solid #f0edf8;white-space:nowrap;vertical-align:middle}
 .rtbl tr:last-child td{border-bottom:none}
 .rtbl tr:hover td{background:#f7f5ff}
@@ -159,59 +131,32 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(
 .b-rm{background:var(--pl);color:var(--pd)}
 .b-mt{background:var(--gr);color:#1B5E20}
 .b-noc{background:#FFF3E0;color:#E65100}
-
-/* ── PAGINATION ── */
 .pagination{display:flex;gap:5px;align-items:center;padding:.8rem 1.25rem;justify-content:flex-end;border-top:1px solid var(--border);flex-wrap:wrap;background:#faf9ff}
-.pg-btn{padding:5px 11px;border-radius:7px;border:1.5px solid var(--border);background:var(--card);font-size:12px;cursor:pointer;color:var(--muted);transition:all .15s}
+.pg-btn{padding:5px 11px;border-radius:7px;border:1.5px solid var(--border);background:var(--card);font-size:12px;cursor:pointer;color:var(--muted)}
 .pg-btn:hover,.pg-btn.on{background:var(--p);color:#fff;border-color:var(--p)}
 .pg-info{font-size:12px;color:var(--muted);margin-right:4px}
-
-/* ── INFO NOTE ── */
 .info-note{background:var(--pl);border-radius:9px;padding:.8rem 1.1rem;font-size:13px;color:var(--pd);border-left:3px solid var(--p);margin-bottom:1rem;line-height:1.7}
-
-/* ── KEY LEGEND ── */
+.warn-note{background:var(--am-l);border-radius:9px;padding:.8rem 1.1rem;font-size:13px;color:var(--am);border-left:3px solid var(--am);margin-bottom:1rem;line-height:1.7}
 .key-section{margin-top:1.75rem}
 .key-title{font-size:12px;font-weight:700;color:var(--pd);margin-bottom:.5rem;padding-bottom:.35rem;border-bottom:2px solid var(--p);text-transform:uppercase;letter-spacing:.5px}
 .key-cat-hdr{font-size:10px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.6px;margin:.65rem 0 .3rem;display:flex;align-items:center;gap:6px}
 .key-cat-hdr::after{content:'';flex:1;height:1px;background:var(--border)}
 .key-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(265px,1fr));gap:4px}
 .key-item{display:flex;align-items:center;gap:8px;padding:5px 10px;background:var(--bg);border-radius:7px;border:1px solid var(--border);font-size:12px}
-.key-code{font-weight:700;color:var(--p);min-width:32px;flex-shrink:0;font-size:12px}
+.key-code{font-weight:700;color:var(--p);min-width:32px;flex-shrink:0}
 .key-label{color:var(--text);flex:1;font-size:11px}
-.key-cat{font-size:9px;padding:2px 7px;border-radius:8px;font-weight:700;flex-shrink:0;text-transform:uppercase;letter-spacing:.3px}
+.key-cat{font-size:9px;padding:2px 7px;border-radius:8px;font-weight:700;flex-shrink:0;text-transform:uppercase}
 .cat-tf{background:#E3F2FD;color:#0D47A1}
 .cat-of{background:var(--gr);color:#1B5E20}
 .cat-ef{background:#FFF3E0;color:#E65100}
 .cat-cf{background:var(--pl);color:var(--pd)}
-
-/* ── QUICK ADD ── */
 .qa-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:1rem}
-.qa-sel{width:100%;padding:8px 10px;border-radius:8px;border:1.5px solid var(--border);font-size:13px;outline:none;background:var(--card);transition:border-color .15s}
+.qa-sel{width:100%;padding:8px 10px;border-radius:8px;border:1.5px solid var(--border);font-size:13px;outline:none;background:var(--card)}
 .qa-sel:focus{border-color:var(--p)}
 .score-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(148px,1fr));gap:7px;margin-bottom:1rem}
-
-/* ── GITHUB BOX ── */
 .gh-box{background:#f6f8fa;border:1px solid #d0d7de;border-radius:10px;padding:1.1rem 1.2rem;font-size:13px;color:#24292f;margin-bottom:1rem;line-height:2}
 .gh-box code{background:#dfe4ea;padding:1px 7px;border-radius:4px;font-size:11px;font-family:'Courier New',monospace}
-.gh-box strong{color:#1a1a2e}
-
-/* ── SUPERVISOR VIEW ── */
-.sup-hero{border-top:4px solid var(--am)}
-.sup-stat-card{border-top-color:var(--am)}
-.sup-stat-card .stat-v{color:var(--am)}
-
-/* LOADING */
-.loading-cover{display:flex;align-items:center;justify-content:center;gap:10px;padding:3rem;font-size:14px;color:var(--muted)}
-.ld-spin{width:20px;height:20px;border:2px solid var(--border);border-top-color:var(--p);border-radius:50%;animation:sp .6s linear infinite}
-
-@media(max-width:580px){
-  .sec-body{padding:.9rem}
-  .lt{min-width:460px}
-  .qa-grid{grid-template-columns:1fr}
-  .topbar{padding:.6rem 1rem}
-  .tbl-toolbar{flex-direction:column;align-items:stretch}
-  .tbl-search{min-width:0}
-}
+@media(max-width:580px){.sec-body{padding:.9rem}.lt{min-width:460px}.qa-grid{grid-template-columns:1fr}.tbl-toolbar{flex-direction:column;align-items:stretch}}
 
 </style>
 </head>
@@ -234,320 +179,272 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(
   </div>
 </div>
 <div class="page show" id="page-survey">
-  <div class="hero">
-    <div class="hero-badge">Research Questionnaire &middot; Confidential &middot; Anonymous</div>
-    <div class="hero-title">Factors Affecting Generator Maintenance Cost at TTCL NICTBB Sites</div>
-    <div class="hero-sub">Expert survey on TTCL NICTBB generator maintenance cost factors. Rate 21 items across Technical, Operational, Environmental, and Policy categories. Anonymous. DIT ME24MM research &mdash; Katakweba C.M., supervised by Dr. S. Karugaba.</div>
+<div class="hero">
+  <div class="hero-badge">Research Questionnaire &middot; Confidential &middot; Anonymous</div>
+  <div class="hero-title">Factors Affecting Generator Maintenance Cost at TTCL NICTBB Sites</div>
+  <div class="hero-sub">Expert survey on TTCL NICTBB generator maintenance cost factors. Rate 21 items across Technical, Operational, Environmental, and Policy categories. Anonymous. DIT ME24MM research &mdash; Katakweba C.M., supervised by Dr. S. Karugaba.</div>
+</div>
+<div class="prog-wrap" id="prog-wrap">
+  <span class="prog-label" id="prog-lbl">Part 1 of 5</span>
+  <div class="prog-track"><div class="prog-fill" id="prog-fill" style="width:20%"></div></div>
+  <span class="prog-pct" id="prog-pct">20%</span>
+</div>
+<div class="err-ban" id="err-ban">&#9888; <span id="err-msg">Please answer all required questions.</span></div>
+<div class="sec active" id="sec-intro">
+  <div class="sec-hdr"><div class="sec-num">i</div><div class="sec-title">Instructions &amp; Consent</div></div>
+  <div class="sec-body">
+    <p style="font-size:14px;line-height:1.75;margin-bottom:1rem">This survey is part of an M.Eng (Maintenance Management) dissertation at the Dar es Salaam Institute of Technology investigating factors that drive generator maintenance costs at TTCL NICTBB backbone sites.</p>
+    <ul style="font-size:13px;color:var(--muted);margin-left:1.2rem;line-height:2.3">
+      <li>All responses are <strong>completely anonymous</strong></li>
+      <li>Five parts &mdash; approximately <strong>8&ndash;10 minutes</strong></li>
+      <li>Rating: <strong>1 = Strongly Disagree &nbsp;&rarr;&nbsp; 5 = Strongly Agree</strong></li>
+      <li>All items marked <span style="color:var(--r)">*</span> are required</li>
+    </ul>
+    <div class="info-note" style="margin-top:1rem">By proceeding you consent to participate in this academic research (DIT ME24MM, 2025).</div>
+    <div class="nb"><button class="btn btn-next" onclick="goNext()">Start Survey &rsaquo;</button></div>
   </div>
-  <div class="prog-wrap" id="prog-wrap">
-    <span class="prog-label" id="prog-lbl">Part 1 of 5</span>
-    <div class="prog-track"><div class="prog-fill" id="prog-fill" style="width:20%"></div></div>
-    <span class="prog-pct" id="prog-pct">20%</span>
-  </div>
-  <div class="err-ban" id="err-ban">&#9888; <span id="err-msg">Please answer all required questions.</span></div>
-  <div class="sec active" id="sec-intro">
-    <div class="sec-hdr"><div class="sec-num">i</div><div class="sec-title">Instructions &amp; Consent</div></div>
-    <div class="sec-body">
-      <p style="font-size:14px;line-height:1.75;margin-bottom:1rem">This survey is part of an M.Eng (Maintenance Management) dissertation at the Dar es Salaam Institute of Technology investigating factors that drive generator maintenance costs at TTCL NICTBB backbone sites. Your expert opinion is valued.</p>
-      <ul style="font-size:13px;color:var(--muted);margin-left:1.2rem;line-height:2.3">
-        <li>All responses are <strong>completely anonymous</strong></li>
-        <li>Five parts &mdash; approximately <strong>8&ndash;10 minutes</strong> to complete</li>
-        <li>Rating scale: <strong>1 = Strongly Disagree &nbsp;&rarr;&nbsp; 5 = Strongly Agree</strong></li>
-        <li>All items marked <span style="color:var(--r)">*</span> are required</li>
-      </ul>
-      <div class="info-note" style="margin-top:1rem">By proceeding you consent to participate in this academic research (DIT ME24MM, 2025).</div>
-      <div class="nb"><button class="btn btn-next" onclick="goNext()">Start Survey &rsaquo;</button></div>
+</div>
+<div class="sec" id="sec-1">
+  <div class="sec-hdr"><div class="sec-num">1</div><div class="sec-title">Part I &mdash; Respondent Information</div></div>
+  <div class="sec-body">
+    <div class="q"><label class="q-label">Functional category (stratum) <span class="req">*</span></label>
+      <div class="rg">
+        <label class="ro"><input type="radio" name="stratum" value="Power Systems Engineer"> Power Systems Engineer</label>
+        <label class="ro"><input type="radio" name="stratum" value="Regional Manager/Supervisor"> Regional Manager / Supervisor</label>
+        <label class="ro"><input type="radio" name="stratum" value="Maintenance Technician"> Maintenance Technician</label>
+        <label class="ro"><input type="radio" name="stratum" value="NOC Engineer"> NOC Engineer</label>
+      </div></div>
+    <div class="q"><label class="q-label">Years of experience in TTCL power operations <span class="req">*</span></label>
+      <div class="rg">
+        <label class="ro"><input type="radio" name="exp" value="< 2 years"> Less than 2 years</label>
+        <label class="ro"><input type="radio" name="exp" value="2-5 years"> 2 &ndash; 5 years</label>
+        <label class="ro"><input type="radio" name="exp" value="6-10 years"> 6 &ndash; 10 years</label>
+        <label class="ro"><input type="radio" name="exp" value="> 10 years"> More than 10 years</label>
+      </div></div>
+    <div class="q"><label class="q-label">Highest educational qualification <span class="req">*</span></label>
+      <div class="rg">
+        <label class="ro"><input type="radio" name="edu" value="Certificate/Diploma"> Certificate / Diploma</label>
+        <label class="ro"><input type="radio" name="edu" value="Bachelor's Degree"> Bachelor&rsquo;s Degree</label>
+        <label class="ro"><input type="radio" name="edu" value="Postgraduate Diploma"> Postgraduate Diploma</label>
+        <label class="ro"><input type="radio" name="edu" value="Master's Degree"> Master&rsquo;s Degree</label>
+        <label class="ro"><input type="radio" name="edu" value="PhD"> PhD / Doctorate</label>
+      </div></div>
+    <div class="q"><label class="q-label">Familiarity with predictive maintenance <span class="req">*</span></label>
+      <div class="rg">
+        <label class="ro"><input type="radio" name="pdm" value="Not familiar"> Not familiar</label>
+        <label class="ro"><input type="radio" name="pdm" value="Heard the term only"> Heard the term only</label>
+        <label class="ro"><input type="radio" name="pdm" value="Somewhat familiar"> Somewhat familiar</label>
+        <label class="ro"><input type="radio" name="pdm" value="Fully familiar"> Fully familiar</label>
+      </div></div>
+    <div class="nb">
+      <button class="btn btn-prev" onclick="goPrev()">&lsaquo; Back</button>
+      <button class="btn btn-next" onclick="goNext()">Next &rsaquo;</button>
+      <span class="sh">Part 1 of 5</span>
     </div>
   </div>
-  <div class="sec" id="sec-1">
-    <div class="sec-hdr"><div class="sec-num">1</div><div class="sec-title">Part I &mdash; Respondent Information</div></div>
-    <div class="sec-body">
-      <div class="q"><label class="q-label">Functional category (stratum) <span class="req">*</span></label>
-        <div class="rg">
-          <label class="ro"><input type="radio" name="stratum" value="Power Systems Engineer"> Power Systems Engineer</label>
-          <label class="ro"><input type="radio" name="stratum" value="Regional Manager/Supervisor"> Regional Manager / Supervisor</label>
-          <label class="ro"><input type="radio" name="stratum" value="Maintenance Technician"> Maintenance Technician</label>
-          <label class="ro"><input type="radio" name="stratum" value="NOC Engineer"> NOC Engineer</label>
-        </div>
-      </div>
-      <div class="q"><label class="q-label">Years of experience in TTCL power operations <span class="req">*</span></label>
-        <div class="rg">
-          <label class="ro"><input type="radio" name="exp" value="< 2 years"> Less than 2 years</label>
-          <label class="ro"><input type="radio" name="exp" value="2-5 years"> 2 &ndash; 5 years</label>
-          <label class="ro"><input type="radio" name="exp" value="6-10 years"> 6 &ndash; 10 years</label>
-          <label class="ro"><input type="radio" name="exp" value="> 10 years"> More than 10 years</label>
-        </div>
-      </div>
-      <div class="q"><label class="q-label">Highest educational qualification <span class="req">*</span></label>
-        <div class="rg">
-          <label class="ro"><input type="radio" name="edu" value="Certificate/Diploma"> Certificate / Diploma</label>
-          <label class="ro"><input type="radio" name="edu" value="Bachelor's Degree"> Bachelor&rsquo;s Degree</label>
-          <label class="ro"><input type="radio" name="edu" value="Postgraduate Diploma"> Postgraduate Diploma</label>
-          <label class="ro"><input type="radio" name="edu" value="Master's Degree"> Master&rsquo;s Degree</label>
-          <label class="ro"><input type="radio" name="edu" value="PhD"> PhD / Doctorate</label>
-        </div>
-      </div>
-      <div class="q"><label class="q-label">Familiarity with predictive maintenance <span class="req">*</span></label>
-        <div class="rg">
-          <label class="ro"><input type="radio" name="pdm" value="Not familiar"> Not familiar</label>
-          <label class="ro"><input type="radio" name="pdm" value="Heard the term only"> Heard the term only</label>
-          <label class="ro"><input type="radio" name="pdm" value="Somewhat familiar"> Somewhat familiar</label>
-          <label class="ro"><input type="radio" name="pdm" value="Fully familiar"> Fully familiar</label>
-        </div>
-      </div>
-      <div class="nb">
-        <button class="btn btn-prev" onclick="goPrev()">&lsaquo; Back</button>
-        <button class="btn btn-next" onclick="goNext()">Next &rsaquo;</button>
-        <span class="sh">Part 1 of 5</span>
-      </div>
-    </div>
-  </div>
-  <div class="sec" id="sec-2">
-    <div class="sec-hdr"><div class="sec-num">2</div><div class="sec-title">Part II &mdash; Technical Factors</div></div>
-    <div class="sec-body">
-      <div class="ltw"><table class="lt">
-        <thead><tr><th>Statement &amp; key variable</th><th>1<br>Strongly<br>Disagree</th><th>2<br>Disagree</th><th>3<br>Neutral</th><th>4<br>Agree</th><th>5<br>Strongly<br>Agree</th></tr></thead>
-        <tbody>
-          <tr data-qid="TF1">
-            <td>Grid un-availability significantly increases generator running hours.<div class="lk">TF1 &mdash; Grid Unavailability</div></td>
-            <td class="rc"><input type="radio" name="TF1" value="1"></td>
-            <td class="rc"><input type="radio" name="TF1" value="2"></td>
-            <td class="rc"><input type="radio" name="TF1" value="3"></td>
-            <td class="rc"><input type="radio" name="TF1" value="4"></td>
-            <td class="rc"><input type="radio" name="TF1" value="5"></td>
-          </tr>
-          <tr data-qid="TF2">
-            <td>Generator running hours significantly increase maintenance cost.<div class="lk">TF2 &mdash; Generator Running Hours</div></td>
-            <td class="rc"><input type="radio" name="TF2" value="1"></td>
-            <td class="rc"><input type="radio" name="TF2" value="2"></td>
-            <td class="rc"><input type="radio" name="TF2" value="3"></td>
-            <td class="rc"><input type="radio" name="TF2" value="4"></td>
-            <td class="rc"><input type="radio" name="TF2" value="5"></td>
-          </tr>
-          <tr data-qid="TF3">
-            <td>Spare parts usage significantly increases maintenance cost.<div class="lk">TF3 &mdash; Spare Parts Usage/Cost</div></td>
-            <td class="rc"><input type="radio" name="TF3" value="1"></td>
-            <td class="rc"><input type="radio" name="TF3" value="2"></td>
-            <td class="rc"><input type="radio" name="TF3" value="3"></td>
-            <td class="rc"><input type="radio" name="TF3" value="4"></td>
-            <td class="rc"><input type="radio" name="TF3" value="5"></td>
-          </tr>
-          <tr data-qid="TF4">
-            <td>Breakdown frequency is the most significant driver of emergency maintenance cost.<div class="lk">TF4 &mdash; Breakdown Frequency</div></td>
-            <td class="rc"><input type="radio" name="TF4" value="1"></td>
-            <td class="rc"><input type="radio" name="TF4" value="2"></td>
-            <td class="rc"><input type="radio" name="TF4" value="3"></td>
-            <td class="rc"><input type="radio" name="TF4" value="4"></td>
-            <td class="rc"><input type="radio" name="TF4" value="5"></td>
-          </tr>
-          <tr data-qid="TF5">
-            <td>On Battery-first dispatch, Battery size significantly reduces generator running hours.<div class="lk">TF5 &mdash; Battery Size (Dispatch)</div></td>
-            <td class="rc"><input type="radio" name="TF5" value="1"></td>
-            <td class="rc"><input type="radio" name="TF5" value="2"></td>
-            <td class="rc"><input type="radio" name="TF5" value="3"></td>
-            <td class="rc"><input type="radio" name="TF5" value="4"></td>
-            <td class="rc"><input type="radio" name="TF5" value="5"></td>
-          </tr>
-          <tr data-qid="TF6">
-            <td>Lithium batteries are performing better than VRLA batteries at NICTBB sites.<div class="lk">TF6 &mdash; Battery Technology Type</div></td>
-            <td class="rc"><input type="radio" name="TF6" value="1"></td>
-            <td class="rc"><input type="radio" name="TF6" value="2"></td>
-            <td class="rc"><input type="radio" name="TF6" value="3"></td>
-            <td class="rc"><input type="radio" name="TF6" value="4"></td>
-            <td class="rc"><input type="radio" name="TF6" value="5"></td>
-          </tr>
-        </tbody></table></div>
-      <div class="nb">
-        <button class="btn btn-prev" onclick="goPrev()">&lsaquo; Back</button>
-        <button class="btn btn-next" onclick="goNext()">Next &rsaquo;</button>
-        <span class="sh">Part 2 of 5</span>
-      </div>
-    </div>
-  </div>
-  <div class="sec" id="sec-3">
-    <div class="sec-hdr"><div class="sec-num">3</div><div class="sec-title">Part III &mdash; Operational Factors</div></div>
-    <div class="sec-body">
-      <div class="ltw"><table class="lt">
-        <thead><tr><th>Statement &amp; key variable</th><th>1<br>Strongly<br>Disagree</th><th>2<br>Disagree</th><th>3<br>Neutral</th><th>4<br>Agree</th><th>5<br>Strongly<br>Agree</th></tr></thead>
-        <tbody>
-          <tr data-qid="OF1">
-            <td>Generator operation below 30% rated capacity significantly increases maintenance cost.<div class="lk">OF1 &mdash; Generator Load Factor (Underloading)</div></td>
-            <td class="rc"><input type="radio" name="OF1" value="1"></td>
-            <td class="rc"><input type="radio" name="OF1" value="2"></td>
-            <td class="rc"><input type="radio" name="OF1" value="3"></td>
-            <td class="rc"><input type="radio" name="OF1" value="4"></td>
-            <td class="rc"><input type="radio" name="OF1" value="5"></td>
-          </tr>
-          <tr data-qid="OF2">
-            <td>Frequent short-duration generator starts (&lt;30 min per activation) cause disproportionate engine wear.<div class="lk">OF2 &mdash; Start Frequency / Short-Cycling</div></td>
-            <td class="rc"><input type="radio" name="OF2" value="1"></td>
-            <td class="rc"><input type="radio" name="OF2" value="2"></td>
-            <td class="rc"><input type="radio" name="OF2" value="3"></td>
-            <td class="rc"><input type="radio" name="OF2" value="4"></td>
-            <td class="rc"><input type="radio" name="OF2" value="5"></td>
-          </tr>
-          <tr data-qid="OF3">
-            <td>Maintenance scheduling discipline (executing visits on time vs. deferring) is a critical driver of maintenance cost.<div class="lk">OF3 &mdash; Maintenance Scheduling Compliance</div></td>
-            <td class="rc"><input type="radio" name="OF3" value="1"></td>
-            <td class="rc"><input type="radio" name="OF3" value="2"></td>
-            <td class="rc"><input type="radio" name="OF3" value="3"></td>
-            <td class="rc"><input type="radio" name="OF3" value="4"></td>
-            <td class="rc"><input type="radio" name="OF3" value="5"></td>
-          </tr>
-          <tr data-qid="OF4">
-            <td>Battery-first dispatch (battery absorbs short outages before generator start) will significantly reduce maintenance cost.<div class="lk">OF4 &mdash; Battery-First Dispatch Strategy</div></td>
-            <td class="rc"><input type="radio" name="OF4" value="1"></td>
-            <td class="rc"><input type="radio" name="OF4" value="2"></td>
-            <td class="rc"><input type="radio" name="OF4" value="3"></td>
-            <td class="rc"><input type="radio" name="OF4" value="4"></td>
-            <td class="rc"><input type="radio" name="OF4" value="5"></td>
-          </tr>
-          <tr data-qid="OF5">
-            <td>On Battery-first dispatch, faulty battery significantly increases generator running hours.<div class="lk">OF5 &mdash; Faulty Battery</div></td>
-            <td class="rc"><input type="radio" name="OF5" value="1"></td>
-            <td class="rc"><input type="radio" name="OF5" value="2"></td>
-            <td class="rc"><input type="radio" name="OF5" value="3"></td>
-            <td class="rc"><input type="radio" name="OF5" value="4"></td>
-            <td class="rc"><input type="radio" name="OF5" value="5"></td>
-          </tr>
-          <tr data-qid="OF6">
-            <td>Generator running hours significantly influence generator maintenance cost more than generator age.<div class="lk">OF6 &mdash; Running Hours vs. Generator Age</div></td>
-            <td class="rc"><input type="radio" name="OF6" value="1"></td>
-            <td class="rc"><input type="radio" name="OF6" value="2"></td>
-            <td class="rc"><input type="radio" name="OF6" value="3"></td>
-            <td class="rc"><input type="radio" name="OF6" value="4"></td>
-            <td class="rc"><input type="radio" name="OF6" value="5"></td>
-          </tr>
-          <tr data-qid="OF7">
-            <td>Operator skill level directly influences maintenance quality at NICTBB sites.<div class="lk">OF7 &mdash; Operator Skill/Competence</div></td>
-            <td class="rc"><input type="radio" name="OF7" value="1"></td>
-            <td class="rc"><input type="radio" name="OF7" value="2"></td>
-            <td class="rc"><input type="radio" name="OF7" value="3"></td>
-            <td class="rc"><input type="radio" name="OF7" value="4"></td>
-            <td class="rc"><input type="radio" name="OF7" value="5"></td>
-          </tr>
-        </tbody></table></div>
-      <div class="nb">
-        <button class="btn btn-prev" onclick="goPrev()">&lsaquo; Back</button>
-        <button class="btn btn-next" onclick="goNext()">Next &rsaquo;</button>
-        <span class="sh">Part 3 of 5</span>
-      </div>
-    </div>
-  </div>
-  <div class="sec" id="sec-4">
-    <div class="sec-hdr"><div class="sec-num">4</div><div class="sec-title">Part IV &mdash; Environmental Factors</div></div>
-    <div class="sec-body">
-      <div class="ltw"><table class="lt">
-        <thead><tr><th>Statement &amp; key variable</th><th>1<br>Strongly<br>Disagree</th><th>2<br>Disagree</th><th>3<br>Neutral</th><th>4<br>Agree</th><th>5<br>Strongly<br>Agree</th></tr></thead>
-        <tbody>
-          <tr data-qid="EF1">
-            <td>Tropical ambient temperatures (25&deg;C&ndash;38&deg;C) reduce engine oil service life below OEM-specified intervals.<div class="lk">EF1 &mdash; Ambient Temperature</div></td>
-            <td class="rc"><input type="radio" name="EF1" value="1"></td>
-            <td class="rc"><input type="radio" name="EF1" value="2"></td>
-            <td class="rc"><input type="radio" name="EF1" value="3"></td>
-            <td class="rc"><input type="radio" name="EF1" value="4"></td>
-            <td class="rc"><input type="radio" name="EF1" value="5"></td>
-          </tr>
-          <tr data-qid="EF2">
-            <td>Site distance significantly affects total maintenance cost through fuel and per-diem expenditure.<div class="lk">EF2 &mdash; Site Accessibility / Travel Distance</div></td>
-            <td class="rc"><input type="radio" name="EF2" value="1"></td>
-            <td class="rc"><input type="radio" name="EF2" value="2"></td>
-            <td class="rc"><input type="radio" name="EF2" value="3"></td>
-            <td class="rc"><input type="radio" name="EF2" value="4"></td>
-            <td class="rc"><input type="radio" name="EF2" value="5"></td>
-          </tr>
-          <tr data-qid="EF3">
-            <td>Dust particulates accelerate reduction in engine efficiency due to air filter blockage.<div class="lk">EF3 &mdash; Dust/Particulate Level</div></td>
-            <td class="rc"><input type="radio" name="EF3" value="1"></td>
-            <td class="rc"><input type="radio" name="EF3" value="2"></td>
-            <td class="rc"><input type="radio" name="EF3" value="3"></td>
-            <td class="rc"><input type="radio" name="EF3" value="4"></td>
-            <td class="rc"><input type="radio" name="EF3" value="5"></td>
-          </tr>
-        </tbody></table></div>
-      <div class="nb">
-        <button class="btn btn-prev" onclick="goPrev()">&lsaquo; Back</button>
-        <button class="btn btn-next" onclick="goNext()">Next &rsaquo;</button>
-        <span class="sh">Part 4 of 5</span>
-      </div>
-    </div>
-  </div>
-  <div class="sec" id="sec-5">
-    <div class="sec-hdr"><div class="sec-num">5</div><div class="sec-title">Part V &mdash; Company Policy Factors</div></div>
-    <div class="sec-body">
-      <div class="ltw"><table class="lt">
-        <thead><tr><th>Statement &amp; key variable</th><th>1<br>Strongly<br>Disagree</th><th>2<br>Disagree</th><th>3<br>Neutral</th><th>4<br>Agree</th><th>5<br>Strongly<br>Agree</th></tr></thead>
-        <tbody>
-          <tr data-qid="CF1">
-            <td>TTCL's partial fuel refill policy increases maintenance trip frequency.<div class="lk">CF1 &mdash; Fuel Refill Policy</div></td>
-            <td class="rc"><input type="radio" name="CF1" value="1"></td>
-            <td class="rc"><input type="radio" name="CF1" value="2"></td>
-            <td class="rc"><input type="radio" name="CF1" value="3"></td>
-            <td class="rc"><input type="radio" name="CF1" value="4"></td>
-            <td class="rc"><input type="radio" name="CF1" value="5"></td>
-          </tr>
-          <tr data-qid="CF2">
-            <td>Budget allocation significantly determines whether recommended maintenance intervals are executed on schedule.<div class="lk">CF2 &mdash; Budget Allocation</div></td>
-            <td class="rc"><input type="radio" name="CF2" value="1"></td>
-            <td class="rc"><input type="radio" name="CF2" value="2"></td>
-            <td class="rc"><input type="radio" name="CF2" value="3"></td>
-            <td class="rc"><input type="radio" name="CF2" value="4"></td>
-            <td class="rc"><input type="radio" name="CF2" value="5"></td>
-          </tr>
-          <tr data-qid="CF3">
-            <td>Price changes in fuel and spare parts significantly affect total maintenance cost.<div class="lk">CF3 &mdash; Fuel/Spare Parts Price Fluctuation</div></td>
-            <td class="rc"><input type="radio" name="CF3" value="1"></td>
-            <td class="rc"><input type="radio" name="CF3" value="2"></td>
-            <td class="rc"><input type="radio" name="CF3" value="3"></td>
-            <td class="rc"><input type="radio" name="CF3" value="4"></td>
-            <td class="rc"><input type="radio" name="CF3" value="5"></td>
-          </tr>
-          <tr data-qid="CF4">
-            <td>The current 250-hour/3-month uniform maintenance standard generates unnecessary costs at low-utilisation sites.<div class="lk">CF4 &mdash; Uniform (Time-Based) Maintenance Standard</div></td>
-            <td class="rc"><input type="radio" name="CF4" value="1"></td>
-            <td class="rc"><input type="radio" name="CF4" value="2"></td>
-            <td class="rc"><input type="radio" name="CF4" value="3"></td>
-            <td class="rc"><input type="radio" name="CF4" value="4"></td>
-            <td class="rc"><input type="radio" name="CF4" value="5"></td>
-          </tr>
-          <tr data-qid="CF5">
-            <td>A run-hour-based predictive maintenance standard would better align maintenance frequency with actual generator utilisation.<div class="lk">CF5 &mdash; Predictive (Run-Hour-Based) Maintenance Standard</div></td>
-            <td class="rc"><input type="radio" name="CF5" value="1"></td>
-            <td class="rc"><input type="radio" name="CF5" value="2"></td>
-            <td class="rc"><input type="radio" name="CF5" value="3"></td>
-            <td class="rc"><input type="radio" name="CF5" value="4"></td>
-            <td class="rc"><input type="radio" name="CF5" value="5"></td>
-          </tr>
-        </tbody></table></div>
-      <div class="nb">
-        <button class="btn btn-prev" onclick="goPrev()">&lsaquo; Back</button>
-        <button class="btn btn-green" id="btn-sub" onclick="submitSurvey()"><span class="spin" id="sub-spin"></span><span id="sub-lbl">Submit Response &#10003;</span></button>
-        <span class="sh">Part 5 of 5</span>
-      </div>
-    </div>
-  </div>
-  <div class="success-box" id="success-box">
-    <div class="success-ico">&#10003;</div>
-    <div class="success-title">Response recorded!</div>
-    <p class="success-sub">Thank you for contributing to the PMF-MCR generator maintenance research. Your response has been saved successfully.</p>
-    <div class="ref-pill" id="ref-pill">Reference ID: &mdash;</div><br><br>
-    <button class="btn btn-next" onclick="resetSurvey()">Submit another response</button>
-  </div>
+</div>
+<div class="sec" id="sec-2">
+  <div class="sec-hdr"><div class="sec-num">2</div><div class="sec-title">Part II &mdash; Technical Factors</div></div>
+  <div class="sec-body"><div class="ltw"><table class="lt">
+    <thead><tr><th>Statement &amp; key variable</th><th>1<br>Strongly<br>Disagree</th><th>2<br>Disagree</th><th>3<br>Neutral</th><th>4<br>Agree</th><th>5<br>Strongly<br>Agree</th></tr></thead><tbody>
+    <tr data-qid="TF1"><td>Grid un-availability significantly increases generator running hours.<div class="lk">TF1 &mdash; Grid Unavailability</div></td>
+      <td class="rc"><input type="radio" name="TF1" value="1"></td>
+      <td class="rc"><input type="radio" name="TF1" value="2"></td>
+      <td class="rc"><input type="radio" name="TF1" value="3"></td>
+      <td class="rc"><input type="radio" name="TF1" value="4"></td>
+      <td class="rc"><input type="radio" name="TF1" value="5"></td>
+    </tr>
+    <tr data-qid="TF2"><td>Generator running hours significantly increase maintenance cost.<div class="lk">TF2 &mdash; Generator Running Hours</div></td>
+      <td class="rc"><input type="radio" name="TF2" value="1"></td>
+      <td class="rc"><input type="radio" name="TF2" value="2"></td>
+      <td class="rc"><input type="radio" name="TF2" value="3"></td>
+      <td class="rc"><input type="radio" name="TF2" value="4"></td>
+      <td class="rc"><input type="radio" name="TF2" value="5"></td>
+    </tr>
+    <tr data-qid="TF3"><td>Spare parts usage significantly increases maintenance cost.<div class="lk">TF3 &mdash; Spare Parts Usage/Cost</div></td>
+      <td class="rc"><input type="radio" name="TF3" value="1"></td>
+      <td class="rc"><input type="radio" name="TF3" value="2"></td>
+      <td class="rc"><input type="radio" name="TF3" value="3"></td>
+      <td class="rc"><input type="radio" name="TF3" value="4"></td>
+      <td class="rc"><input type="radio" name="TF3" value="5"></td>
+    </tr>
+    <tr data-qid="TF4"><td>Breakdown frequency is the most significant driver of emergency maintenance cost.<div class="lk">TF4 &mdash; Breakdown Frequency</div></td>
+      <td class="rc"><input type="radio" name="TF4" value="1"></td>
+      <td class="rc"><input type="radio" name="TF4" value="2"></td>
+      <td class="rc"><input type="radio" name="TF4" value="3"></td>
+      <td class="rc"><input type="radio" name="TF4" value="4"></td>
+      <td class="rc"><input type="radio" name="TF4" value="5"></td>
+    </tr>
+    <tr data-qid="TF5"><td>On Battery-first dispatch, Battery size significantly reduces generator running hours.<div class="lk">TF5 &mdash; Battery Size (Dispatch)</div></td>
+      <td class="rc"><input type="radio" name="TF5" value="1"></td>
+      <td class="rc"><input type="radio" name="TF5" value="2"></td>
+      <td class="rc"><input type="radio" name="TF5" value="3"></td>
+      <td class="rc"><input type="radio" name="TF5" value="4"></td>
+      <td class="rc"><input type="radio" name="TF5" value="5"></td>
+    </tr>
+    <tr data-qid="TF6"><td>Lithium batteries are performing better than VRLA batteries at NICTBB sites.<div class="lk">TF6 &mdash; Battery Technology Type</div></td>
+      <td class="rc"><input type="radio" name="TF6" value="1"></td>
+      <td class="rc"><input type="radio" name="TF6" value="2"></td>
+      <td class="rc"><input type="radio" name="TF6" value="3"></td>
+      <td class="rc"><input type="radio" name="TF6" value="4"></td>
+      <td class="rc"><input type="radio" name="TF6" value="5"></td>
+    </tr>
+  </tbody></table></div>
+  <div class="nb"><button class="btn btn-prev" onclick="goPrev()">&lsaquo; Back</button>
+  <button class="btn btn-next" onclick="goNext()">Next &rsaquo;</button>
+  <span class="sh">Part 2 of 5</span></div></div></div>
+<div class="sec" id="sec-3">
+  <div class="sec-hdr"><div class="sec-num">3</div><div class="sec-title">Part III &mdash; Operational Factors</div></div>
+  <div class="sec-body"><div class="ltw"><table class="lt">
+    <thead><tr><th>Statement &amp; key variable</th><th>1<br>Strongly<br>Disagree</th><th>2<br>Disagree</th><th>3<br>Neutral</th><th>4<br>Agree</th><th>5<br>Strongly<br>Agree</th></tr></thead><tbody>
+    <tr data-qid="OF1"><td>Generator operation below 30% rated capacity significantly increases maintenance cost.<div class="lk">OF1 &mdash; Generator Load Factor (Underloading)</div></td>
+      <td class="rc"><input type="radio" name="OF1" value="1"></td>
+      <td class="rc"><input type="radio" name="OF1" value="2"></td>
+      <td class="rc"><input type="radio" name="OF1" value="3"></td>
+      <td class="rc"><input type="radio" name="OF1" value="4"></td>
+      <td class="rc"><input type="radio" name="OF1" value="5"></td>
+    </tr>
+    <tr data-qid="OF2"><td>Frequent short-duration generator starts (&lt;30 min per activation) cause disproportionate engine wear.<div class="lk">OF2 &mdash; Start Frequency / Short-Cycling</div></td>
+      <td class="rc"><input type="radio" name="OF2" value="1"></td>
+      <td class="rc"><input type="radio" name="OF2" value="2"></td>
+      <td class="rc"><input type="radio" name="OF2" value="3"></td>
+      <td class="rc"><input type="radio" name="OF2" value="4"></td>
+      <td class="rc"><input type="radio" name="OF2" value="5"></td>
+    </tr>
+    <tr data-qid="OF3"><td>Maintenance scheduling discipline (executing visits on time vs. deferring) is a critical driver.<div class="lk">OF3 &mdash; Maintenance Scheduling Compliance</div></td>
+      <td class="rc"><input type="radio" name="OF3" value="1"></td>
+      <td class="rc"><input type="radio" name="OF3" value="2"></td>
+      <td class="rc"><input type="radio" name="OF3" value="3"></td>
+      <td class="rc"><input type="radio" name="OF3" value="4"></td>
+      <td class="rc"><input type="radio" name="OF3" value="5"></td>
+    </tr>
+    <tr data-qid="OF4"><td>Battery-first dispatch will significantly reduce maintenance cost.<div class="lk">OF4 &mdash; Battery-First Dispatch Strategy</div></td>
+      <td class="rc"><input type="radio" name="OF4" value="1"></td>
+      <td class="rc"><input type="radio" name="OF4" value="2"></td>
+      <td class="rc"><input type="radio" name="OF4" value="3"></td>
+      <td class="rc"><input type="radio" name="OF4" value="4"></td>
+      <td class="rc"><input type="radio" name="OF4" value="5"></td>
+    </tr>
+    <tr data-qid="OF5"><td>On Battery-first dispatch, faulty battery significantly increases generator running hours.<div class="lk">OF5 &mdash; Faulty Battery</div></td>
+      <td class="rc"><input type="radio" name="OF5" value="1"></td>
+      <td class="rc"><input type="radio" name="OF5" value="2"></td>
+      <td class="rc"><input type="radio" name="OF5" value="3"></td>
+      <td class="rc"><input type="radio" name="OF5" value="4"></td>
+      <td class="rc"><input type="radio" name="OF5" value="5"></td>
+    </tr>
+    <tr data-qid="OF6"><td>Generator running hours influence maintenance cost more than generator age.<div class="lk">OF6 &mdash; Running Hours vs. Generator Age</div></td>
+      <td class="rc"><input type="radio" name="OF6" value="1"></td>
+      <td class="rc"><input type="radio" name="OF6" value="2"></td>
+      <td class="rc"><input type="radio" name="OF6" value="3"></td>
+      <td class="rc"><input type="radio" name="OF6" value="4"></td>
+      <td class="rc"><input type="radio" name="OF6" value="5"></td>
+    </tr>
+    <tr data-qid="OF7"><td>Operator skill level directly influences maintenance quality at NICTBB sites.<div class="lk">OF7 &mdash; Operator Skill/Competence</div></td>
+      <td class="rc"><input type="radio" name="OF7" value="1"></td>
+      <td class="rc"><input type="radio" name="OF7" value="2"></td>
+      <td class="rc"><input type="radio" name="OF7" value="3"></td>
+      <td class="rc"><input type="radio" name="OF7" value="4"></td>
+      <td class="rc"><input type="radio" name="OF7" value="5"></td>
+    </tr>
+  </tbody></table></div>
+  <div class="nb"><button class="btn btn-prev" onclick="goPrev()">&lsaquo; Back</button>
+  <button class="btn btn-next" onclick="goNext()">Next &rsaquo;</button>
+  <span class="sh">Part 3 of 5</span></div></div></div>
+<div class="sec" id="sec-4">
+  <div class="sec-hdr"><div class="sec-num">4</div><div class="sec-title">Part IV &mdash; Environmental Factors</div></div>
+  <div class="sec-body"><div class="ltw"><table class="lt">
+    <thead><tr><th>Statement &amp; key variable</th><th>1<br>Strongly<br>Disagree</th><th>2<br>Disagree</th><th>3<br>Neutral</th><th>4<br>Agree</th><th>5<br>Strongly<br>Agree</th></tr></thead><tbody>
+    <tr data-qid="EF1"><td>Tropical ambient temperatures (25&deg;C&ndash;38&deg;C) reduce engine oil service life below OEM-specified intervals.<div class="lk">EF1 &mdash; Ambient Temperature</div></td>
+      <td class="rc"><input type="radio" name="EF1" value="1"></td>
+      <td class="rc"><input type="radio" name="EF1" value="2"></td>
+      <td class="rc"><input type="radio" name="EF1" value="3"></td>
+      <td class="rc"><input type="radio" name="EF1" value="4"></td>
+      <td class="rc"><input type="radio" name="EF1" value="5"></td>
+    </tr>
+    <tr data-qid="EF2"><td>Site distance significantly affects total maintenance cost through fuel and per-diem expenditure.<div class="lk">EF2 &mdash; Site Accessibility / Travel Distance</div></td>
+      <td class="rc"><input type="radio" name="EF2" value="1"></td>
+      <td class="rc"><input type="radio" name="EF2" value="2"></td>
+      <td class="rc"><input type="radio" name="EF2" value="3"></td>
+      <td class="rc"><input type="radio" name="EF2" value="4"></td>
+      <td class="rc"><input type="radio" name="EF2" value="5"></td>
+    </tr>
+    <tr data-qid="EF3"><td>Dust particulates accelerate reduction in engine efficiency due to air filter blockage.<div class="lk">EF3 &mdash; Dust/Particulate Level</div></td>
+      <td class="rc"><input type="radio" name="EF3" value="1"></td>
+      <td class="rc"><input type="radio" name="EF3" value="2"></td>
+      <td class="rc"><input type="radio" name="EF3" value="3"></td>
+      <td class="rc"><input type="radio" name="EF3" value="4"></td>
+      <td class="rc"><input type="radio" name="EF3" value="5"></td>
+    </tr>
+  </tbody></table></div>
+  <div class="nb"><button class="btn btn-prev" onclick="goPrev()">&lsaquo; Back</button>
+  <button class="btn btn-next" onclick="goNext()">Next &rsaquo;</button>
+  <span class="sh">Part 4 of 5</span></div></div></div>
+<div class="sec" id="sec-5">
+  <div class="sec-hdr"><div class="sec-num">5</div><div class="sec-title">Part V &mdash; Company Policy Factors</div></div>
+  <div class="sec-body"><div class="ltw"><table class="lt">
+    <thead><tr><th>Statement &amp; key variable</th><th>1<br>Strongly<br>Disagree</th><th>2<br>Disagree</th><th>3<br>Neutral</th><th>4<br>Agree</th><th>5<br>Strongly<br>Agree</th></tr></thead><tbody>
+    <tr data-qid="CF1"><td>TTCL's partial fuel refill policy increases maintenance trip frequency.<div class="lk">CF1 &mdash; Fuel Refill Policy</div></td>
+      <td class="rc"><input type="radio" name="CF1" value="1"></td>
+      <td class="rc"><input type="radio" name="CF1" value="2"></td>
+      <td class="rc"><input type="radio" name="CF1" value="3"></td>
+      <td class="rc"><input type="radio" name="CF1" value="4"></td>
+      <td class="rc"><input type="radio" name="CF1" value="5"></td>
+    </tr>
+    <tr data-qid="CF2"><td>Budget allocation significantly determines whether recommended maintenance intervals are executed on schedule.<div class="lk">CF2 &mdash; Budget Allocation</div></td>
+      <td class="rc"><input type="radio" name="CF2" value="1"></td>
+      <td class="rc"><input type="radio" name="CF2" value="2"></td>
+      <td class="rc"><input type="radio" name="CF2" value="3"></td>
+      <td class="rc"><input type="radio" name="CF2" value="4"></td>
+      <td class="rc"><input type="radio" name="CF2" value="5"></td>
+    </tr>
+    <tr data-qid="CF3"><td>Price changes in fuel and spare parts significantly affect total maintenance cost.<div class="lk">CF3 &mdash; Fuel/Spare Parts Price Fluctuation</div></td>
+      <td class="rc"><input type="radio" name="CF3" value="1"></td>
+      <td class="rc"><input type="radio" name="CF3" value="2"></td>
+      <td class="rc"><input type="radio" name="CF3" value="3"></td>
+      <td class="rc"><input type="radio" name="CF3" value="4"></td>
+      <td class="rc"><input type="radio" name="CF3" value="5"></td>
+    </tr>
+    <tr data-qid="CF4"><td>The current 250-hour/3-month uniform maintenance standard generates unnecessary costs at low-utilisation sites.<div class="lk">CF4 &mdash; Uniform (Time-Based) Maintenance Standard</div></td>
+      <td class="rc"><input type="radio" name="CF4" value="1"></td>
+      <td class="rc"><input type="radio" name="CF4" value="2"></td>
+      <td class="rc"><input type="radio" name="CF4" value="3"></td>
+      <td class="rc"><input type="radio" name="CF4" value="4"></td>
+      <td class="rc"><input type="radio" name="CF4" value="5"></td>
+    </tr>
+    <tr data-qid="CF5"><td>A run-hour-based predictive maintenance standard would better align maintenance frequency with actual generator utilisation.<div class="lk">CF5 &mdash; Predictive (Run-Hour-Based) Maintenance Standard</div></td>
+      <td class="rc"><input type="radio" name="CF5" value="1"></td>
+      <td class="rc"><input type="radio" name="CF5" value="2"></td>
+      <td class="rc"><input type="radio" name="CF5" value="3"></td>
+      <td class="rc"><input type="radio" name="CF5" value="4"></td>
+      <td class="rc"><input type="radio" name="CF5" value="5"></td>
+    </tr>
+  </tbody></table></div>
+  <div class="nb"><button class="btn btn-prev" onclick="goPrev()">&lsaquo; Back</button>
+  <button class="btn btn-green" id="btn-sub" onclick="submitSurvey()"><span class="spin" id="sub-spin"></span><span id="sub-lbl">Submit Response &#10003;</span></button>
+  <span class="sh">Part 5 of 5</span></div></div></div>
+<div class="success-box" id="success-box">
+  <div class="success-ico">&#10003;</div>
+  <div class="success-title">Response recorded!</div>
+  <p class="success-sub">Thank you for contributing to the PMF-MCR generator maintenance research. Your response has been saved successfully.</p>
+  <div class="ref-pill" id="ref-pill">Reference ID: &mdash;</div>
+  <p class="notice" id="save-notice"></p><br><br>
+  <button class="btn btn-next" onclick="resetSurvey()">Submit another response</button>
+</div>
 </div>
 <div class="page" id="page-results">
 <div id="results-login">
   <div class="login-wrap">
     <div class="login-card">
-      <div class="login-icon" id="login-icon">&#128274;</div>
-      <div class="login-title" id="login-title">Results Access</div>
-      <div class="login-sub" id="login-sub">Select your access level and enter your password to view survey results.</div>
+      <div class="login-icon">&#128274;</div>
+      <div class="login-title">Results Access</div>
+      <div class="login-sub">Select your role and enter your password to view survey results.</div>
       <div class="login-roles">
         <button class="role-btn role-sup" id="role-sup" onclick="selectRole('supervisor')">&#128202; Supervisor</button>
         <button class="role-btn role-adm" id="role-adm" onclick="selectRole('admin')">&#9881; Admin</button>
       </div>
       <div class="login-field">
         <input type="password" id="results-pw" placeholder="Enter password" onkeydown="if(event.key==='Enter')doResultsLogin()">
-        <button class="toggle-pw" onclick="togglePw()" title="Show/hide password">&#128065;</button>
+        <button class="toggle-pw" onclick="togglePw()">&#128065;</button>
       </div>
       <button class="btn btn-next" style="width:100%;justify-content:center" onclick="doResultsLogin()">Sign In</button>
       <div class="login-err" id="login-err"></div>
@@ -555,122 +452,114 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(
   </div>
 </div>
 <div id="results-dash" style="display:none">
-  <div class="hero" id="dash-hero" style="margin-bottom:1.25rem">
-    <div class="hero-badge" id="dash-badge">Results Dashboard</div>
-    <div class="hero-title" id="dash-title">PMF-MCR Survey &mdash; Response Data</div>
-    <div class="hero-sub" id="dash-sub">View, filter, search and download all collected responses.</div>
+<div class="hero" id="dash-hero" style="margin-bottom:1.25rem">
+  <div class="hero-badge" id="dash-badge">Dashboard</div>
+  <div class="hero-title" id="dash-title">PMF-MCR Survey Results</div>
+  <div class="hero-sub" id="dash-sub">View and download all collected survey responses.</div>
+</div>
+<div class="stats" id="dash-stats"></div>
+<div class="tab-bar" id="dash-tabs"></div>
+<div id="tab-responses">
+  <div class="tbl-wrap">
+    <div class="tbl-toolbar">
+      <span class="tbl-title">Response dataset <span class="tbl-count" id="resp-count"></span></span>
+      <input class="tbl-search" type="text" placeholder="Search by ID, stratum, education&#8230;" oninput="filterTable(this.value)" id="tbl-filter">
+      <button class="btn-dl" onclick="downloadCSV()">&#11015; CSV</button>
+      <button class="btn-dl2" onclick="downloadJSON()">&#11015; JSON</button>
+    </div>
+    <div style="overflow-x:auto;max-height:560px;overflow-y:auto">
+      <table class="rtbl" id="resp-table"><thead></thead><tbody></tbody></table>
+    </div>
+    <div class="pagination" id="pagination"></div>
   </div>
-  <div class="stats" id="dash-stats"></div>
-  <div class="tab-bar" id="dash-tabs"></div>
-  <div id="tab-responses">
-    <div class="tbl-wrap">
-      <div class="tbl-toolbar">
-        <span class="tbl-title">Response dataset <span class="tbl-count" id="resp-count"></span></span>
-        <input class="tbl-search" type="text" placeholder="Search by ID, stratum, education&#8230;" oninput="filterTable(this.value)" id="tbl-filter">
-        <button class="btn-dl" onclick="downloadCSV()">&#11015; CSV</button>
-        <button class="btn-dl2" onclick="downloadJSON()">&#11015; JSON</button>
+  <div class="key-section">
+    <div class="key-title">Factor Code Reference Key</div>
+    <div class="key-cat-hdr">Technical Factors</div><div class="key-grid" id="key-tf"></div>
+    <div class="key-cat-hdr">Operational Factors</div><div class="key-grid" id="key-of"></div>
+    <div class="key-cat-hdr">Environmental Factors</div><div class="key-grid" id="key-ef"></div>
+    <div class="key-cat-hdr">Company Policy Factors</div><div class="key-grid" id="key-cf"></div>
+  </div>
+</div>
+<div id="tab-addform" style="display:none">
+  <div class="info-note">Complete all fields and click <strong>Save Response</strong>. Added immediately to the live dataset.</div>
+  <div class="sec active" style="display:block">
+    <div class="sec-hdr"><div class="sec-num">+</div><div class="sec-title">Add a new response</div></div>
+    <div class="sec-body">
+      <div class="qa-grid">
+        <div><label class="q-label" style="font-size:13px">Stratum <span class="req">*</span></label>
+          <select id="qa-stratum" class="qa-sel"><option value="">-- select --</option>
+            <option>Power Systems Engineer</option><option>Regional Manager/Supervisor</option>
+            <option>Maintenance Technician</option><option>NOC Engineer</option></select></div>
+        <div><label class="q-label" style="font-size:13px">Experience <span class="req">*</span></label>
+          <select id="qa-exp" class="qa-sel"><option value="">-- select --</option>
+            <option value="< 2 years">Less than 2 years</option><option value="2-5 years">2-5 years</option>
+            <option value="6-10 years">6-10 years</option><option value="> 10 years">More than 10 years</option></select></div>
+        <div><label class="q-label" style="font-size:13px">Education <span class="req">*</span></label>
+          <select id="qa-edu" class="qa-sel"><option value="">-- select --</option>
+            <option>Certificate/Diploma</option><option>Bachelor's Degree</option>
+            <option>Postgraduate Diploma</option><option>Master's Degree</option><option>PhD</option></select></div>
+        <div><label class="q-label" style="font-size:13px">PdM Familiarity <span class="req">*</span></label>
+          <select id="qa-pdm" class="qa-sel"><option value="">-- select --</option>
+            <option>Not familiar</option><option>Heard the term only</option>
+            <option>Somewhat familiar</option><option>Fully familiar</option></select></div>
       </div>
-      <div style="overflow-x:auto;max-height:560px;overflow-y:auto">
-        <table class="rtbl" id="resp-table"><thead></thead><tbody></tbody></table>
-      </div>
-      <div class="pagination" id="pagination"></div>
-    </div>
-    <div class="key-section">
-      <div class="key-title">Factor Code Reference Key</div>
-      <div class="key-cat-hdr">Technical Factors</div><div class="key-grid" id="key-tf"></div>
-      <div class="key-cat-hdr">Operational Factors</div><div class="key-grid" id="key-of"></div>
-      <div class="key-cat-hdr">Environmental Factors</div><div class="key-grid" id="key-ef"></div>
-      <div class="key-cat-hdr">Company Policy Factors</div><div class="key-grid" id="key-cf"></div>
+      <p style="font-size:13px;font-weight:600;color:var(--pd);margin-bottom:.6rem">Likert scores &mdash; 1 to 5 for each item:</p>
+      <div class="score-grid" id="qa-scores"></div>
+      <div class="err-ban" id="qa-err"><span>&#9888;</span> <span id="qa-err-msg">Please fill all fields.</span></div>
+      <button class="btn btn-green" onclick="quickAdd()" style="margin-top:.5rem">Save Response</button>
     </div>
   </div>
-  <div id="tab-addform" style="display:none">
-    <div class="info-note">Complete all fields and click <strong>Save Response</strong>. Added immediately to the live dataset.</div>
-    <div class="sec active" style="display:block">
-      <div class="sec-hdr"><div class="sec-num">+</div><div class="sec-title">Add a new response</div></div>
-      <div class="sec-body">
-        <div class="qa-grid">
-          <div><label class="q-label" style="font-size:13px">Stratum <span class="req">*</span></label>
-            <select id="qa-stratum" class="qa-sel">
-              <option value="">-- select --</option>
-              <option>Power Systems Engineer</option>
-              <option>Regional Manager/Supervisor</option>
-              <option>Maintenance Technician</option>
-              <option>NOC Engineer</option>
-            </select></div>
-          <div><label class="q-label" style="font-size:13px">Experience <span class="req">*</span></label>
-            <select id="qa-exp" class="qa-sel">
-              <option value="">-- select --</option>
-              <option value="< 2 years">Less than 2 years</option>
-              <option value="2-5 years">2-5 years</option>
-              <option value="6-10 years">6-10 years</option>
-              <option value="> 10 years">More than 10 years</option>
-            </select></div>
-          <div><label class="q-label" style="font-size:13px">Education <span class="req">*</span></label>
-            <select id="qa-edu" class="qa-sel">
-              <option value="">-- select --</option>
-              <option>Certificate/Diploma</option>
-              <option>Bachelor's Degree</option>
-              <option>Postgraduate Diploma</option>
-              <option>Master's Degree</option>
-              <option>PhD</option>
-            </select></div>
-          <div><label class="q-label" style="font-size:13px">PdM Familiarity <span class="req">*</span></label>
-            <select id="qa-pdm" class="qa-sel">
-              <option value="">-- select --</option>
-              <option>Not familiar</option>
-              <option>Heard the term only</option>
-              <option>Somewhat familiar</option>
-              <option>Fully familiar</option>
-            </select></div>
-        </div>
-        <p style="font-size:13px;font-weight:600;color:var(--pd);margin-bottom:.6rem">Likert scores &mdash; select 1 to 5 for each item:</p>
-        <div class="score-grid" id="qa-scores"></div>
-        <div class="err-ban" id="qa-err"><span>&#9888;</span> <span id="qa-err-msg">Please fill all fields.</span></div>
-        <button class="btn btn-green" onclick="quickAdd()" style="margin-top:.5rem">Save Response</button>
-      </div>
-    </div>
+</div>
+<div id="tab-github" style="display:none">
+  <div class="warn-note">
+    <strong>&#9888; Important &mdash; How new responses are saved:</strong><br>
+    When a respondent submits the form, their response is written directly to <code>responses.json</code> on GitHub using the GitHub API &mdash; but only if <code>github_token</code> is set in <code>config.json</code>. Without the token, responses are saved locally in the respondent&rsquo;s browser only and will not appear here.
   </div>
-  <div id="tab-github" style="display:none">
-    <div class="gh-box">
-      <strong>How to edit any response value directly on GitHub:</strong><br>
-      1. Go to <strong>github.com/congreen/pmf_mcr_questionnaire</strong><br>
-      2. Click the file <code>responses.json</code><br>
-      3. Click the <strong>pencil icon &#9998;</strong> (top right of the file)<br>
-      4. Find the respondent by <code>"id"</code> &mdash; e.g. <code>"R01"</code><br>
-      5. Change any value &mdash; e.g. <code>"TF1": 3</code> &rarr; <code>"TF1": 4</code><br>
-      6. Scroll down &rarr; <strong>Commit changes</strong> &rarr; <strong>Commit changes</strong><br>
-      7. Refresh this page &mdash; updated data loads automatically
-    </div>
-    <div class="gh-box">
-      <strong>How to change passwords (Supervisor or Admin):</strong><br>
-      1. Go to <strong>github.com/congreen/pmf_mcr_questionnaire</strong><br>
-      2. Click the file <code>config.json</code><br>
-      3. Click the <strong>pencil icon &#9998;</strong><br>
-      4. Change <code>"supervisor_password"</code> or <code>"admin_password"</code><br>
-      5. Click <strong>Commit changes</strong><br>
-      6. New password takes effect immediately on next login
-    </div>
-    <div class="gh-box">
-      <strong>config.json structure:</strong><br><br>
-      <code>{</code><br>
-      &nbsp;&nbsp;<code>"supervisor_password": "SUP2025",</code><br>
-      &nbsp;&nbsp;<code>"admin_password": "your-secret-here"</code><br>
-      <code>}</code>
-    </div>
-    <a href="https://github.com/congreen/pmf_mcr_questionnaire/edit/main/responses.json" target="_blank">
-      <button class="btn btn-next" style="margin-top:.25rem">Edit responses.json on GitHub &#9998;</button>
-    </a>
-    &nbsp;
-    <a href="https://github.com/congreen/pmf_mcr_questionnaire/edit/main/config.json" target="_blank">
-      <button class="btn btn-next" style="margin-top:.25rem;background:var(--am)">Edit config.json (passwords) &#9998;</button>
-    </a>
+  <div class="gh-box">
+    <strong>Step 1 &mdash; Create a GitHub Personal Access Token (do this once):</strong><br>
+    1. Go to <strong>github.com &rarr; your profile &rarr; Settings &rarr; Developer settings</strong><br>
+    2. Click <strong>Personal access tokens &rarr; Tokens (classic) &rarr; Generate new token (classic)</strong><br>
+    3. Give it a name like <code>pmf-mcr-survey</code>, set expiry (e.g. 1 year)<br>
+    4. Tick only the <strong>repo</strong> checkbox (full repo access)<br>
+    5. Click <strong>Generate token</strong> &mdash; copy it immediately (shown only once, starts with <code>ghp_</code>)
   </div>
+  <div class="gh-box">
+    <strong>Step 2 &mdash; Add the token to config.json:</strong><br>
+    1. Go to <strong>github.com/congreen/pmf_mcr_questionnaire</strong><br>
+    2. Click <code>config.json</code> &rarr; pencil icon &#9998;<br>
+    3. Paste your token into <code>"github_token"</code><br>
+    4. Click <strong>Commit changes</strong><br>
+    5. From now on, every new form submission is saved directly to <code>responses.json</code>
+  </div>
+  <div class="gh-box">
+    <strong>config.json full structure (edit on GitHub to change passwords or token):</strong><br><br>
+    <code>{</code><br>
+    &nbsp;&nbsp;<code>"supervisor_password": "SUP2025",</code><br>
+    &nbsp;&nbsp;<code>"admin_password": "your-admin-password",</code><br>
+    &nbsp;&nbsp;<code>"github_token": "ghp_xxxxxxxxxxxx",</code><br>
+    &nbsp;&nbsp;<code>"github_owner": "congreen",</code><br>
+    &nbsp;&nbsp;<code>"github_repo": "pmf_mcr_questionnaire",</code><br>
+    &nbsp;&nbsp;<code>"github_branch": "main"</code><br>
+    <code>}</code>
+  </div>
+  <div class="gh-box">
+    <strong>To edit a response value directly:</strong><br>
+    1. Open <code>responses.json</code> on GitHub &rarr; pencil &#9998;<br>
+    2. Find the respondent by <code>"id"</code> and change the value<br>
+    3. Commit changes &rarr; refresh this page to see the update
+  </div>
+  <a href="https://github.com/congreen/pmf_mcr_questionnaire/edit/main/config.json" target="_blank">
+    <button class="btn btn-next" style="margin-right:8px">Edit config.json &#9998;</button>
+  </a>
+  <a href="https://github.com/congreen/pmf_mcr_questionnaire/edit/main/responses.json" target="_blank">
+    <button class="btn btn-next">Edit responses.json &#9998;</button>
+  </a>
+</div>
 </div>
 </div>
 <script>
 const SEED = [{"id":"R01","stratum":"Power Systems Engineer","exp":"6-10 years","edu":"Master's Degree","pdm":"Fully familiar","TF1":3,"TF2":5,"TF3":3,"TF4":4,"TF5":5,"TF6":2,"OF1":5,"OF2":2,"OF3":2,"OF4":5,"OF5":4,"OF6":5,"OF7":2,"EF1":1,"EF2":4,"EF3":4,"CF1":5,"CF2":1,"CF3":4,"CF4":1,"CF5":1,"timestamp":"2026-05-01T16:57:36"},{"id":"R02","stratum":"Regional Manager/Supervisor","exp":"> 10 years","edu":"Postgraduate Diploma","pdm":"Fully familiar","TF1":4,"TF2":4,"TF3":1,"TF4":4,"TF5":5,"TF6":1,"OF1":5,"OF2":1,"OF3":1,"OF4":5,"OF5":5,"OF6":4,"OF7":5,"EF1":1,"EF2":5,"EF3":3,"CF1":3,"CF2":1,"CF3":2,"CF4":2,"CF5":2,"timestamp":"2026-05-02T15:03:41"},{"id":"R03","stratum":"Power Systems Engineer","exp":"2-5 years","edu":"Bachelor's Degree","pdm":"Fully familiar","TF1":5,"TF2":5,"TF3":1,"TF4":5,"TF5":4,"TF6":1,"OF1":4,"OF2":1,"OF3":1,"OF4":5,"OF5":5,"OF6":3,"OF7":4,"EF1":1,"EF2":5,"EF3":2,"CF1":3,"CF2":3,"CF3":5,"CF4":1,"CF5":2,"timestamp":"2026-05-03T15:52:44"},{"id":"R04","stratum":"Maintenance Technician","exp":"2-5 years","edu":"Bachelor's Degree","pdm":"Somewhat familiar","TF1":3,"TF2":4,"TF3":3,"TF4":3,"TF5":5,"TF6":3,"OF1":4,"OF2":4,"OF3":1,"OF4":4,"OF5":5,"OF6":5,"OF7":1,"EF1":1,"EF2":5,"EF3":1,"CF1":5,"CF2":1,"CF3":1,"CF4":2,"CF5":3,"timestamp":"2026-05-04T09:09:19"},{"id":"R05","stratum":"Regional Manager/Supervisor","exp":"> 10 years","edu":"Bachelor's Degree","pdm":"Somewhat familiar","TF1":5,"TF2":3,"TF3":1,"TF4":5,"TF5":5,"TF6":3,"OF1":5,"OF2":1,"OF3":4,"OF4":5,"OF5":5,"OF6":4,"OF7":2,"EF1":1,"EF2":5,"EF3":3,"CF1":5,"CF2":3,"CF3":2,"CF4":3,"CF5":3,"timestamp":"2026-05-05T16:05:01"},{"id":"R06","stratum":"Regional Manager/Supervisor","exp":"6-10 years","edu":"Bachelor's Degree","pdm":"Heard the term only","TF1":5,"TF2":3,"TF3":2,"TF4":5,"TF5":4,"TF6":1,"OF1":2,"OF2":2,"OF3":2,"OF4":4,"OF5":4,"OF6":5,"OF7":1,"EF1":1,"EF2":5,"EF3":1,"CF1":4,"CF2":1,"CF3":3,"CF4":4,"CF5":1,"timestamp":"2026-05-06T15:58:22"},{"id":"R07","stratum":"NOC Engineer","exp":"2-5 years","edu":"Master's Degree","pdm":"Fully familiar","TF1":5,"TF2":3,"TF3":1,"TF4":5,"TF5":3,"TF6":1,"OF1":5,"OF2":5,"OF3":1,"OF4":5,"OF5":5,"OF6":5,"OF7":3,"EF1":2,"EF2":5,"EF3":2,"CF1":4,"CF2":4,"CF3":4,"CF4":1,"CF5":1,"timestamp":"2026-05-07T14:36:00"},{"id":"R08","stratum":"Regional Manager/Supervisor","exp":"> 10 years","edu":"Bachelor's Degree","pdm":"Heard the term only","TF1":4,"TF2":3,"TF3":2,"TF4":5,"TF5":5,"TF6":1,"OF1":1,"OF2":3,"OF3":3,"OF4":5,"OF5":4,"OF6":4,"OF7":3,"EF1":1,"EF2":4,"EF3":2,"CF1":1,"CF2":1,"CF3":2,"CF4":3,"CF5":1,"timestamp":"2026-05-08T08:50:30"},{"id":"R09","stratum":"NOC Engineer","exp":"2-5 years","edu":"Postgraduate Diploma","pdm":"Fully familiar","TF1":5,"TF2":4,"TF3":5,"TF4":4,"TF5":5,"TF6":2,"OF1":5,"OF2":2,"OF3":1,"OF4":5,"OF5":5,"OF6":4,"OF7":2,"EF1":1,"EF2":3,"EF3":2,"CF1":5,"CF2":1,"CF3":1,"CF4":1,"CF5":1,"timestamp":"2026-05-09T10:48:53"},{"id":"R10","stratum":"Maintenance Technician","exp":"> 10 years","edu":"Bachelor's Degree","pdm":"Not familiar","TF1":5,"TF2":5,"TF3":2,"TF4":5,"TF5":1,"TF6":3,"OF1":4,"OF2":3,"OF3":2,"OF4":5,"OF5":5,"OF6":1,"OF7":1,"EF1":3,"EF2":5,"EF3":1,"CF1":5,"CF2":2,"CF3":2,"CF4":5,"CF5":1,"timestamp":"2026-05-10T08:44:00"},{"id":"R11","stratum":"Regional Manager/Supervisor","exp":"> 10 years","edu":"Master's Degree","pdm":"Heard the term only","TF1":5,"TF2":3,"TF3":1,"TF4":4,"TF5":5,"TF6":2,"OF1":4,"OF2":3,"OF3":1,"OF4":5,"OF5":5,"OF6":5,"OF7":2,"EF1":1,"EF2":5,"EF3":2,"CF1":3,"CF2":1,"CF3":1,"CF4":1,"CF5":4,"timestamp":"2026-05-11T11:05:42"},{"id":"R12","stratum":"Power Systems Engineer","exp":"6-10 years","edu":"Master's Degree","pdm":"Fully familiar","TF1":5,"TF2":4,"TF3":3,"TF4":5,"TF5":4,"TF6":1,"OF1":4,"OF2":4,"OF3":1,"OF4":5,"OF5":4,"OF6":5,"OF7":2,"EF1":1,"EF2":3,"EF3":2,"CF1":5,"CF2":2,"CF3":5,"CF4":5,"CF5":1,"timestamp":"2026-05-12T15:07:55"},{"id":"R13","stratum":"Regional Manager/Supervisor","exp":"> 10 years","edu":"Bachelor's Degree","pdm":"Fully familiar","TF1":2,"TF2":3,"TF3":4,"TF4":5,"TF5":2,"TF6":3,"OF1":3,"OF2":3,"OF3":1,"OF4":5,"OF5":5,"OF6":4,"OF7":2,"EF1":1,"EF2":5,"EF3":2,"CF1":4,"CF2":3,"CF3":4,"CF4":1,"CF5":2,"timestamp":"2026-05-13T14:30:06"},{"id":"R14","stratum":"Regional Manager/Supervisor","exp":"> 10 years","edu":"Postgraduate Diploma","pdm":"Somewhat familiar","TF1":5,"TF2":3,"TF3":5,"TF4":5,"TF5":5,"TF6":3,"OF1":5,"OF2":1,"OF3":1,"OF4":5,"OF5":4,"OF6":4,"OF7":3,"EF1":2,"EF2":2,"EF3":3,"CF1":5,"CF2":1,"CF3":1,"CF4":3,"CF5":3,"timestamp":"2026-05-14T10:15:16"},{"id":"R15","stratum":"Regional Manager/Supervisor","exp":"6-10 years","edu":"Postgraduate Diploma","pdm":"Somewhat familiar","TF1":5,"TF2":3,"TF3":2,"TF4":5,"TF5":2,"TF6":2,"OF1":4,"OF2":2,"OF3":2,"OF4":5,"OF5":2,"OF6":4,"OF7":1,"EF1":1,"EF2":5,"EF3":3,"CF1":5,"CF2":1,"CF3":1,"CF4":2,"CF5":1,"timestamp":"2026-05-15T11:49:53"},{"id":"R16","stratum":"NOC Engineer","exp":"2-5 years","edu":"Bachelor's Degree","pdm":"Somewhat familiar","TF1":5,"TF2":3,"TF3":1,"TF4":5,"TF5":4,"TF6":1,"OF1":5,"OF2":2,"OF3":1,"OF4":5,"OF5":4,"OF6":4,"OF7":1,"EF1":1,"EF2":4,"EF3":5,"CF1":4,"CF2":2,"CF3":1,"CF4":4,"CF5":2,"timestamp":"2026-05-16T09:10:10"},{"id":"R17","stratum":"Power Systems Engineer","exp":"6-10 years","edu":"Bachelor's Degree","pdm":"Fully familiar","TF1":5,"TF2":4,"TF3":1,"TF4":4,"TF5":4,"TF6":1,"OF1":3,"OF2":4,"OF3":3,"OF4":4,"OF5":5,"OF6":4,"OF7":4,"EF1":2,"EF2":5,"EF3":3,"CF1":5,"CF2":4,"CF3":3,"CF4":3,"CF5":3,"timestamp":"2026-05-17T10:01:03"},{"id":"R18","stratum":"Maintenance Technician","exp":"6-10 years","edu":"Certificate/Diploma","pdm":"Not familiar","TF1":3,"TF2":4,"TF3":4,"TF4":4,"TF5":5,"TF6":1,"OF1":5,"OF2":1,"OF3":1,"OF4":5,"OF5":5,"OF6":2,"OF7":1,"EF1":2,"EF2":5,"EF3":5,"CF1":3,"CF2":2,"CF3":2,"CF4":1,"CF5":2,"timestamp":"2026-05-18T11:42:32"},{"id":"R19","stratum":"Regional Manager/Supervisor","exp":"6-10 years","edu":"Master's Degree","pdm":"Heard the term only","TF1":5,"TF2":4,"TF3":1,"TF4":4,"TF5":5,"TF6":2,"OF1":5,"OF2":1,"OF3":1,"OF4":5,"OF5":4,"OF6":4,"OF7":3,"EF1":1,"EF2":4,"EF3":5,"CF1":2,"CF2":1,"CF3":4,"CF4":2,"CF5":2,"timestamp":"2026-05-19T14:36:45"},{"id":"R20","stratum":"NOC Engineer","exp":"> 10 years","edu":"Postgraduate Diploma","pdm":"Somewhat familiar","TF1":4,"TF2":4,"TF3":2,"TF4":5,"TF5":3,"TF6":1,"OF1":3,"OF2":1,"OF3":1,"OF4":4,"OF5":3,"OF6":5,"OF7":3,"EF1":1,"EF2":4,"EF3":1,"CF1":4,"CF2":1,"CF3":1,"CF4":2,"CF5":4,"timestamp":"2026-05-20T17:26:31"},{"id":"R21","stratum":"Regional Manager/Supervisor","exp":"> 10 years","edu":"Bachelor's Degree","pdm":"Somewhat familiar","TF1":5,"TF2":4,"TF3":1,"TF4":5,"TF5":5,"TF6":2,"OF1":2,"OF2":4,"OF3":1,"OF4":5,"OF5":5,"OF6":5,"OF7":5,"EF1":1,"EF2":5,"EF3":3,"CF1":4,"CF2":2,"CF3":3,"CF4":1,"CF5":4,"timestamp":"2026-05-21T16:17:38"},{"id":"R22","stratum":"Regional Manager/Supervisor","exp":"> 10 years","edu":"Bachelor's Degree","pdm":"Not familiar","TF1":2,"TF2":3,"TF3":1,"TF4":5,"TF5":4,"TF6":1,"OF1":5,"OF2":1,"OF3":1,"OF4":5,"OF5":5,"OF6":5,"OF7":3,"EF1":1,"EF2":4,"EF3":3,"CF1":4,"CF2":1,"CF3":1,"CF4":5,"CF5":1,"timestamp":"2026-05-22T09:30:39"},{"id":"R23","stratum":"NOC Engineer","exp":"2-5 years","edu":"Bachelor's Degree","pdm":"Somewhat familiar","TF1":5,"TF2":5,"TF3":1,"TF4":4,"TF5":5,"TF6":3,"OF1":5,"OF2":3,"OF3":1,"OF4":5,"OF5":4,"OF6":5,"OF7":1,"EF1":1,"EF2":1,"EF3":4,"CF1":5,"CF2":1,"CF3":3,"CF4":2,"CF5":4,"timestamp":"2026-05-23T14:18:34"},{"id":"R24","stratum":"Regional Manager/Supervisor","exp":"> 10 years","edu":"Bachelor's Degree","pdm":"Not familiar","TF1":5,"TF2":4,"TF3":1,"TF4":5,"TF5":4,"TF6":1,"OF1":3,"OF2":3,"OF3":1,"OF4":5,"OF5":5,"OF6":2,"OF7":2,"EF1":1,"EF2":5,"EF3":3,"CF1":3,"CF2":1,"CF3":2,"CF4":3,"CF5":2,"timestamp":"2026-05-24T12:18:29"},{"id":"R25","stratum":"Regional Manager/Supervisor","exp":"2-5 years","edu":"Bachelor's Degree","pdm":"Somewhat familiar","TF1":4,"TF2":4,"TF3":4,"TF4":4,"TF5":5,"TF6":2,"OF1":4,"OF2":3,"OF3":1,"OF4":5,"OF5":5,"OF6":5,"OF7":1,"EF1":1,"EF2":5,"EF3":3,"CF1":3,"CF2":2,"CF3":2,"CF4":1,"CF5":2,"timestamp":"2026-05-25T11:01:37"},{"id":"R26","stratum":"Regional Manager/Supervisor","exp":"6-10 years","edu":"Bachelor's Degree","pdm":"Somewhat familiar","TF1":4,"TF2":5,"TF3":3,"TF4":5,"TF5":4,"TF6":2,"OF1":5,"OF2":1,"OF3":1,"OF4":5,"OF5":5,"OF6":3,"OF7":4,"EF1":1,"EF2":5,"EF3":3,"CF1":3,"CF2":1,"CF3":3,"CF4":1,"CF5":1,"timestamp":"2026-05-26T15:04:02"},{"id":"R27","stratum":"Maintenance Technician","exp":"2-5 years","edu":"Certificate/Diploma","pdm":"Somewhat familiar","TF1":2,"TF2":4,"TF3":2,"TF4":5,"TF5":5,"TF6":3,"OF1":5,"OF2":2,"OF3":1,"OF4":4,"OF5":1,"OF6":2,"OF7":1,"EF1":1,"EF2":5,"EF3":3,"CF1":5,"CF2":1,"CF3":2,"CF4":1,"CF5":1,"timestamp":"2026-05-27T08:47:09"},{"id":"R28","stratum":"Maintenance Technician","exp":"2-5 years","edu":"Bachelor's Degree","pdm":"Somewhat familiar","TF1":5,"TF2":5,"TF3":2,"TF4":5,"TF5":5,"TF6":1,"OF1":3,"OF2":2,"OF3":2,"OF4":5,"OF5":5,"OF6":5,"OF7":3,"EF1":1,"EF2":5,"EF3":2,"CF1":5,"CF2":1,"CF3":4,"CF4":4,"CF5":1,"timestamp":"2026-05-28T08:05:42"},{"id":"R29","stratum":"NOC Engineer","exp":"2-5 years","edu":"Bachelor's Degree","pdm":"Heard the term only","TF1":3,"TF2":4,"TF3":4,"TF4":5,"TF5":5,"TF6":1,"OF1":5,"OF2":1,"OF3":2,"OF4":5,"OF5":4,"OF6":5,"OF7":5,"EF1":2,"EF2":5,"EF3":1,"CF1":5,"CF2":1,"CF3":3,"CF4":2,"CF5":2,"timestamp":"2026-05-29T09:32:13"},{"id":"R30","stratum":"Power Systems Engineer","exp":"6-10 years","edu":"Bachelor's Degree","pdm":"Fully familiar","TF1":2,"TF2":3,"TF3":1,"TF4":5,"TF5":5,"TF6":1,"OF1":5,"OF2":3,"OF3":2,"OF4":5,"OF5":5,"OF6":3,"OF7":3,"EF1":1,"EF2":5,"EF3":4,"CF1":5,"CF2":1,"CF3":2,"CF4":2,"CF5":1,"timestamp":"2026-05-30T09:49:27"},{"id":"R31","stratum":"Maintenance Technician","exp":"> 10 years","edu":"Bachelor's Degree","pdm":"Not familiar","TF1":3,"TF2":4,"TF3":4,"TF4":5,"TF5":5,"TF6":3,"OF1":1,"OF2":2,"OF3":3,"OF4":5,"OF5":5,"OF6":3,"OF7":3,"EF1":3,"EF2":4,"EF3":2,"CF1":5,"CF2":3,"CF3":4,"CF4":1,"CF5":3,"timestamp":"2026-05-31T10:06:42"},{"id":"R32","stratum":"Regional Manager/Supervisor","exp":"2-5 years","edu":"Postgraduate Diploma","pdm":"Somewhat familiar","TF1":5,"TF2":3,"TF3":2,"TF4":5,"TF5":4,"TF6":2,"OF1":2,"OF2":2,"OF3":1,"OF4":5,"OF5":5,"OF6":2,"OF7":4,"EF1":2,"EF2":5,"EF3":1,"CF1":5,"CF2":5,"CF3":1,"CF4":4,"CF5":2,"timestamp":"2026-06-01T14:18:29"},{"id":"R33","stratum":"Regional Manager/Supervisor","exp":"> 10 years","edu":"Bachelor's Degree","pdm":"Heard the term only","TF1":4,"TF2":4,"TF3":1,"TF4":5,"TF5":5,"TF6":1,"OF1":3,"OF2":4,"OF3":1,"OF4":5,"OF5":4,"OF6":5,"OF7":3,"EF1":1,"EF2":4,"EF3":1,"CF1":4,"CF2":1,"CF3":3,"CF4":2,"CF5":4,"timestamp":"2026-06-02T15:34:44"},{"id":"R34","stratum":"Regional Manager/Supervisor","exp":"6-10 years","edu":"Bachelor's Degree","pdm":"Somewhat familiar","TF1":4,"TF2":4,"TF3":2,"TF4":5,"TF5":5,"TF6":2,"OF1":4,"OF2":4,"OF3":2,"OF4":4,"OF5":2,"OF6":3,"OF7":3,"EF1":1,"EF2":5,"EF3":1,"CF1":5,"CF2":2,"CF3":2,"CF4":5,"CF5":3,"timestamp":"2026-06-03T14:12:56"},{"id":"R35","stratum":"Regional Manager/Supervisor","exp":"> 10 years","edu":"Bachelor's Degree","pdm":"Heard the term only","TF1":4,"TF2":4,"TF3":2,"TF4":5,"TF5":3,"TF6":1,"OF1":5,"OF2":4,"OF3":1,"OF4":3,"OF5":5,"OF6":4,"OF7":3,"EF1":1,"EF2":5,"EF3":4,"CF1":2,"CF2":2,"CF3":1,"CF4":4,"CF5":5,"timestamp":"2026-06-04T14:54:16"},{"id":"R36","stratum":"Regional Manager/Supervisor","exp":"2-5 years","edu":"Postgraduate Diploma","pdm":"Heard the term only","TF1":5,"TF2":3,"TF3":2,"TF4":5,"TF5":5,"TF6":2,"OF1":5,"OF2":2,"OF3":2,"OF4":5,"OF5":3,"OF6":3,"OF7":4,"EF1":1,"EF2":4,"EF3":2,"CF1":4,"CF2":3,"CF3":1,"CF4":5,"CF5":1,"timestamp":"2026-06-05T12:55:57"},{"id":"R37","stratum":"Regional Manager/Supervisor","exp":"6-10 years","edu":"Bachelor's Degree","pdm":"Somewhat familiar","TF1":5,"TF2":4,"TF3":3,"TF4":3,"TF5":4,"TF6":1,"OF1":3,"OF2":4,"OF3":1,"OF4":5,"OF5":5,"OF6":5,"OF7":3,"EF1":1,"EF2":5,"EF3":1,"CF1":5,"CF2":1,"CF3":1,"CF4":1,"CF5":5,"timestamp":"2026-06-06T09:54:33"},{"id":"R38","stratum":"Regional Manager/Supervisor","exp":"6-10 years","edu":"Certificate/Diploma","pdm":"Somewhat familiar","TF1":4,"TF2":3,"TF3":4,"TF4":2,"TF5":5,"TF6":1,"OF1":3,"OF2":1,"OF3":2,"OF4":5,"OF5":5,"OF6":5,"OF7":3,"EF1":1,"EF2":5,"EF3":2,"CF1":4,"CF2":3,"CF3":2,"CF4":4,"CF5":1,"timestamp":"2026-06-07T13:20:58"},{"id":"R39","stratum":"Maintenance Technician","exp":"6-10 years","edu":"Certificate/Diploma","pdm":"Somewhat familiar","TF1":5,"TF2":4,"TF3":4,"TF4":5,"TF5":5,"TF6":1,"OF1":4,"OF2":1,"OF3":2,"OF4":5,"OF5":5,"OF6":4,"OF7":2,"EF1":1,"EF2":5,"EF3":2,"CF1":5,"CF2":1,"CF3":2,"CF4":5,"CF5":1,"timestamp":"2026-06-08T11:49:17"},{"id":"R40","stratum":"Maintenance Technician","exp":"2-5 years","edu":"Bachelor's Degree","pdm":"Somewhat familiar","TF1":4,"TF2":4,"TF3":1,"TF4":5,"TF5":3,"TF6":2,"OF1":3,"OF2":3,"OF3":1,"OF4":5,"OF5":5,"OF6":5,"OF7":2,"EF1":1,"EF2":5,"EF3":1,"CF1":3,"CF2":1,"CF3":1,"CF4":2,"CF5":2,"timestamp":"2026-06-09T13:48:46"}];
 
-// ── FACTOR DEFINITIONS ──
 const LK = ['TF1','TF2','TF3','TF4','TF5','TF6','OF1','OF2','OF3','OF4','OF5','OF6','OF7','EF1','EF2','EF3','CF1','CF2','CF3','CF4','CF5'];
 const FACTOR_KEY = [
   {code:'TF1',label:'Grid Unavailability',cat:'tf'},
@@ -697,173 +586,209 @@ const FACTOR_KEY = [
 ];
 const CAT_LABEL = {tf:'Technical',of:'Operational',ef:'Environmental',cf:'Company Policy'};
 
-// ── STATE ──
-let DB = [];
-let filteredDB = [];
-let pageSize = 20;
-let pageNum = 1;
-let currentRole = null;  // 'supervisor' | 'admin'
-let selectedRole = 'supervisor';
-let config = {supervisor_password: 'SUP2025', admin_password: 'ADM@NICTBB#99'};
+var DB = [];
+var filteredDB = [];
+var pageSize = 20;
+var pageNum = 1;
+var currentRole = null;
+var selectedRole = 'supervisor';
+var config = {supervisor_password:'SUP2025',admin_password:'ADM@NICTBB#99',github_token:'',github_owner:'congreen',github_repo:'pmf_mcr_questionnaire',github_branch:'main'};
 
-// ── DB INIT ──
+// ── DB ──
 function initDB() {
   DB = JSON.parse(JSON.stringify(SEED));
-  try {
-    var extra = JSON.parse(localStorage.getItem('pmf_mcr_extra') || '[]');
-    extra.forEach(function(r) {
-      if (!DB.find(function(d) { return d.id === r.id; })) DB.push(r);
-    });
-  } catch(e) {}
 }
 
 async function refreshData() {
-  // Load config (passwords)
   try {
     var cr = await fetch('config.json?v=' + Date.now());
     if (cr.ok) config = await cr.json();
   } catch(e) {}
-  // Load responses
   try {
     var rr = await fetch('responses.json?v=' + Date.now());
     if (rr.ok) {
       var fresh = await rr.json();
-      if (fresh && fresh.length > 0) {
-        DB = fresh;
-        try {
-          var extra = JSON.parse(localStorage.getItem('pmf_mcr_extra') || '[]');
-          extra.forEach(function(r) {
-            if (!DB.find(function(d) { return d.id === r.id; })) DB.push(r);
-          });
-        } catch(e) {}
-      }
+      if (fresh && fresh.length > 0) DB = fresh;
     }
   } catch(e) {}
 }
 
-// ── PAGE NAVIGATION ──
+// ── NAVIGATION ──
 function showPage(p) {
-  document.querySelectorAll('.page').forEach(function(x) { x.classList.remove('show'); });
+  document.querySelectorAll('.page').forEach(function(x){ x.classList.remove('show'); });
   document.getElementById('page-' + p).classList.add('show');
-  document.querySelectorAll('.nav-pill').forEach(function(x) { x.classList.remove('active'); });
+  document.querySelectorAll('.nav-pill').forEach(function(x){ x.classList.remove('active'); });
   document.getElementById('nav-' + p).classList.add('active');
 }
 
-// ── SURVEY LOGIC ──
+// ── SURVEY ──
 var SECS = ['intro','sec-1','sec-2','sec-3','sec-4','sec-5'];
 var REQ = {
-  'sec-1': ['stratum','exp','edu','pdm'],
-  'sec-2': ['TF1','TF2','TF3','TF4','TF5','TF6'],
-  'sec-3': ['OF1','OF2','OF3','OF4','OF5','OF6','OF7'],
-  'sec-4': ['EF1','EF2','EF3'],
-  'sec-5': ['CF1','CF2','CF3','CF4','CF5']
+  'sec-1':['stratum','exp','edu','pdm'],
+  'sec-2':['TF1','TF2','TF3','TF4','TF5','TF6'],
+  'sec-3':['OF1','OF2','OF3','OF4','OF5','OF6','OF7'],
+  'sec-4':['EF1','EF2','EF3'],
+  'sec-5':['CF1','CF2','CF3','CF4','CF5']
 };
 var cur = 0;
 
-document.querySelectorAll('.ro input[type=radio]').forEach(function(r) {
-  r.addEventListener('change', function() {
-    r.closest('.rg').querySelectorAll('.ro').forEach(function(o) { o.classList.remove('sel'); });
+document.querySelectorAll('.ro input[type=radio]').forEach(function(r){
+  r.addEventListener('change', function(){
+    r.closest('.rg').querySelectorAll('.ro').forEach(function(o){ o.classList.remove('sel'); });
     r.closest('.ro').classList.add('sel');
   });
 });
 
 function showSec(idx) {
-  SECS.forEach(function(id, i) {
-    var el = document.getElementById(id === 'intro' ? 'sec-intro' : id);
-    if (el) el.classList.toggle('active', i === idx);
+  SECS.forEach(function(id,i){
+    var el = document.getElementById(id==='intro'?'sec-intro':id);
+    if (el) el.classList.toggle('active', i===idx);
   });
-  var show = idx >= 1 && idx <= 5;
+  var show = idx>=1 && idx<=5;
   document.getElementById('prog-wrap').classList.toggle('show', show);
   if (show) {
-    var pct = Math.round(idx / 5 * 100);
-    document.getElementById('prog-fill').style.width = pct + '%';
-    document.getElementById('prog-pct').textContent = pct + '%';
-    document.getElementById('prog-lbl').textContent = 'Part ' + idx + ' of 5';
+    var pct = Math.round(idx/5*100);
+    document.getElementById('prog-fill').style.width = pct+'%';
+    document.getElementById('prog-pct').textContent = pct+'%';
+    document.getElementById('prog-lbl').textContent = 'Part '+idx+' of 5';
   }
   hideErr();
-  window.scrollTo({top: 0, behavior: 'smooth'});
+  window.scrollTo({top:0,behavior:'smooth'});
 }
 
 function validate(sid) {
-  var req = REQ[sid] || [];
-  var ok = true;
-  req.forEach(function(n) {
-    var chk = document.querySelector('input[name="' + n + '"]:checked');
-    var row = document.querySelector('tr[data-qid="' + n + '"]');
-    if (!chk) { ok = false; if (row) row.classList.add('err-row'); }
-    else { if (row) row.classList.remove('err-row'); }
+  var req = REQ[sid]||[]; var ok = true;
+  req.forEach(function(n){
+    var chk = document.querySelector('input[name="'+n+'"]:checked');
+    var row = document.querySelector('tr[data-qid="'+n+'"]');
+    if (!chk){ ok=false; if(row) row.classList.add('err-row'); }
+    else { if(row) row.classList.remove('err-row'); }
   });
   return ok;
 }
 
-function goNext() {
+function goNext(){
   var sid = SECS[cur];
-  if (sid !== 'intro' && !validate(sid)) {
-    showErr('Please answer all required questions before continuing.');
-    return;
-  }
-  if (cur < SECS.length - 1) { cur++; showSec(cur); }
+  if (sid!=='intro' && !validate(sid)){ showErr('Please answer all required questions before continuing.'); return; }
+  if (cur < SECS.length-1){ cur++; showSec(cur); }
 }
-function goPrev() { if (cur > 0) { cur--; showSec(cur); } }
-function showErr(m) { document.getElementById('err-ban').classList.add('show'); document.getElementById('err-msg').textContent = m; }
-function hideErr() {
+function goPrev(){ if(cur>0){ cur--; showSec(cur); } }
+function showErr(m){ document.getElementById('err-ban').classList.add('show'); document.getElementById('err-msg').textContent=m; }
+function hideErr(){
   document.getElementById('err-ban').classList.remove('show');
-  document.querySelectorAll('.err-row').forEach(function(r) { r.classList.remove('err-row'); });
+  document.querySelectorAll('.err-row').forEach(function(r){ r.classList.remove('err-row'); });
 }
 
 function collectForm() {
   var d = {};
-  ['stratum','exp','edu','pdm'].forEach(function(n) {
-    var el = document.querySelector('input[name="' + n + '"]:checked');
+  ['stratum','exp','edu','pdm'].forEach(function(n){
+    var el = document.querySelector('input[name="'+n+'"]:checked');
     d[n] = el ? el.value : '';
   });
-  LK.forEach(function(k) {
-    var el = document.querySelector('input[name="' + k + '"]:checked');
+  LK.forEach(function(k){
+    var el = document.querySelector('input[name="'+k+'"]:checked');
     d[k] = el ? +el.value : 0;
   });
-  d.timestamp = new Date().toISOString().slice(0, 19);
-  d.id = 'R' + String(DB.length + 1).padStart(2, '0') + '-NEW';
+  d.timestamp = new Date().toISOString().slice(0,19);
   return d;
 }
 
-function submitSurvey() {
-  if (!validate('sec-5')) { showErr('Please answer all required questions.'); return; }
+async function submitSurvey() {
+  if (!validate('sec-5')){ showErr('Please answer all required questions.'); return; }
   var btn = document.getElementById('btn-sub');
   btn.disabled = true;
   document.getElementById('sub-spin').style.display = 'inline-block';
   document.getElementById('sub-lbl').textContent = 'Saving…';
-  setTimeout(function() {
-    var entry = collectForm();
-    DB.push(entry);
-    try {
-      var ex = JSON.parse(localStorage.getItem('pmf_mcr_extra') || '[]');
-      ex.push(entry);
-      localStorage.setItem('pmf_mcr_extra', JSON.stringify(ex));
-    } catch(e) {}
-    document.querySelectorAll('#page-survey .sec').forEach(function(s) { s.classList.remove('active'); });
-    document.getElementById('prog-wrap').classList.remove('show');
-    document.getElementById('err-ban').classList.remove('show');
-    document.getElementById('success-box').classList.add('show');
-    document.getElementById('ref-pill').textContent = 'Reference ID: ' + entry.id;
-    btn.disabled = false;
-    document.getElementById('sub-spin').style.display = 'none';
-    document.getElementById('sub-lbl').textContent = 'Submit Response ✓';
-  }, 800);
+
+  // Load latest config (for github_token) and current responses
+  await refreshData();
+
+  var entry = collectForm();
+  var savedToGitHub = false;
+
+  if (config.github_token && config.github_token.length > 10) {
+    savedToGitHub = await saveToGitHub(entry);
+  }
+
+  // Show result
+  document.querySelectorAll('#page-survey .sec').forEach(function(s){ s.classList.remove('active'); });
+  document.getElementById('prog-wrap').classList.remove('show');
+  document.getElementById('err-ban').classList.remove('show');
+  document.getElementById('success-box').classList.add('show');
+  document.getElementById('ref-pill').textContent = 'Reference ID: ' + entry.id;
+
+  var notice = document.getElementById('save-notice');
+  if (savedToGitHub) {
+    notice.style.color = 'var(--g)';
+    notice.textContent = '✓ Response saved to the study database successfully.';
+  } else {
+    notice.style.color = 'var(--am)';
+    notice.textContent = '⚠ Saved locally. Contact the researcher to upload to the main database.';
+  }
+
+  btn.disabled = false;
+  document.getElementById('sub-spin').style.display = 'none';
+  document.getElementById('sub-lbl').textContent = 'Submit Response ✓';
+}
+
+async function saveToGitHub(entry) {
+  try {
+    var owner  = config.github_owner  || 'congreen';
+    var repo   = config.github_repo   || 'pmf_mcr_questionnaire';
+    var branch = config.github_branch || 'main';
+    var apiUrl = 'https://api.github.com/repos/'+owner+'/'+repo+'/contents/responses.json';
+    var headers = {
+      'Authorization': 'token ' + config.github_token,
+      'Accept': 'application/vnd.github.v3+json',
+      'Content-Type': 'application/json'
+    };
+
+    // GET current file
+    var getRes = await fetch(apiUrl+'?ref='+branch, {headers: headers});
+    if (!getRes.ok) { console.error('GitHub GET failed', getRes.status); return false; }
+    var fileData = await getRes.json();
+    var sha = fileData.sha;
+
+    // Decode, append, encode
+    var currentData = JSON.parse(atob(fileData.content.split('\n').join('')));
+    entry.id = 'R' + String(currentData.length + 1).padStart(2,'0');
+    currentData.push(entry);
+    var newContent = btoa(unescape(encodeURIComponent(JSON.stringify(currentData, null, 2))));
+
+    // PUT updated file
+    var putRes = await fetch(apiUrl, {
+      method: 'PUT',
+      headers: headers,
+      body: JSON.stringify({
+        message: 'Survey response ' + entry.id + ' submitted via form',
+        content: newContent,
+        sha: sha,
+        branch: branch
+      })
+    });
+    if (!putRes.ok) { console.error('GitHub PUT failed', putRes.status); return false; }
+    DB = currentData;
+    return true;
+  } catch(e) {
+    console.error('saveToGitHub error:', e);
+    return false;
+  }
 }
 
 function resetSurvey() {
-  document.querySelectorAll('input[type=radio]').forEach(function(r) { r.checked = false; });
-  document.querySelectorAll('.ro').forEach(function(o) { o.classList.remove('sel'); });
+  document.querySelectorAll('input[type=radio]').forEach(function(r){ r.checked=false; });
+  document.querySelectorAll('.ro').forEach(function(o){ o.classList.remove('sel'); });
   cur = 0;
   document.getElementById('success-box').classList.remove('show');
+  document.getElementById('save-notice').textContent = '';
   showSec(0);
 }
 
 // ── RESULTS LOGIN ──
 function selectRole(role) {
   selectedRole = role;
-  document.getElementById('role-sup').classList.toggle('active-role', role === 'supervisor');
-  document.getElementById('role-adm').classList.toggle('active-role', role === 'admin');
+  document.getElementById('role-sup').classList.toggle('active-role', role==='supervisor');
+  document.getElementById('role-adm').classList.toggle('active-role', role==='admin');
   document.getElementById('login-err').textContent = '';
   document.getElementById('results-pw').value = '';
   document.getElementById('results-pw').focus();
@@ -871,22 +796,26 @@ function selectRole(role) {
 
 function togglePw() {
   var inp = document.getElementById('results-pw');
-  inp.type = inp.type === 'password' ? 'text' : 'password';
+  inp.type = inp.type==='password' ? 'text' : 'password';
 }
 
 async function doResultsLogin() {
-  var pw = document.getElementById('results-pw').value;
+  var pw = document.getElementById('results-pw').value.trim();
   var errEl = document.getElementById('login-err');
-  if (!pw) { errEl.textContent = 'Please enter a password.'; return; }
+  if (!pw){ errEl.textContent = 'Please enter a password.'; return; }
+  errEl.textContent = 'Verifying…';
+
   await refreshData();
-  if (selectedRole === 'supervisor' && pw === config.supervisor_password) {
-    currentRole = 'supervisor';
-    openDashboard();
-  } else if (selectedRole === 'admin' && pw === config.admin_password) {
-    currentRole = 'admin';
+
+  var ok = false;
+  if (selectedRole==='supervisor' && pw===config.supervisor_password) { currentRole='supervisor'; ok=true; }
+  if (selectedRole==='admin'      && pw===config.admin_password)      { currentRole='admin';      ok=true; }
+
+  if (ok) {
+    errEl.textContent = '';
     openDashboard();
   } else {
-    errEl.textContent = 'Incorrect password for ' + selectedRole + '. Please try again.';
+    errEl.textContent = 'Incorrect password. Please try again.';
     document.getElementById('results-pw').value = '';
   }
 }
@@ -894,47 +823,43 @@ async function doResultsLogin() {
 function openDashboard() {
   document.getElementById('results-login').style.display = 'none';
   document.getElementById('results-dash').style.display = 'block';
-  // Set user badge in topbar
-  var badge = document.getElementById('user-badge-wrap');
-  var dot = document.getElementById('user-dot');
-  var label = document.getElementById('user-label');
-  badge.style.display = 'block';
-  if (currentRole === 'admin') {
-    dot.className = 'user-dot dot-admin';
-    label.textContent = 'Admin';
-  } else {
-    dot.className = 'user-dot dot-supervisor';
-    label.textContent = 'Supervisor';
-  }
-  // Customize hero
-  if (currentRole === 'admin') {
+
+  // User badge
+  document.getElementById('user-badge-wrap').style.display = 'block';
+  if (currentRole==='admin') {
+    document.getElementById('user-dot').className = 'user-dot dot-admin';
+    document.getElementById('user-label').textContent = 'Admin';
     document.getElementById('dash-badge').textContent = 'Admin Dashboard';
     document.getElementById('dash-title').textContent = 'PMF-MCR Survey — Full Admin Access';
     document.getElementById('dash-sub').textContent = 'View all responses, add new entries, edit data on GitHub, and download datasets.';
   } else {
+    document.getElementById('user-dot').className = 'user-dot dot-supervisor';
+    document.getElementById('user-label').textContent = 'Supervisor';
     document.getElementById('dash-badge').textContent = 'Supervisor View';
     document.getElementById('dash-title').textContent = 'PMF-MCR Survey — Response Results';
     document.getElementById('dash-sub').textContent = 'View and download all collected survey responses.';
   }
-  // Build tabs based on role
+
+  // Build tabs
   var tabBar = document.getElementById('dash-tabs');
-  if (currentRole === 'admin') {
+  if (currentRole==='admin') {
     tabBar.innerHTML = [
       '<button class="tab-btn on" data-tab="responses">All Responses</button>',
       '<button class="tab-btn" data-tab="addform">Add Response</button>',
-      '<button class="tab-btn" data-tab="github">Edit via GitHub</button>'
+      '<button class="tab-btn" data-tab="github">Settings / GitHub</button>'
     ].join('');
   } else {
     tabBar.innerHTML = '<button class="tab-btn on" data-tab="responses">All Responses</button>';
   }
-  tabBar.addEventListener('click', function(e) {
+  tabBar.addEventListener('click', function(e){
     var btn = e.target.closest('[data-tab]');
     if (btn) showTab(btn.getAttribute('data-tab'));
   });
+
   renderStats();
   renderTable(null);
   renderKeyLegend();
-  if (currentRole === 'admin') buildQAScores();
+  if (currentRole==='admin') buildQAScores();
 }
 
 function logout() {
@@ -951,181 +876,163 @@ function logout() {
   pageNum = 1;
 }
 
-// ── DASHBOARD RENDER ──
+// ── DASHBOARD ──
 function stratBadge(s) {
   var m = {'Power Systems Engineer':'pse','Regional Manager/Supervisor':'rm','Maintenance Technician':'mt','NOC Engineer':'noc'};
-  var sh = {pse:'PSE', rm:'RM', mt:'MT', noc:'NOC'};
-  var c = m[s] || 'rm';
-  return '<span class="badge b-' + c + '">' + sh[c] + '</span>';
+  var sh = {pse:'PSE',rm:'RM',mt:'MT',noc:'NOC'};
+  var c = m[s]||'rm';
+  return '<span class="badge b-'+c+'">'+sh[c]+'</span>';
 }
 
 function renderStats() {
   var ct = {'Power Systems Engineer':0,'Regional Manager/Supervisor':0,'Maintenance Technician':0,'NOC Engineer':0};
-  DB.forEach(function(r) { if (ct[r.stratum] !== undefined) ct[r.stratum]++; });
-  var isSup = currentRole === 'supervisor';
-  var sc = isSup ? ' sup-stat-card' : '';
+  DB.forEach(function(r){ if(ct[r.stratum]!==undefined) ct[r.stratum]++; });
   document.getElementById('dash-stats').innerHTML =
-    '<div class="stat-card' + sc + '"><div class="stat-v">' + DB.length + '</div><div class="stat-l">Total<br>Responses</div></div>' +
-    '<div class="stat-card' + sc + '"><div class="stat-v">' + ct['Power Systems Engineer'] + '</div><div class="stat-l">Power Systems<br>Engineer</div></div>' +
-    '<div class="stat-card' + sc + '"><div class="stat-v">' + ct['Regional Manager/Supervisor'] + '</div><div class="stat-l">Regional Mgr<br>/ Supervisor</div></div>' +
-    '<div class="stat-card' + sc + '"><div class="stat-v">' + ct['Maintenance Technician'] + '</div><div class="stat-l">Maintenance<br>Technician</div></div>' +
-    '<div class="stat-card' + sc + '"><div class="stat-v">' + ct['NOC Engineer'] + '</div><div class="stat-l">NOC<br>Engineer</div></div>';
+    '<div class="stat-card"><div class="stat-v">'+DB.length+'</div><div class="stat-l">Total Responses</div></div>'+
+    '<div class="stat-card"><div class="stat-v">'+ct['Power Systems Engineer']+'</div><div class="stat-l">Power Systems Eng.</div></div>'+
+    '<div class="stat-card"><div class="stat-v">'+ct['Regional Manager/Supervisor']+'</div><div class="stat-l">Regional Mgr / Sup.</div></div>'+
+    '<div class="stat-card"><div class="stat-v">'+ct['Maintenance Technician']+'</div><div class="stat-l">Maint. Technician</div></div>'+
+    '<div class="stat-card"><div class="stat-v">'+ct['NOC Engineer']+'</div><div class="stat-l">NOC Engineer</div></div>';
 }
 
 function renderTable(filter) {
   filteredDB = filter
-    ? DB.filter(function(r) {
-        return (r.id + ' ' + r.stratum + ' ' + r.edu + ' ' + r.pdm + ' ' + r.exp).toLowerCase().indexOf(filter) >= 0;
-      })
+    ? DB.filter(function(r){ return (r.id+' '+r.stratum+' '+r.edu+' '+r.pdm+' '+r.exp).toLowerCase().indexOf(filter)>=0; })
     : DB.slice();
-  document.getElementById('resp-count').textContent = '(' + filteredDB.length + ' records)';
+  document.getElementById('resp-count').textContent = '('+filteredDB.length+' records)';
   var thead = document.querySelector('#resp-table thead');
   var tbody = document.querySelector('#resp-table tbody');
-  thead.innerHTML = '<tr><th>#</th><th>ID</th><th>Timestamp</th><th>Stratum</th><th>Experience</th><th>Education</th><th>PdM Familiarity</th>' +
-    LK.map(function(k) { return '<th>' + k + '</th>'; }).join('') + '</tr>';
-  var start = (pageNum - 1) * pageSize;
-  tbody.innerHTML = filteredDB.slice(start, start + pageSize).map(function(r, i) {
-    var cells = LK.map(function(k) {
-      var v = r[k] || 0;
+  thead.innerHTML = '<tr><th>#</th><th>ID</th><th>Timestamp</th><th>Stratum</th><th>Experience</th><th>Education</th><th>PdM Familiarity</th>'+
+    LK.map(function(k){ return '<th>'+k+'</th>'; }).join('')+'</tr>';
+  var start = (pageNum-1)*pageSize;
+  tbody.innerHTML = filteredDB.slice(start, start+pageSize).map(function(r,i){
+    var cells = LK.map(function(k){
+      var v = r[k]||0;
       var bg = v===5?'#C8E6C9':v===4?'#DCEDC8':v===3?'#FFF9C4':v===2?'#FFE0B2':'#FFCDD2';
-      return '<td style="text-align:center;background:' + bg + ';font-weight:600">' + v + '</td>';
+      return '<td style="text-align:center;background:'+bg+';font-weight:600">'+v+'</td>';
     }).join('');
-    return '<tr>' +
-      '<td style="color:var(--muted);font-size:11px">' + (start + i + 1) + '</td>' +
-      '<td><b>' + r.id + '</b></td>' +
-      '<td style="font-size:11px;color:var(--muted)">' + r.timestamp + '</td>' +
-      '<td>' + stratBadge(r.stratum) + '</td>' +
-      '<td style="font-size:11px">' + r.exp + '</td>' +
-      '<td style="font-size:11px">' + r.edu + '</td>' +
-      '<td style="font-size:11px">' + r.pdm + '</td>' +
-      cells + '</tr>';
+    return '<tr>'+
+      '<td style="color:var(--muted);font-size:11px">'+(start+i+1)+'</td>'+
+      '<td><b>'+r.id+'</b></td>'+
+      '<td style="font-size:11px;color:var(--muted)">'+r.timestamp+'</td>'+
+      '<td>'+stratBadge(r.stratum)+'</td>'+
+      '<td style="font-size:11px">'+r.exp+'</td>'+
+      '<td style="font-size:11px">'+r.edu+'</td>'+
+      '<td style="font-size:11px">'+r.pdm+'</td>'+
+      cells+'</tr>';
   }).join('');
   renderPagination();
 }
 
 function renderPagination() {
-  var pages = Math.ceil(filteredDB.length / pageSize);
+  var pages = Math.ceil(filteredDB.length/pageSize);
   var pg = document.getElementById('pagination');
-  if (pages <= 1) { pg.innerHTML = ''; return; }
-  var h = '<span class="pg-info">Page ' + pageNum + ' of ' + pages + '</span>';
-  if (pageNum > 1) h += '<button class="pg-btn" onclick="goPage(' + (pageNum - 1) + ')">&lsaquo;</button>';
-  for (var i = Math.max(1, pageNum - 2); i <= Math.min(pages, pageNum + 2); i++) {
-    h += '<button class="pg-btn' + (i === pageNum ? ' on' : '') + '" onclick="goPage(' + i + ')">' + i + '</button>';
-  }
-  if (pageNum < pages) h += '<button class="pg-btn" onclick="goPage(' + (pageNum + 1) + ')">&rsaquo;</button>';
+  if (pages<=1){ pg.innerHTML=''; return; }
+  var h = '<span class="pg-info">Page '+pageNum+' of '+pages+'</span>';
+  if (pageNum>1) h += '<button class="pg-btn" onclick="goPage('+(pageNum-1)+')">&lsaquo;</button>';
+  for (var i=Math.max(1,pageNum-2); i<=Math.min(pages,pageNum+2); i++)
+    h += '<button class="pg-btn'+(i===pageNum?' on':'')+'" onclick="goPage('+i+')">'+i+'</button>';
+  if (pageNum<pages) h += '<button class="pg-btn" onclick="goPage('+(pageNum+1)+')">&rsaquo;</button>';
   pg.innerHTML = h;
 }
 
-function goPage(n) { pageNum = n; renderTable(document.getElementById('tbl-filter').value.toLowerCase() || null); }
-function filterTable(v) { pageNum = 1; renderTable(v.toLowerCase() || null); }
+function goPage(n){ pageNum=n; renderTable(document.getElementById('tbl-filter').value.toLowerCase()||null); }
+function filterTable(v){ pageNum=1; renderTable(v.toLowerCase()||null); }
 
 function renderKeyLegend() {
-  var groups = {tf:[], of:[], ef:[], cf:[]};
-  FACTOR_KEY.forEach(function(f) { groups[f.cat].push(f); });
-  Object.keys(groups).forEach(function(cat) {
-    var el = document.getElementById('key-' + cat);
-    if (el) el.innerHTML = groups[cat].map(function(f) {
-      return '<div class="key-item">' +
-        '<span class="key-code">' + f.code + '</span>' +
-        '<span class="key-label">' + f.label + '</span>' +
-        '<span class="key-cat cat-' + f.cat + '">' + CAT_LABEL[f.cat] + '</span>' +
-        '</div>';
+  var groups = {tf:[],of:[],ef:[],cf:[]};
+  FACTOR_KEY.forEach(function(f){ groups[f.cat].push(f); });
+  Object.keys(groups).forEach(function(cat){
+    var el = document.getElementById('key-'+cat);
+    if (el) el.innerHTML = groups[cat].map(function(f){
+      return '<div class="key-item"><span class="key-code">'+f.code+'</span><span class="key-label">'+f.label+'</span><span class="key-cat cat-'+f.cat+'">'+CAT_LABEL[f.cat]+'</span></div>';
     }).join('');
   });
 }
 
 function showTab(tab) {
   var allTabs = ['responses','addform','github'];
-  document.querySelectorAll('.tab-btn').forEach(function(b) {
-    b.classList.toggle('on', b.getAttribute('data-tab') === tab);
+  document.querySelectorAll('[data-tab]').forEach(function(b){
+    b.classList.toggle('on', b.getAttribute('data-tab')===tab);
   });
-  allTabs.forEach(function(t) {
-    var el = document.getElementById('tab-' + t);
-    if (el) el.style.display = t === tab ? 'block' : 'none';
+  allTabs.forEach(function(t){
+    var el = document.getElementById('tab-'+t);
+    if (el) el.style.display = t===tab ? 'block' : 'none';
   });
 }
 
 // ── QUICK ADD (admin only) ──
 function buildQAScores() {
-  document.getElementById('qa-scores').innerHTML = FACTOR_KEY.map(function(f) {
-    return '<div>' +
-      '<label style="font-size:11px;color:var(--muted);display:block;margin-bottom:3px"><strong>' + f.code + '</strong> ' + f.label + '</label>' +
-      '<select id="qa-' + f.code + '" class="qa-sel" style="font-size:12px">' +
-      '<option value="">--</option>' +
-      '<option value="1">1 &mdash; Strongly Disagree</option>' +
-      '<option value="2">2 &mdash; Disagree</option>' +
-      '<option value="3">3 &mdash; Neutral</option>' +
-      '<option value="4">4 &mdash; Agree</option>' +
-      '<option value="5">5 &mdash; Strongly Agree</option>' +
+  document.getElementById('qa-scores').innerHTML = FACTOR_KEY.map(function(f){
+    return '<div><label style="font-size:11px;color:var(--muted);display:block;margin-bottom:3px"><strong>'+f.code+'</strong> '+f.label+'</label>'+
+      '<select id="qa-'+f.code+'" class="qa-sel" style="font-size:12px">'+
+      '<option value="">--</option>'+
+      '<option value="1">1 &mdash; Strongly Disagree</option>'+
+      '<option value="2">2 &mdash; Disagree</option>'+
+      '<option value="3">3 &mdash; Neutral</option>'+
+      '<option value="4">4 &mdash; Agree</option>'+
+      '<option value="5">5 &mdash; Strongly Agree</option>'+
       '</select></div>';
   }).join('');
 }
 
-function quickAdd() {
-  if (currentRole !== 'admin') { alert('Admin access required.'); return; }
-  var stratum = document.getElementById('qa-stratum').value;
-  var exp = document.getElementById('qa-exp').value;
-  var edu = document.getElementById('qa-edu').value;
-  var pdm = document.getElementById('qa-pdm').value;
-  var errEl = document.getElementById('qa-err');
-  var errMsg = document.getElementById('qa-err-msg');
-  if (!stratum || !exp || !edu || !pdm) {
-    errMsg.textContent = 'Please fill all demographic fields.';
-    errEl.classList.add('show'); return;
-  }
-  var scores = {};
-  for (var ki = 0; ki < LK.length; ki++) {
-    var k = LK[ki];
-    var v = document.getElementById('qa-' + k).value;
-    if (!v) { errMsg.textContent = 'Please select a score for ' + k + '.'; errEl.classList.add('show'); return; }
-    scores[k] = +v;
+async function quickAdd() {
+  if (currentRole!=='admin'){ alert('Admin access required.'); return; }
+  var stratum=document.getElementById('qa-stratum').value;
+  var exp=document.getElementById('qa-exp').value;
+  var edu=document.getElementById('qa-edu').value;
+  var pdm=document.getElementById('qa-pdm').value;
+  var errEl=document.getElementById('qa-err');
+  var errMsg=document.getElementById('qa-err-msg');
+  if (!stratum||!exp||!edu||!pdm){ errMsg.textContent='Please fill all demographic fields.'; errEl.classList.add('show'); return; }
+  var scores={};
+  for (var ki=0; ki<LK.length; ki++){
+    var k=LK[ki];
+    var v=document.getElementById('qa-'+k).value;
+    if (!v){ errMsg.textContent='Please select a score for '+k+'.'; errEl.classList.add('show'); return; }
+    scores[k]=+v;
   }
   errEl.classList.remove('show');
-  var entry = Object.assign(
-    {id: 'R' + String(DB.length + 1).padStart(2, '0') + '-NEW', stratum: stratum, exp: exp, edu: edu, pdm: pdm},
-    scores,
-    {timestamp: new Date().toISOString().slice(0, 19)}
-  );
-  DB.push(entry);
-  try {
-    var ex = JSON.parse(localStorage.getItem('pmf_mcr_extra') || '[]');
-    ex.push(entry);
-    localStorage.setItem('pmf_mcr_extra', JSON.stringify(ex));
-  } catch(e) {}
+  var entry = Object.assign({stratum:stratum,exp:exp,edu:edu,pdm:pdm}, scores, {timestamp:new Date().toISOString().slice(0,19)});
+
+  var saved = false;
+  if (config.github_token && config.github_token.length>10) {
+    saved = await saveToGitHub(entry);
+  }
+  if (!saved) {
+    entry.id = 'R'+String(DB.length+1).padStart(2,'0')+'-LOCAL';
+    DB.push(entry);
+    alert('Added locally as '+entry.id+'. Set github_token in config.json to save permanently.');
+  } else {
+    alert('Response '+entry.id+' saved to GitHub successfully!');
+  }
   renderStats();
   renderTable(null);
   showTab('responses');
-  alert('Response ' + entry.id + ' added successfully!');
 }
 
 // ── DOWNLOADS ──
 function toCSV(data) {
   var h = ['id','timestamp','stratum','exp','edu','pdm'].concat(LK);
   var rows = [h.join(',')];
-  data.forEach(function(r) {
-    rows.push(h.map(function(k) {
-      var v = r[k] === undefined ? '' : String(r[k]);
-      return v.indexOf(',') >= 0 ? '"' + v + '"' : v;
+  data.forEach(function(r){
+    rows.push(h.map(function(k){
+      var v = r[k]===undefined ? '' : String(r[k]);
+      return v.indexOf(',')>=0 ? '"'+v+'"' : v;
     }).join(','));
   });
   return rows.join('\n');
 }
-
-function downloadCSV() {
-  var src = (filteredDB.length && filteredDB.length < DB.length) ? filteredDB : DB;
-  var blob = new Blob([toCSV(src)], {type: 'text/csv'});
-  var a = document.createElement('a');
-  a.href = URL.createObjectURL(blob);
-  a.download = 'PMF_MCR_Responses_n' + DB.length + '.csv';
-  a.click();
+function downloadCSV(){
+  var src = (filteredDB.length && filteredDB.length<DB.length) ? filteredDB : DB;
+  var blob=new Blob([toCSV(src)],{type:'text/csv'});
+  var a=document.createElement('a'); a.href=URL.createObjectURL(blob);
+  a.download='PMF_MCR_Responses_n'+DB.length+'.csv'; a.click();
 }
-
-function downloadJSON() {
-  var blob = new Blob([JSON.stringify(DB, null, 2)], {type: 'application/json'});
-  var a = document.createElement('a');
-  a.href = URL.createObjectURL(blob);
-  a.download = 'PMF_MCR_Responses_n' + DB.length + '.json';
-  a.click();
+function downloadJSON(){
+  var blob=new Blob([JSON.stringify(DB,null,2)],{type:'application/json'});
+  var a=document.createElement('a'); a.href=URL.createObjectURL(blob);
+  a.download='PMF_MCR_Responses_n'+DB.length+'.json'; a.click();
 }
 
 // ── INIT ──
