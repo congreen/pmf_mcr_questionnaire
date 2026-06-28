@@ -2,7 +2,7 @@
   "_comment": "Edit passwords here. Add github_token (repo scope PAT) to enable live response saving.",
   "supervisor_password": "SUP2025",
   "admin_password": "ADM@NICTBB#99",
-  "github_token": "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",
+  "github_token": "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",
   "github_owner": "congreen",
   "github_repo": "pmf_mcr_questionnaire",
   "github_branch": "main"
